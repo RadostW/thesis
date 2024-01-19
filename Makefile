@@ -20,20 +20,20 @@ $(TEXFILE).pdf: $(TEXFILE).tex $(BIBFILE).bib
 	biber $(TEXFILE)
 	echo "Running pdflatex second time"
 	pdflatex $(TEXFILE).tex
-	echo "Compilation finished"	
+	echo "Compilation finished"
 
 tidy:
 	echo "Tidying up"
-	rm -f *.aux *.log *.bbl *.bcf *.blg *.run.xml *.toc *.out
+	rm -f *.aux *.log *.bbl *.bcf *.blg *.run.xml *.toc *.out *.bak*
 
 clean:
 	echo "Cleaning the stage"
-	rm -f *.aux *.log *.bbl *.bcf *.blg *.run.xml *.toc *.out *.pdf
+	rm -f *.aux *.log *.bbl *.bcf *.blg *.run.xml *.toc *.out *.pdf *.bak*
 
 format:
 	latexindent -l -m -w $(TEXFILE).tex
-#   Safer variant below	
-#	latexindent -l -m $(TEXFILE).tex -o formatted_main.tex	
+#   Safer variant below
+#	latexindent -l -m $(TEXFILE).tex -o formatted_main.tex
 #	echo "Check formatted_main.tex" for formatted source.
 
 .PHONY: all clean dirty
