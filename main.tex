@@ -32,13 +32,6 @@
 \maketitle
 
 \section*{Summary}
-
-before blank line
-
-after blank line
-
-after blank line
-
 Significant proportion of the work leading to this dissertation was part of experimental-theoretical collaborations with two groups specialising in studying different elastic molecules -- group of prof.
 Lynn Zechiedrich focussed on DNA loops and group of prof.
 Anna Niedźwiecka.
@@ -225,7 +218,7 @@ Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine th
 
 Direct use of equation \eqref{eqn:faxen-theorem} is not very practical since it requires solving for surface traction distribution.
 If we only take into account the average surface traction on each sphere  by $\bm{f}_j^{(s)}(\bm{r'}) = -\bm{F}_j / (4\pi a^2)$ taking one obtains relationship of the form \eqref{eqn:mobility-matrix-definition}.
-Next one can approximate the integrand by Taylor expanding around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors  
+Next one can approximate the integrand by Taylor expanding around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors 
 
 \begin{eqnarray}
     \bm{V_i} \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \bm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
@@ -847,72 +840,114 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \clearpage
 
 \begin{publicationpage}{Waszkiewicz_2021_stability}
-    \commentary{TODO.
-        Performing theoretical calculations numerical investigation and visualisations.
-        In particular: performing linear stability analysis of the PDE describing the shape of the flexible filament including the projection method which allows for near analytical treatment of the eigenvalue problem, analysis of the resulting matrix problem, preparing the numerical solver based on truncated Fourier series, performing numerical investigation and trajectory post-processing, preparation of 2d and 3d visualisations.
+    \commentary{
+        As mentioned earlier, AUC techniques involve applying extremely high centrifugal forces.
+        During our investigation, a theoretical concern arose about the potential for buckling in sedimentation processes.
+        To address this concern, we focused on an idealized problem involving the sedimentation of a circular fiber, aiming to eliminate end-corrections from the consideration of buckling.
+
+        In this study, the PhD candidate performed the following tasks.
+        First, they conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method.
+        Second, they carried out a numerical investigation by implementing a solver based on truncated Fourier series, and analysed the resulting trajectories.
+        Third, they prepared all visualizations (2D and 3D).
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}
-    \commentary{TODO
-        Performing numerical investigation and visualisations.
-        Performing scaling analysis in collaboration with Maciej Lisicki.
-        In particular: The Mathematica implementation of the near-wall corrections to the mobility tensor\cite{Lisicki_2016}, computation of the trajectories of the colloid.
+    \commentary{
+        In nanopore sequencing, a relevant experimental setup for DNA analysis, the efficiency hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
+        While the former has been extensively studied with well-established models accounting for various contributing factors, the latter presents a challenge.
+        Existing capture models often overlook hydrodynamic interactions, a significant factor when the DNA fragment is sufficiently close to the nanpore.
+        By discerning the time scales associated with different modes of motion -- rotational and translational -- induced by different force types (Brownian, electrostatic, wall interaction), we successfully identified the pore distance at which wall interaction terms exert a dominant influence.
+
+        In this study, the PhD candidate prepared all numerical results and visualizations.
+        In particular, they implemented the near-wall corrections to the mobility tensor\cite{Lisicki_2016} using Mathematica and computed the trajectories of the nanorod.
+        Additionally, they conducted scaling analyses in collaboration with Maciej Lisicki.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_hydrodynamic}
 
 \begin{publicationpage}{Waszkiewicz_2023_dna}
-    \commentary{TODO
-        Designing numerical pipeline and performing computations leading
-        to the equilibrium configurations of the supercoiled DNA minicircles.
-        Computing hydrodynamic properties of these configurations using GRPY, pygrpy and Zeno software (only Zeno is included in the published manuscript).
-        Producing graphs and visualisations included in the manuscript.
+    \commentary{
+        This study emerged from the collaborative efforts of three distinct groups.
+        The first group, specializing in theoretical modeling, comprised the PhD candidate, Maria L Ekiel-Jeżewska, Maciej Lisicki, and Piotr Szymczak from the Warsaw University Physics Department and the Institute of Fundamental Technological Research, Polish Academy of Sciences.
+        The second group, responsible for the biosynthesis of DNA minicircles, included Jonathan M Fogg, Daniel J Catanese Jr, and Lynn Zechiedrich from the Department of Pharmacology and Chemical Biology at Baylor College of Medicine.
+        The third group, overseeing AUC measurements, was led by Maduni Ranasinghe and Borries Demeler from the Department of Chemistry and Biochemistry at the University of Lethbridge.
+
+        The choice of topoisomers of DNA minicircles as the subject of collaboration proved strategic.
+        For the modeling group, the shared hydration properties among different topoisomers and their loop structure, as opposed to rods, facilitated a more straightforward modeling process.
+        The biosynthesis group leveraged their prior experience in preparing these molecules, coupled with an interest in understanding the physical origins of changes in the bio-activity of writhed DNA.
+        Lastly, for the AUC group, the remarkable sample stability of DNA minicircles allowed for numerous re-runs of experiments.
+
+        In this study, the PhD candidate performed the following tasks.
+        First, they proposed and implemented a numerical method with the aim of obtaining equilibrium configurations of the supercoiled DNA minicircles.
+        Second, they computed the hydrodynamic properties of these configurations using GRPY, pygrpy, and Zeno software (with only Zeno being included in the published manuscript).
+        Third, the candidate produced all graphs and visualizations incorporated in the manuscript.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}
-    \commentary{TODO
-        Leading a small programming team (the author, Maciej Bartczak, Kamil Kolasa)
-        to produce a complex python package (including documentation, examples and tests).
-        Designing illustrative examples (in collaboration with Maciej Lisicki), test cases and debug tools which allowed for corrections of multiple typos in the available literature.
+    \commentary{
+        The major theoretical limitation in earlier studies revolved around the incomplete treatment of Brownian motion.
+        In the case of \cite{Waszkiewicz_2021_hydrodynamic}, dynamics had to be simplified to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
+        Similarly, in \cite{Waszkiewicz_2023_dna}, the challenges arose from the intricate nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles challenging.
+
+        Addressing the treatment of Brownian motion through stochastic differential equations presented a well-posed mathematical problem.
+        However, surprisingly, there was no readily available, easy-to-use solution, such as the package described in the publication below.
+
+        In the process of preparing the forthcoming publication, the PhD candidate assumed the role of leading a small programming team, which included the author, Maciej Bartczak, and Kamil Kolasa.
+        Their objective was to develop a sophisticated Python package complete with documentation, examples, and tests.
+        The candidate also created test cases and debugging tools that facilitated the correction of multiple typos found in existing literature.
+        Additionally, illustrative examples, collaboratively designed with Maciej Lisicki, showcase concrete applications of the tools developed during the thesis preparation.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_pychastic}
 
 \begin{publicationpage}{Waszkiewicz_2024_mda}
-    \commentary{TODO
-        Implementation of the numerical methods.
-        In particular: design of the globule-linker conformer generation scheme, investigation of Flexible Meccano conformer generation scheme, implementation of the python port \code{pygrpy} of the generalized Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}).
-        Statistical analysis of the theory--experiment deviations.
+    \commentary{
+        This study emerged from the collaborative efforts of two distinct groups.
+        The first group, specializing in theoretical modeling, included Bogdan Cichocki (PhD candidate), along with Maciej Lisicki and Piotr Szymczak from the Warsaw University Physics Department.
+
+        The second group, responsible for synthesis and FCS measurements, comprised Agnieszka Michaś, Michał K.~Białobrzewski, Barbara P.~Klepka, Maja K.~Cieplak-Rotowska, Zuzanna Staszałek, and Anna Niedźwiecka from the Institute of Physics and IMol of the Polish Academy of Sciences.
+
+        From a modeling perspective, intrinsically disordered proteins differ significantly from DNA.
+        They consist of globular fragments connected with linkers, where the former are essentially rigid, and the latter are almost ideally flexible.
+        Such proteins are ideal subjects for the application of the minimum dissipation approximation, specifically designed for the fast computation of diffusion coefficients for molecules exhibiting substantial conformational variability and parts of varying sizes.
+
+        In this study, the PhD candidate performed the following tasks.
+        First, the investigation of the Flexible Meccano conformer generation scheme.
+        Second, the implementation of the python port \code{pygrpy} of the generalized Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}).
+        Third, the implementation of the globule-linker conformer generation scheme.
+        Finally, the performing the numerical calculations and statistical analysis to assess deviations between theory and experiment and preparation of figures.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/Waszkiewicz_2024_mda}
 
 \begin{publicationpage}{Waszkiewicz_2023_trimer}
-    \commentary{TODO
+    \commentary{
+        TODO - are we even including this?
         Performing theoretical calculations regarding equilibrium distributions of
         molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic}
         package to give illustrative examples of the discussed phenomena.}
 \end{publicationpage}
-\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
+%\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
 
 \chapter{Conclusions}
 
-The objectives of the present thesis were twofold - find theoretical approaches capable of modelling experimentally relevant macromolecules and provide a step towards a single, modular system capable of accommodating different coarse graining approximations and experimental techniques.
-The results of this thesis show that such unified approach is possible and predicts diffusion coefficients of macromolecules with good precision.
-The main achievements of this thesis can be summarised as follows: 
+The objectives of the present thesis were twofold -- find theoretical approaches capable of modelling experimentally relevant macromolecules and provide a step towards a single, modular system capable of accommodating different coarse graining approximations and experimental techniques.
 
-TODO TODO
+The results of this thesis show that such unified approach is possible and that it predicts diffusion coefficients of macromolecules with good precision.
+The main achievements of this thesis can be summarised as follows:
 \begin{enumerate}
     \item We have successfully predicted hydrodynamic radii of DNA loops at different values of linking number.
     \item We have successfully predicted hydrodynamic radii of many intrinsically disordered proteins from the largest to-date benchmark set.
     \item We have provided easy to use, well documented and publicly available Python implementations to all theoretically proposed methods (without compromising the prediction speed).
 \end{enumerate}
 
-Thus the presented method can be used as a numerically feasible null-hypothesis model in future investigations by multiple experimental groups with large deviations from it's predictions being an indicator of new and exciting phenomena.
+Thus the presented method can be used as a numerically feasible null-hypothesis model in future investigations by multiple experimental groups with large deviations from its predictions being an indicator of new and exciting physical phenomena.
+Additionally we hope that the theoretical soft matter physics community will be able to use the software prepared as part of the presented thesis in multiple ways.
+Either in its current form for predicting diffusion coefficients of similar molecules or by taking advantage of its modular design by either extending its current capabilities or using its parts in isolation.
 
 \printbibliography[heading=bibchapter]
 
