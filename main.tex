@@ -18,7 +18,7 @@
 
 % For faster compilation
 % Redefine \includepdf to print its arguments rather than include pages
-\renewcommand{\includepdf}[2][]{\par\texttt{\string\includepdf} arguments: \detokenize{#2}\par}
+\renewcommand{\includepdf}[2][]{\clearpage\par\texttt{\string\includepdf} arguments: \detokenize{#2}\par\clearpage}
 
 \title{Hydrodynamic techniques\\in the study of elastic macromolecules}
 \author{Radost Waszkiewicz}
@@ -687,29 +687,6 @@ As detailed in \textcite{Waszkiewicz_2024_mda}, computing the diffusion coeffici
 
 The conformations used to predict the SAXS curve in Figure~\ref{fig:saxs_compare} were generated using the globule-linker engine, with the globule replaced by crystallographically obtained data retrieved from the Protein Data Bank (PDB)\cite{rcsb_org}. The excellent agreement in the range of scattering vectors corresponding to features larger than the $C_{\alpha}$ distance (small values of $q$) is a result of the combination of adequate modelling of both the rigid and flexible parts.
 
-\section{Author's contributions}
-The following dissertation consists of 6 thematically related manuscripts of which first four have been published at the time of writing and two are under review. Author's contribution to each of them is outlined below.
-\begin{itemize}
-    \item \fullcite{Waszkiewicz_2021_stability}.\\
-    Performing theoretical calculations numerical investigation and visualisations. In particular: performing linear stability analysis of the PDE describing the shape of the flexible filament including the projection method which allows for near analytical treatment of the eigenvalue problem, analysis of the resulting matrix problem, preparing the numerical solver based on truncated Fourier series, performing numerical investigation and trajectory post-processing, preparation of 2d and 3d visualisations.
-    
-    \item \fullcite{Waszkiewicz_2021_hydrodynamic}.\\
-    Performing numerical investigation and visualisations. Performing scaling analysis in collaboration with Maciej Lisicki. 
-    In particular: The Mathematica implementation of the near-wall corrections to the mobility tensor\cite{Lisicki_2016}, computation of the trajectories of the colloid.
-    
-    \item \fullcite{Waszkiewicz_2023_pychastic}.\\
-    Leading a small programming team (the author, Maciej Bartczak, Kamil Kolasa) to produce a complex python package (including documentation, examples and tests). Designing illustrative examples (in collaboration with Maciej Lisicki), test cases and debug tools which allowed for corrections of multiple typos in the available literature.
-
-    \item \fullcite{Waszkiewicz_2023_dna}.\\
-    Designing numerical pipeline and performing computations leading to the equilibrium configurations of the supercoiled DNA minicircles. Computing hydrodynamic properties of these configurations using GRPY, pygrpy and Zeno software (only Zeno is included in the final manuscript). Producing graphs and visualisations included in the manuscript.
-
-    \item \fullcite{Waszkiewicz_2024_mda}.\\
-    Implementation of the numerical methods. In particular: design of the globule-linker conformer generation scheme, investigation of Flexible Meccano conformer generation scheme, implementation of the python port \code{pygrpy} of the generalized Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}). Statistical analysis of the theory--experiment deviations.
-
-    \item \fullcite{Waszkiewicz_2024_trimer}.\\
-    Performing theoretical calculations regarding equilibrium distributions of molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic} package to give illustrative examples of the discussed phenomena.
-\end{itemize}
-
 \section{Software packages}
 
 \begin{table}[htbp]
@@ -733,35 +710,63 @@ The following dissertation consists of 6 thematically related manuscripts of whi
 \end{table}
 
 \chapter{Main results of the thesis}
-\clearpage
-
+\clearpage    
+    
 \begin{publicationpage}{Waszkiewicz_2021_stability}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO.
+    Performing theoretical calculations numerical investigation and visualisations. 
+    In particular: performing linear stability analysis of the PDE describing the shape 
+    of the flexible filament including the projection method which allows for near analytical 
+    treatment of the eigenvalue problem, analysis of the resulting matrix problem, preparing 
+    the numerical solver based on truncated Fourier series, performing numerical investigation 
+    and trajectory post-processing, preparation of 2d and 3d visualisations.}
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO
+    Performing numerical investigation and visualisations. Performing scaling analysis in 
+    collaboration with Maciej Lisicki. In particular: The Mathematica implementation of the
+    near-wall corrections to the mobility tensor\cite{Lisicki_2016}, computation of the 
+    trajectories of the colloid.}
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_hydrodynamic}
 
 \begin{publicationpage}{Waszkiewicz_2023_dna}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO
+    Designing numerical pipeline and performing computations leading 
+    to the equilibrium configurations of the supercoiled DNA minicircles. 
+    Computing hydrodynamic properties of these configurations using GRPY, 
+    pygrpy and Zeno software (only Zeno is included in the published manuscript). 
+    Producing graphs and visualisations included in the manuscript.}
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO
+    Leading a small programming team (the author, Maciej Bartczak, Kamil Kolasa) 
+    to produce a complex python package (including documentation, examples and tests). 
+    Designing illustrative examples (in collaboration with Maciej Lisicki), test cases 
+    and debug tools which allowed for corrections of multiple typos in the available literature.
+    }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_pychastic}
 
 \begin{publicationpage}{Waszkiewicz_2024_mda}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO
+    Implementation of the numerical methods. In particular: design of the globule-linker 
+    conformer generation scheme, investigation of Flexible Meccano conformer generation scheme, 
+    implementation of the python port \code{pygrpy} of the generalized Rotne-Prager mobility 
+    tensors (originally implemented in Fortran\cite{Zuk_2018}). Statistical analysis of the 
+    theory--experiment deviations.}
 \end{publicationpage}
 \includepdf[pages={-}]{publications/Waszkiewicz_2024_mda}
 
 \begin{publicationpage}{Waszkiewicz_2023_trimer}
-    \commentary{Lorem ipsum.}
+    \commentary{TODO
+    Performing theoretical calculations regarding equilibrium distributions of 
+    molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic} 
+    package to give illustrative examples of the discussed phenomena.}
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
 
