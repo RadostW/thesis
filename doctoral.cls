@@ -1,6 +1,11 @@
-% By Radost Waszkiewicz
-% 2023-11-14
-% The following latex class is MIT licensed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% doctoral.cls 
+% LaTeX Class for Doctoral Dissertations 
+% at the University of Warsaw
+%
+% Copyright (c) 2024 Radost Waszkiewicz
+% License: MIT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{doctoral}
@@ -71,5 +76,47 @@
 
 \def\supervisor#1{\gdef\@supervisor{#1}}
 \def\affiliation#1{\gdef\@affiliation{#1}}
+
+\newcounter{publications}
+\setcounter{publications}{1}
+
+\newcommand{\pubtitle}[1]{%
+  \citefield{#1}{title}%
+}
+
+\newcommand{\pubauthors}[1]{%
+  \AtNextCite{
+    \DeclareNameAlias{labelname}{given-family}
+    \AtEachCitekey{\defcounter{maxnames}{999}}
+    }%
+  \citeauthor{#1}}
+
+
+\renewcommand{\thepublications}{\Roman{publications}}
+
+\newenvironment{publicationpage}[1]{
+  \section{Paper \thepublications: \emph{\pubtitle{#1}}}
+  \begin{center}      
+  \hrule
+  \vspace{1em}
+  {\Large \textsc{Paper \thepublications}}\\
+  \vspace{1em}
+  \hrule
+  \vspace{4em}
+  {\Large ``\emph{\pubtitle{#1}}''}\\
+  \vspace{4em}
+  {\Large \pubauthors{#1}}\\
+  \vspace*{4em}
+  \end{center}
+
+  \def\commentary##1{
+    \begin{center}\textsc{Commentary}\end{center}
+    \par{##1}\par
+    }  
+}{
+  \stepcounter{publications}
+  \clearpage
+}
+
 
 \endinput

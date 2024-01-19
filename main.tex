@@ -18,7 +18,7 @@
 
 % For faster compilation
 % Redefine \includepdf to print its arguments rather than include pages
-% \renewcommand{\includepdf}[2][]{\par\texttt{\string\includepdf} arguments: \detokenize{#2}\par}
+\renewcommand{\includepdf}[2][]{\par\texttt{\string\includepdf} arguments: \detokenize{#2}\par}
 
 \title{Hydrodynamic techniques\\in the study of elastic macromolecules}
 \author{Radost Waszkiewicz}
@@ -732,25 +732,38 @@ The following dissertation consists of 6 thematically related manuscripts of whi
     \label{tab:packages}
 \end{table}
 
-%\section{Bibliography}
+\chapter{Main results of the thesis}
+\clearpage
 
-\chapter{Paper: Stability of sedimenting flexible loops}
+\begin{publicationpage}{Waszkiewicz_2021_stability}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
 
-\chapter{Paper: Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
+\begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_hydrodynamic}
 
-\chapter{Paper: DNA supercoiling-induced shapes alter minicircle hydrodynamic properties}
+\begin{publicationpage}{Waszkiewicz_2023_dna}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
-\chapter{Paper: Pychastic: Precise Brownian dynamics using Taylor-Itō integrators in Python}
+\begin{publicationpage}{Waszkiewicz_2023_pychastic}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_pychastic}
 
-\chapter{Paper: Minimum dissipation approximation: A fast algorithm for the prediction of diffusive properties of intrinsically disordered proteins}
-\includepdf[pages={-}]{publications/waszkiewicz_2024_mda}
+\begin{publicationpage}{Waszkiewicz_2024_mda}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
+\includepdf[pages={-}]{publications/Waszkiewicz_2024_mda}
 
-\chapter{Paper: Trimer paradox revisited}
-%\includepdf[pages={-}]{publications/waszkiewicz_2023_trimer}
+\begin{publicationpage}{Waszkiewicz_2023_trimer}
+    \commentary{Lorem ipsum.}
+\end{publicationpage}
+\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
 
 \chapter{Conclusions}
 
@@ -764,7 +777,6 @@ TODO TODO
 \end{enumerate}
     
 Thus the presented method can be used as a numerically feasible null-hypothesis model in future investigations by multiple experimental groups with large deviations from it's predictions being an indicator of new and exciting phenomena. 
-
 
 \printbibliography[heading=bibchapter]
 

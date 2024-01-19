@@ -1,3 +1,13 @@
+# Makefile for LaTeX Project
+#
+# Usage:
+#   - 'make': Cleans the directory, compiles the LaTeX project, and tidies up.
+#   - 'make dirty': Compiles the LaTeX project without cleaning.
+#   - 'make clean': Cleans the intermediate files and the generated PDF.
+#
+# Copyright (c) 2024 Radost Waszkiewicz
+# License: MIT
+
 TEXFILE = main
 BIBFILE = sources
 
