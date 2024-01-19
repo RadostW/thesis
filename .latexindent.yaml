@@ -1,0 +1,44 @@
+defaultIndent: "    "
+alignTrailingComments: 1
+
+# Simpler formatting style - sentence based
+# modifyLineBreaks:
+#     oneSentencePerLine:
+#         manipulateSentences: 1
+
+# Simpler formatting - sentence based
+# modifyLineBreaks:
+#     textWrapOptions:
+#         columns: 90
+
+modifyLineBreaks:
+  oneSentencePerLine:
+    manipulateSentences: 1              # 0/1
+    removeSentenceLineBreaks: 1         # 0/1
+    multipleSpacesToSingle: 1           # 0/1
+    textWrapSentences: 0                # 1 disables main textWrap
+    sentenceIndent: ""
+    sentencesFollow:
+      par: 1                            # 0/1
+      blankLine: 1                      # 0/1
+      fullStop: 1                       # 0/1
+      exclamationMark: 1                # 0/1
+      questionMark: 1                   # 0/1
+      rightBrace: 1                     # 0/1
+      commentOnPreviousLine: 1          # 0/1
+      other: 0                          # regex
+    sentencesDoNOTcontain:
+      other: \\begin                    # regex
+
+
+  environments:    
+    DBSFinishesWithLineBreak: 1
+    BeginStartsOnOwnLine: 1             # -1,0,1,2,3,4
+    BodyStartsOnOwnLine: 1              # -1,0,1,2,3,4
+    EndStartsOnOwnLine: 1               # -1,0,1,2,3,4
+    EndFinishesWithLineBreak: 1         # -1,0,1,2,3,4        
+
+lookForAlignDelims:
+  eqnarray:    
+    alignDoubleBackSlash: 1
+    spacesBeforeDoubleBackSlash: 1    

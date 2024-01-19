@@ -30,4 +30,10 @@ clean:
 	echo "Cleaning the stage"
 	rm -f *.aux *.log *.bbl *.bcf *.blg *.run.xml *.toc *.out *.pdf
 
-.PHONY: all clean
+format:
+	latexindent -l -m -w $(TEXFILE).tex
+#   Safer variant below	
+#	latexindent -l -m $(TEXFILE).tex -o formatted_main.tex	
+#	echo "Check formatted_main.tex" for formatted source.
+
+.PHONY: all clean dirty
