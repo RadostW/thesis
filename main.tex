@@ -64,39 +64,7 @@ As such deviations from these models can be used as quantitative indicators of s
 \clearpage
 
 \section*{Streszczenie}
-\grayout{Pierwsza publikacja pt. \emph{Stabilność sedymentujących elastycznych pętli}
-    współautorami Piotra Szymczaka i Macieja Lisickiego
-    zapewnia liniową analizę stabilności pętli sprężystych w ramach teorii siły oporu w połączeniu z siłami sprężystymi modelowanymi za pomocą równania Eulera-Bernoulliego.
-    Udało nam się ustalić półanalityczne kryterium stabilności i ponownie wyprowadzić bezwymiarową wielkość regulującą niestabilność wyboczeniową dla tego i podobnych problemów.
-
-    Druga publikacja pt.
-    \emph{Efekty hydrodynamiczne w wychwytywaniu pręcików przez nanopor}
-    współautor: Maciej Lisicki
-    przedstawia analizę wpływu oddziaływania ścianek i anizotropii hydrodynamicznej na proces wychwytywania nanoporów.
-    Teoretyczne rozważenie cząsteczki przypominającej pręcik z równomiernie rozłożonym ładunkiem dostarcza prostych, opartych na skalowaniu kryteriów pozwalających określić, kiedy i gdzie wymagane jest uwzględnienie poprawek ścian.
-
-    Trzecia publikacja zatytułowana \emph{Pychastic: Precise Brownian dynamics using integrators Taylor-Ito w Pythonie} współautorami: Maciej Bartczak, Kamil Kolasa i Maciej Lisicki jest wynikiem prac nad implementacją wydajnych rozwiązań stochastycznych równań różniczkowych, zdolnych do wygodnego rozwiązywania problemów dynamiki Browna (BD).
-    Wyrażając równania BD jako całki Itō, możemy wykorzystać klasyczne metody obciętych integratorów Taylora-Itō.
-    W ramach dokumentacji pakietu \code{pychastic} pokazujemy, jak radzić sobie z typowymi przeszkodami BD: obliczeniami rozbieżności tensora ruchliwości w równaniu dyfuzji oraz nieciągłymi trajektoriami spotykanymi podczas pracy z dynamiką na $S^2$ i $SO(3)$.
-    Dzięki implementacji zorientowanej na wektoryzację osiągnęliśmy wydajność porównywalną z wcześniejszymi implementacjami w językach programowania niższego poziomu.
-
-    Czwarta publikacja zatytułowana \emph{Kształty wywołane superskręceniem DNA zmieniają właściwości hydrodynamiczne minikola} współautorami: Maduni Ranasinghe, Jonathan M Fogg, Daniel J Catanese Jr, Maria L Ekiel-Jeżewska, Maciej Lisicki, Borries Demeler, Lynn Zechiedrich i Piotr Szymczak jest efektem teoretyczno-eksperymentalnej współpracy z zespołem z Baylor College of Medicine (odpowiedzialnym za biosyntezę) oraz zespołem z University of Lethbridge (odpowiedzialnym za analityczne eksperymenty ultrawirowania).
-    W tej publikacji określiliśmy wpływ ujemnego superskręcenia i krzywizny na właściwości hydrodynamiczne DNA, poddając minikola DNA o wielkości 336 bp i 672 bp analitycznemu ultrawirowaniu (AUC).
-    Następnie wykorzystaliśmy teorię sprężystości liniowej i obliczenia hydrodynamiczne, aby przewidzieć kształty DNA i współczynniki dyfuzji.
-
-    Piąty manuskrypt zatytułowany \emph{Przybliżenie minimalnego rozproszenia: szybki algorytm przewidywania właściwości dyfuzyjnych białek wewnętrznie nieuporządkowanych} współautorzy: Agnieszka Michaś, Michał K.
-    Białobrzewski, Barbara Klepka, Maja Cieplak-Rotowska, Zuzanna Staszałek, Bogdan Cichocki, Maciej Lisicki, Piotr Szymczak i Anna Niedźwiecka jest efektem współpracy eksperymentalno-teoretycznej z zespołem Instytutu Fizyki PAN (odpowiedzialnym za biosyntezę i spektroskopię korelacyjną fluorescencji).
-    W naszym badaniu demonstrujemy szybką metodę numeryczną łączącą proste próbkowanie konformacyjne i przybliżone interakcje hydrodynamiczne w celu oszacowania współczynników dyfuzji białek wewnętrznie nieuporządkowanych (IDP), nawet w obecności domen strukturalnych, z precyzją przewyższającą klasyczne przybliżenie Kirkwooda.
-    Dzięki nowemu zbiorowi pomiarów współczynników dyfuzji możemy ilościowo porównać nasze przewidywania z wieloma modelami obecnymi w literaturze (takimi jak prawa potęgowe i prawa potęgowe z poprawkami zależnymi od sekwencji).
-
-    Szósty rękopis zatytułowany \emph{Ponowne spojrzenie na paradoks trimeru} współautorem Maciej Lisicki zajmuje się problemem bardzo sztywnych wiązań i wynikających z nich ograniczających rozkładów kątów wiązania.
-    Pokazuje, że chociaż rozwiązanie paradoksu zostało wyjaśnione już w 1984 roku w \textcite{van_Kampen_1984}, w dobrze znanych książkach, takich jak \textcite{Frenkel_2002}, brakowało wyraźnego (i prawidłowego) potraktowania tej granicy.
-    Poprzez dokładniejsze potraktowanie rozkładów osobliwych pokazujemy, że do prawidłowego określenia kątów wiązań wymagana jest kombinacja właściwości metrycznych rozmaitości ograniczającej i hesjanu pola ograniczającego, a rozkłady „równomierne na kuli” dla harmonicznych potencjałów ograniczających nie są uniwersalne , z potencjalnie dużymi odchyleniami dla małych cząsteczek cyklicznych.
-    Wyniki te ustanawiają teoretyczne podstawy modelu globula-łącznik i powinny wyznaczać kierunki dalszych prac nad przybliżeniem minimalnego rozproszenia.
-
-    Cel prezentowanej pracy był dwojaki: zaspokojenie bezpośrednich potrzeb grup eksperymentalnych, z którymi współpracowaliśmy, ale także ustalenie solidnych modeli „hipotezy zerowej”, które są wystarczająco łatwe w użyciu i uwzględniają wszystkie podstawowe interakcje wymagane do modelowania dyfuzyjne, ale żadnych więcej interakcji.
-    Dzięki temu odchylenia od tych modeli można wykorzystać jako ilościowe wskaźniki istotnego udziału nowych zjawisk fizycznych (na przykład oddziaływań elektrostatycznych lub powstawania przejściowych mostków pomiędzy odległymi częściami cząsteczki).
-}
+\input{streszczenie.tex}
 \clearpage
 
 \section*{Funding}
@@ -238,8 +206,7 @@ That and further improvements (such as differentiable continuation for overlaps)
 \section{Mathematical treatment of Brownian motion}
 \label{sec:SDE}
 
-I would like to bring to the attention of the reader the central complication of stochastic calculus and, more importantly, underscore why it is needed in the first place.
-A more succinct description of this domain can also be found in \textcite{Waszkiewicz_2023_pychastic}.
+We outline the central complication of the Stochastic Calculus (second order terms in the chain rule equivalent) using a physically motivated example. A more succinct description of this domain can also be found in \textcite{Waszkiewicz_2023_pychastic}.
 
 For simplicity we will again focus on just a single colloidal sphere.
 Following the notation of \textcite{Ottinger_2012}, time dependent velocity $V_t$ of such sphere can be described by the Langevin equation
@@ -255,7 +222,7 @@ Such convolution is a linear operator acting on (what we hope is) a Gaussian pro
     \label{eqn:velocity-variance-integral}
 \end{equation}
 
-Recall that the brownian timescale is much longer than the fluid relaxation timescale $\tau_B \gg \tau_s$ and thus we postulate that the Browinan force has a singular correlation structure
+Recall that the Brownian timescale is much longer than the fluid relaxation timescale $\tau_B \gg \tau_s$ and thus we postulate that the Browinan force has a singular correlation structure
 \begin{equation}
     \langle F_{t'}^B F_{t''}^B \rangle = \alpha_B \delta(t'-t'') \label{eqn:white-noise-langevin}
 \end{equation}
@@ -294,10 +261,10 @@ Heuristically we expect $V_t$ to be described by the following integral
 Unfortunately this integral cannot be performed pathwise because $W_t$ has infinite variation in every interval, even though the issues of almost-surely nowhere differetniability of equation~\eqref{eqn:langevin-position} are avoided.
 We need some generalization of the usual integration to formalise this notion.
 
-These integrals turn out to be formally tractable for a class of processes call non-anticipatory.
+These integrals turn out to be formally tractable for a class of processes called non-anticipatory.
 Any such process ($X_t$, say) has the property, that for any time $t$ the future increments of the Wiener process $W_{t'} - W_t$ and past values of the process $X_{t''}$ ($t'' < t < t'$) are independent variables.
 
-We begin construction of the stochastic integral by considering random step functions -- processes which are constant on finite intervals with step heights given by random variables $\widetilde{X}_{i}$ like so
+We begin construction of the stochastic integral by considering random step functions -- processes which are constant on finite intervals (denoted with indicator function $\mathbb{I}$) with step heights given by random variables $\widetilde{X}_{i}$ like so
 \begin{equation}
     X_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} \mathbb{I}(t \in [t_{j-1},t_j]).
     \label{eqn:random-step-function}
@@ -308,7 +275,7 @@ For these processes the stochastic (Ito) integral is simply defined as
     \int_0^{t_{\mathrm{max}}} X_t \dd W_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} (W_{t_j} - W_{t_{j-1}}) \label{eqn:ito-integral-step-function}
 \end{equation}
 there is a noticeable lack of symmetry in this expression -- we evaluate the integrand on the left end of each interval, as a result $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the $X_t$ process.
-This 'direction of anticipation' assymetry plays a central role in the differences between Ito and classical calculus (and is notably absent in Stratonovich calculus).
+This 'direction of anticipation' asymetry plays a central role in the differences between Ito and classical calculus (and is notably absent in Stratonovich calculus).
 % $X_{j-1} \perp (W_{t_j} - W_{t_{j-1}})$
 
 Thanks to the non-anticipation property we can immediately conclude two very useful lemmas for random step functions (which are also true for general non-anticipating processes).
@@ -317,14 +284,13 @@ First, Ito integrals are martingales
     \left< \int_0^{t_{\mathrm{max}}} X_t \dd W_t \right> = 0.
     \label{eqn:ito-integrals-are-martingales}
 \end{equation}
-
 Second, variances of Ito integrals can be computed with standard (non stochastic) integrals
 \begin{equation}
     \left< \left( \int_0^{t_{\mathrm{max}}} X_t \dd W_t \right)^2 \right> = \int_{0}^{t_{\mathrm{max}}} \left< X_t^2 \right> \dd t, \label{eqn:itos-lemma}
 \end{equation}
 a result dubbed Ito's lemma \cite{Ito_1951}.
 To complete the construction of Ito's integral we need an appropriate limiting procedure whereby a sequence of approximating random-step-function processes is constructed and the original integral is the limit of approximating integrals.
-Turns out that the correct notion of limit here is that of mean square error, and that both the approximating processes and the integral itself converge in that sense.
+It turns out that the correct notion of limit here is that of mean square error, and that both the approximating processes and the integral itself converge in that sense.
 
 To show explicitly that this notion of integration is really fundamentally distinct from the usual integration consider a famous integral $\int_0^t W_{t'} \dd W_{t'}$.
 We can easily construct sequence of approximating step functions of $W_{t}$ by uniform discretization of a given interval with mesh approaching to zero.
@@ -333,9 +299,9 @@ By straight forward calculation we obtain a surprising result
     \int_{0}^{t} W_{t'} \dd W_{t'} = \frac{1}{2} \left( W_t^2 - t \right).
     \label{eqn:celebrated-integral}
 \end{equation}
-The additional term $-\frac{1}{2}t$ does not have a classical counterpart!
+The additional term $-\frac{1}{2}t$ does not have a classical counterpart.
 
-Fundamental advantage of using Ito's calculus over Langevin's heuristics (appart from being formally sound and the lemmas \eqref{eqn:ito-integrals-are-martingales} and \eqref{eqn:itos-lemma}) are the transformation rules of Ito's formula -- the stochastic counterpart to chain rule.
+Fundamental advantage of using Ito's calculus over Langevin's heuristics (apart from being formally sound and the lemmas \eqref{eqn:ito-integrals-are-martingales} and \eqref{eqn:itos-lemma}) are the transformation rules of Ito's formula -- the stochastic counterpart to chain rule.
 
 Suppose that $\dd X_t = A_t \dd t + B_t \dd W_t$ in the weak sense of Ito integral and $Y_t = f(X_t,t)$.
 Then we know that
@@ -367,7 +333,7 @@ Disregarding for now the sedimentation component of the Lamm equation discussed 
     \label{eqn:ficks-law}
 \end{equation}
 
-In case of dilute suspensions macroscopic $D$ can be indentified with the individual diffusion coefficient of a single colloid.
+In case of dilute suspensions macroscopic $D$ can be identified with the individual diffusion coefficient of a single colloid.
 For a suspension of microscopic solid spheres of size $a$ the celebrated Stokes-Einstein relation gives $D$ in terms of viscosity and temperature
 \begin{equation}
     D = \frac{k_B T}{6 \pi \eta a}.
@@ -399,7 +365,7 @@ For elastic macromolecule there are more bounded degrees of freedom and not just
 An intuitive first guess is to track 'the middle' or geometric average of molecules constituent parts, slightly more refined approach is to use centre of mass -- this is clearly not an optimal strategy as shown by the exact result for the rigid molecule.
 Location, or more specifically the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
 
-Treating translational mobility $\mu^{tt}$ as a tensor (with indices space, space, bead, bead) we can definte an inverse matrix of per-particle ensemble-average traces of mobility $b$ as
+Treating translational mobility $\mu^{tt}$ as a tensor (with indices space, space, bead, bead) we can definite an inverse matrix of per-particle ensemble-average traces of mobility $b$ as
 \begin{equation}
     b_{ij} (\left< \mu^{tt} \right> )_{jkll} = \delta_{ik}
 \end{equation}
@@ -413,7 +379,7 @@ Then the hydrodynamic radius is estimated by
 We called this approach the minimum dissipation approximation (MDA) as explained in \textcite{Waszkiewicz_2024_mda}.
 A complete derivation of the MDA method can be found in \textcite{Cichocki_2019}.
 
-Clearly the MDA method (and earlier, simpler Kirkwood-Reismann method TODO-CITE-KR) requrire estimating ensemble averaged translational-grand-mobility matrix.
+Clearly the MDA method (and earlier, simpler Kirkwood-Reismann method TODO-CITE-KR) require estimating ensemble averaged translational-grand-mobility matrix.
 Given approximations \eqref{eqn:rotne-prager-translation} we require only the relative positions of the constituent elements of the molecule and their effective sizes.
 These should be drawn from the equilibrium distribution given by the Boltzmanian
 \begin{equation}
@@ -425,7 +391,7 @@ Both of these problems are more pronounced when very stiff springs are used as m
 
 \section{Elastic macromolecules}
 
-Soft matter as a discipline of physics evolved out of 'colloid susupensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity.
+Soft matter as a discipline of physics evolved out of 'colloid suspensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity.
 
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
 These include some synthetic plastics but also biomolecules such as DNA or denatured proteins.
@@ -470,7 +436,7 @@ The following sections describe theoretical underpinnings of the experimental me
     \label{fig:auc_diagram}
 \end{figure}
 
-Analytical Ultracentrifugation (AUC) is one of the oldest techniques in the domain of colloidal science recieveing a Nobel prize in 1926.
+Analytical Ultracentrifugation (AUC) is one of the oldest techniques in the domain of colloidal science receiving a Nobel prize in 1926.
 In AUC a colloidal suspension is put inside a rapidly rotating centrifuge to increase the sedimentation rate of the molecules (current centrifuges spin with G-forces as large as 10'000G).
 Inside the centrifuge rotor a small window allows for optical measurements of either absorption or transmission (in recent models involving multiple wavelengths) which change as a result of concentration variation.
 
@@ -488,7 +454,7 @@ Finite element method combined with nonlinear least-squares techniques and Monte
 
 The overview of the Fluorescence Correlation Spectroscopy (FCS) technique follows that of \textcite{Tompson_2002} and \textcite{Gregor_2008}.
 The FCS method, introduced about 50 years after invention of AUC, relies on temporal analysis of fluorescence signal to determine properties of the studied sample.
-These include the hydrodynamic size (relevant to this work), but it is also possible to determine adsoprtion or reaction kinetics using this method.
+These include the hydrodynamic size (relevant to this work), but it is also possible to determine adsorption or reaction kinetics using this method.
 
 In case of diffusion constant measurements a very dilute sample of studied molecule (typically marked with an added fluorophore) is illuminated by a laser inside a confocal microscope.
 Excited fluorophore then emits light back through the microscope but at a slightly shorter wavelength (due to Stokes shift) which reaches the detector shielded from laser light with a dichroic mirror (cf \ref{fig:fcs_diagram}).
@@ -636,7 +602,7 @@ Even if we perform all of the statistical analyses correctly and we observe a st
 One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
 Correlations estimated this way can even have opposite sign to the real causal effect (which is what we're really trying to estimate)!
 A comprehensive (and approachable) overview of causal vs correlational discrepancies in observational studies can be fond in \textcite{Cinelli_2022}.
-Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principles theoretical models should take precendence over phenomenological models (not just because of their precision as we show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
+Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principles theoretical models should take precedence over phenomenological models (not just because of their precision as we show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
 These models come in two flavours -- atomistic and coarse grained.
 
 Atomistic methods of can sometimes be used\cite{Karplus_1990}, but they require either simulating the surrounding water molecules explicitly, which is very computationally intensive, or an implicit solvent scheme.
