@@ -32,9 +32,7 @@
 \maketitle
 
 \section*{Summary}
-Significant proportion of the work leading to this dissertation was part of experimental-theoretical collaborations with two groups specialising in studying different elastic molecules -- group of prof.
-Lynn Zechiedrich focussed on DNA loops and group of prof.
-Anna Niedźwiecka.
+Significant proportion of the work leading to this dissertation was part of experimental-theoretical collaborations with two groups specialising in studying different elastic molecules -- group of prof.~Lynn Zechiedrich focussed on DNA loops and group of prof.~Anna Niedźwiecka.
 
 First publication titled \emph{Stability of sedimenting flexible loops} co-authored by Piotr Szymczak and Maciej Lisicki provides linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modelled with Euler-Bernoulli equation.
 We were able to establish a semi-analytic stability criterion and rederive the dimensionless quantity governing the buckling instability for this and similar problems.
@@ -238,6 +236,7 @@ Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the 
 That and further improvements (such as differentiable continuation for overlaps) are discussed by \textcite{Zuk_2018}.
 
 \section{Mathematical treatment of Brownian motion}
+\label{sec:SDE}
 
 I would like to bring to the attention of the reader the central complication of stochastic calculus and, more importantly, underscore why it is needed in the first place.
 A more succinct description of this domain can also be found in \textcite{Waszkiewicz_2023_pychastic}.
@@ -485,6 +484,7 @@ Derivation of the $s$ and $D$ values from experimental, time-dependent concentra
 Finite element method combined with nonlinear least-squares techniques and Monte-Carlo based error estimation allows gives both values and uncertaninites of the $s$ and $D$ values which can be used to determine other molecular parameters such as $R_h$ or molecular mass.
 
 \subsection{Fluorescence Correlation Spectroscopy}
+\label{sec:FCS}
 
 The overview of the Fluorescence Correlation Spectroscopy (FCS) technique follows that of \textcite{Tompson_2002} and \textcite{Gregor_2008}.
 The FCS method, introduced about 50 years after invention of AUC, relies on temporal analysis of fluorescence signal to determine properties of the studied sample.
@@ -548,6 +548,7 @@ where $\gamma$ quantifies the aspect ratio of the excitation volume and $\tau_D$
 We can obtain diffusion coefficient $D$ from the residence time by comparing a reference sample of known $D$ and computing a ratio.
 
 \subsection{Small Angle X-ray Scattering}
+\label{sec:SAXS}
 
 This section follows notation of \cite{Hermann_2008}.
 Another experimental technique is based on the analysis of the X-ray scattering on the colloidal particles as a function of the beams deflection vector $\mathbf{q}$ defined as a difference between incoming wave vector $\mathbf{k}_i$ and scattered wave vector $\mathbf{k}_s$.
@@ -608,33 +609,34 @@ With the help of tabulated values of scattering intensities of each aminoacid ob
 
 \chapter{Discussion}
 \section{Experimental and theoretical challenges}
-Much of theoretical enthusiasm in developing complex models, with multitude of interactions is hampered by insufficient quantity or quality of experimental calibration data (necessarily required for determination of molecular 'material constants').
-In the polymer-science domains where data is plentiful (such as the area of globular proteins which can be readily measured by for example x-ray crystallography techniques) significant numerical progress could, and was made using machine learning techniques leading to a celebrated example of AlphaFold \cite{Jumper_2021} reaching even pop-science recognisability.
+Much of theoretical enthusiasm in developing complex models, with a multitude of interactions is hampered by an insufficient quantity or quality of experimental calibration data, necessarily required for determination of molecular 'material constants'.
+In the polymer science domains where data is plentiful (such as the area of globular proteins that can be readily measured by, for example, x-ray crystallography techniques), significant numerical progress could and was made using machine learning techniques leading to a celebrated example of AlphaFold \cite{Jumper_2021} reaching even pop-science recognisability.
 
 Progress in the domain of elastic molecules is much more modest, even though they constitute a large proportion of proteins\cite{Ward_2004} and play an important role in multiple bio-relevant processes, such as the functioning of the COVID-19 virus\cite{Rozycki_2022} (to name just one example particularly resonant in 2023).
 In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data -- compare over 200 thousand conformations available in the Protein Data Bank\cite{rcsb_org} with not even 100 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works\cite{Waszkiewicz_2024_mda} or 118 proteins in the Small Angle Scattering Database\cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database\cite{proteinensemble_org}.
 
 For the author the experimental challenges of studying biomacromolecules have been an eye opening lesson in patience.
-The excellent work on biosynthesis of the groups at Bayor College of medicine and Insitute of Physics of Polish Academy of Science cannot be understated.
-These two collaborations give an overview of many experimental challenges: failure or success of initial biosynthesis, obtaining correct concentrations, through purification from by products of biosynthesis and  stability of the resultant molecular constructs to practical obstacles such as replacing discontinued lab equipment and cross border shipping.
+The excellent work on biosynthesis of the groups at Baylor College of medicine and Institute of Physics of Polish Academy of Science should not be underestimated.
+These two collaborations give an overview of many experimental challenges: failure or success of initial biosynthesis, obtaining correct concentrations, through purification from by products of biosynthesis and the stability of the resultant molecular constructs to practical obstacles such as replacing discontinued lab equipment and cross border shipping.
 
 Even if everything lines up and one obtains a good sample of the molecule to study the measurement itself is no easy task either.
-Both AUC and FCS methods rely on time-series analysis of an optical signal - in that sense they are both indirect methods requiring model fitting within the experimental procedure.
-This complicates analysis of direct measurement error (uncertainty of a single measurement), with current Monte-Carlo based AUC analysis method providing no uncertainty estimates for samples of high purity.
+Both AUC and FCS methods rely on time-series analysis of an optical signal - in that sense they are both indirect methods requiring model fitting within the experimental procedure as outlined in \ref{sec:AUC,sec:FCS}.
+This complicates the analysis of the direct measurement error (uncertainty of a single measurement), with the current Monte-Carlo based AUC analysis method providing no uncertainty estimates for samples of high purity.
 Single measurement error, however, is not the only and not even a leading source of uncertainty in the measurements of the diffusion (and sedimentaiton) properties of the molecules.
 Since buffer conditions, concentration and even time from synthesis\cite{Nag_2011} affect the final outcome these have to be incorporated into error analysis to arrive at compound value of confidence interval of the measurements.
 Some authors, unfortunately, do not provide any error estimates\cite{Poznar_2017,Khaymina_2007} and most of them do not discuss multiple sources of error.
 
 Variety of bio-chemical insights into (both folded and disordered) protein behaviour invites phenomenological models to use many covariates in explaining hydrodynamic size of these molecules.
 A specific example of one such insight could be the relative rigidity of polyhistidine fragments and tags, their presence (or more simply share of histidines in the totality of aminoacids forming a molecule) is sometimes used as a explanatory variable in a process of phenomenological modelling \cite{Tomasso_2016,Marsh_2010}.
-As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation\footnote{This is in contrast to a typical physics experiment, akin to a randomized-controlled trial in social setting, where experimenter is free to chose value of controll variable and measure the outcome.
+As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{ This is in contrast to a typical physics experiment, akin to a randomized-controlled trial in social setting, where experimenter is free to chose value of controll variable and measure the outcome.
+    %
     In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
 }.
 Even if we perform all of the statistical analyses correctly and we observe a statistically significant correlation between, for example, presence of a his-tag and increase in hydrodynamic size how can we be sure that it is not simply the case of a confounding cause?
 One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
 Correlations estimated this way can even have opposite sign to the real causal effect (which is what we're really trying to estimate)!
-A comprehensive (and approachable) overview of causal vs correlational discrepancies can be fond in \textcite{Cinelli_2022}.
-Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principle theoretical models should take precendence over phenomenological models (not just because of their precision as show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
+A comprehensive (and approachable) overview of causal vs correlational discrepancies in observational studies can be fond in \textcite{Cinelli_2022}.
+Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principles theoretical models should take precendence over phenomenological models (not just because of their precision as we show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
 These models come in two flavours -- atomistic and coarse grained.
 
 Atomistic methods of can sometimes be used\cite{Karplus_1990}, but they require either simulating the surrounding water molecules explicitly, which is very computationally intensive, or an implicit solvent scheme.
@@ -675,7 +677,7 @@ Some values of these lengthscales, pertinent to the publications \cite{Waszkiewi
     \caption{Relevant length scales for the two studied problems.
         Length row represents typical values.
         Debye length computed for relevant (physiological) buffer conditions.
-        TODO: DEFINE SYMBOLS} \label{tab:lengthscales}
+    } \label{tab:lengthscales}
 \end{table}
 
 Frist type of molecule investigated in this doctoral thesis are the DNA minicircles.
@@ -684,13 +686,13 @@ Furthermore, the persistence length of DNA filaments is comparable to the length
 These minicircles were explored using two experimental techniques: CryoEM\cite{Irobalieva_2015} and analytical ultracentrifugation (AUC)\cite{Waszkiewicz_2023_dna}.
 
 CryoEM images provide insight into the conformational properties of the DNA minicircles, while AUC measurements offer information on the hydrodynamic properties of the molecule.
-To address our initial concern that the very large forces introduced by AUC methods (the molecules are sedimenting under 10,000G) could affect the equilibrium shape properties of the DNA molecules, we conducted a study on the sedimentation of elastic filaments\cite{Waszkiewicz_2021_stability}.
-The relative importance of elastic and buckling forces arising from sedimentation is quantified by the elasto-hydrodynamic lengthscale, $8\pi^3 \frac{EI}{L^2 g\rho}$, which for DNA is approximately $200,000$ Å or $60$ kbp—200 times larger than the length of the minicircles of interest.
+To address our initial concern that the very large forces introduced by AUC methods (the molecules are sedimenting under $10\,000\mathrm{G}$) could affect the equilibrium shape properties of the DNA molecules, we conducted a study on the sedimentation of elastic filaments\cite{Waszkiewicz_2021_stability}.
+The relative importance of elastic and buckling forces arising from sedimentation is quantified by the elasto-hydrodynamic lengthscale, $8\pi^3 \frac{EI}{L^2 g\rho}$, which for DNA is approximately $200\,000 \AA{}$ or $60$ kbp -- 200 times larger than the length of the minicircles of interest.
 It is noteworthy that plasmids of that length are of biological interest, and additional care needs to be taken when studying them with AUC methods.
 
 Moreover, the visual similarity between CryoEM figures from \textcite{Irobalieva_2015} and equilibrium configurations of twisted beams as described by \textcite{Coleman_2000} suggested that thermal fluctuations might have only a small influence on the overall behavior of these molecules.
 Consequently, we chose to model this problem in the 'cold' limit (cf.
-Table~\ref{tab:tickmarks}), neglecting thermal fluctuations entirely and computing equilibrium configurations only.
+Table~\ref{tab:tickmarks}), neglecting thermal fluctuations entirely and computing equilibrium configurations only (which is equivalent to working at negligible absolute temperature hence the name).
 Subsequently, these configurations were treated as rigid bodies when determining the hydrodynamic radius, as detailed in \textcite{Waszkiewicz_2023_dna}.
 The influence of thermal fluctuations was investigated further (after the publication) using the \code{pychastic} package, as outlined in Section \ref{sec:further_conclusions}.
 
@@ -714,19 +716,18 @@ The influence of thermal fluctuations was investigated further (after the public
     \label{tab:tickmarks}
 \end{table}
 
-The second type of molecule investigated in this study was intrinsically disordered proteins (IDPs).
-These molecules exhibit much smaller stiffness, with an elastohydrodynamic length of approximately $2000$ Å—comparable to the molecule length.
+The second type of molecule investigated in this study were the intrinsically disordered proteins (IDPs).
+These molecules exhibit much smaller stiffness, with an elastohydrodynamic length of approximately $2000 \AA{}$ -- comparable to the molecule length.
 This characteristic further justifies our initial concern regarding the potential influence of buckling forces arising in sedimentation on hydrodynamic sizes in some measurements.
-Fortunately, the group led by prof.
-Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule.
+Fortunately, the group led by prof.~Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule.
 
 Similar to the DNA minicircle modeling, we compared lengthscales in the problem.
-Given that the persistence length is comparable to the building block size, we decided to focus on the 'hot' limit of the problem, where elastic forces are disregarded.
+Given that the persistence length is comparable to the building block size, we decided to focus on the 'hot' limit of the problem, where elastic forces are disregarded relative to the thermal fluctuations (excluded volume interactions however do not vanish at high temperatures thus this approach can be treated as $\lim T \to \inf$ approximation, hence the name).
 More precisely bending forces arising from the Ramachandran angles distributions were neglected, at the same time the forces that govern bond length were taken to be infinitely strong, this approach requires care when handling bond-angle distributions and some apparently paradoxical results can arise there as discussed in \textcite{Waszkiewicz_2024_trimer}.
 We show that the intuitive distribution 'uniform on a sphere' indeed arises as a limit in the case of linear filaments (notably, a different distribution arises for molecules with loops as shown therein, with deviations in probability density that can be arbitrarily large).
 
 Before estimating the diffusion coefficient of the IDPs, we aimed to assess the quality of the conformational ensembles resulting from our method, as described in more detail in \textcite{Waszkiewicz_2024_mda}.
-For IDPs, one effective method for probing conformational properties without resorting to hydrodynamics is small-angle X-ray scattering (SAXS).
+For IDPs, one effective method for probing conformational properties without resorting to hydrodynamics is small-angle X-ray scattering (SAXS) described earlier in Section~\ref{sec:SAXS}.
 We compared inter-domain distance data published in \textcite{Rozycki_2022} with data generated by the globule-linker model.
 Additionally, we compared complete SAXS curves for ataxin-3 (PDB code \code{1yzb}) published in \cite{Lin_2017} with satisfactory results.
 Further details regarding the \code{saxs_single_bead} package and the comparison are outlined in Section~\ref{sec:further_conclusions}.
@@ -743,12 +744,12 @@ Assessing errors introduced by approximate conformer generation, whether in the 
 Various methods can be employed for this purpose, but a simulation grounded in physical principles holds particular appeal.
 To achieve good performance, the Brownian Dynamics method was selected.
 This approach relies on formulating the dynamical equation governing conformational changes in the form of a SDE.
-Alternative formulations such as the Langevin equation or Fokker-Planck PDE are discussed in greater detail in \textcite{Waszkiewicz_2023_pychastic}.
+Alternative formulations such as the Langevin equation or Fokker-Planck PDE are discussed in greater detail in \textcite{Waszkiewicz_2023_pychastic} and an introduction to subtelties of SDE is discussed in Section \ref{sec:SDE}.
 
 Surprisingly, in 2022, the authors found that the only high-quality SDE integration package available was \code{differentialequations.jl} in Julia\cite{Rackauckas_2017}.
-Since Julia is still not very popular among physicists (or at least not inside the soft-matter community) this resulted in frequent re-implementation of SDE integration methods for each problem and often re-implementation of the hydrodynamic interaction tensors as well (possibly due to the fact that the Rotne-Prager tensors most frequently used in our group were originally implemented in Fortran).
+Since Julia is still not very popular among physicists (or at least not inside the soft-matter community) this resulted in frequent re-implementation of SDE integration methods for each problem and often re-implementation of the hydrodynamic interaction tensors as well (possibly due to the fact that the Rotne-Prager-Yamakawa tensors most frequently used in our group were originally implemented in Fortran\cite{Zuk_2018}).
 
-We have tried to address this issue by making the packages \code{pychastic} (for SDE integration) and \code{pygrpy} (for rotne-prager tensors) as easily accessible as we can -- single command installation, working on any reasonable linux distribution, MacOS and (as of 2023) even Windows10\cite{jax_on_windows}.
+We have tried to address this issue by making the packages \code{pychastic} (for SDE integration) and \code{pygrpy} (for Rotne-Prager-Yamakawa tensors) as easily accessible as we can -- single command installation, working on any reasonable linux distribution, MacOS and (as of 2023) even Windows10\cite{jax_on_windows}.
 Additionally, we have invested substantial effort in creating straightforward yet realistic examples in the documentation.
 This not only simplifies the learning curve but also aims to encourage wider adoption of our integration package.
 For a comprehensive understanding of implementation and usage, please refer to the detailed information provided in \textcite{Waszkiewicz_2023_pychastic}.
@@ -927,9 +928,8 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \begin{publicationpage}{Waszkiewicz_2023_trimer}{TODO: toc title}
     \commentary{
         TODO - are we even including this?
-        Performing theoretical calculations regarding equilibrium distributions of
-        molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic}
-        package to give illustrative examples of the discussed phenomena.}
+        Performing theoretical calculations regarding equilibrium distributions of molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic} package to give illustrative examples of the discussed phenomena.
+    }
 \end{publicationpage}
 %\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
 
