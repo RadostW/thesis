@@ -15,11 +15,17 @@ all: clean $(TEXFILE).pdf tidy
 dirty: $(TEXFILE).pdf
 
 $(TEXFILE).pdf: $(TEXFILE).tex $(BIBFILE).bib
-	pdflatex $(TEXFILE).tex
+	echo "Running pdflatex first time"
+	pdflatex -halt-on-error -interaction=batchmode $(TEXFILE).tex
+
 	echo "Running biber"
-	biber $(TEXFILE)
+	biber $(TEXFILE) | grep -v 'WARN' -A2 --color=always
+
 	echo "Running pdflatex second time"
-	pdflatex $(TEXFILE).tex
+#   Grep only the error lines, invert exit code of grep
+	pdflatex --interaction=nonstopmode $(TEXFILE).tex | awk 'BEGIN{IGNORECASE = 1}/warning|!/,/^$$/;' | grep -vi 'Warning' -A2 --color=always || true
+#	pdflatex $(TEXFILE).tex
+
 	echo "Compilation finished"
 
 tidy:
