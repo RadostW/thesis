@@ -94,8 +94,11 @@
 
 \renewcommand{\thepublications}{\Roman{publications}}
 
-\newenvironment{publicationpage}[1]{
-    \section{Paper \thepublications: \emph{\pubtitle{#1}}}
+% publication page environment
+% #1 - bibtex key for the publication
+% #2 - plaintext title for pdf table of contents
+\newenvironment{publicationpage}[2]{
+    \section{Paper \thepublications: \texorpdfstring{\emph{\pubtitle{#1}}}{#2}}
     \begin{center}
         \hrule
         \vspace{1em}
