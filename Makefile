@@ -42,4 +42,7 @@ format:
 #	latexindent -l -m $(TEXFILE).tex -o formatted_main.tex
 #	echo "Check formatted_main.tex" for formatted source.
 
+spellcheck:
+	aspell -c -t -d british --mode=tex $(TEXFILE).tex
+
 .PHONY: all clean dirty
