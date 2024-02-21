@@ -4,6 +4,7 @@
 \usepackage[export]{adjustbox} % multipanels
 \usepackage{bm}
 \usepackage{tikz}
+\usepackage{xcolor}
 
 % Mathematical symbol abbreviations
 \newcommand{\pd}{\partial}
@@ -12,6 +13,8 @@
 
 % Display names of python packages
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+
+\newcommand{\ml}[1]{\textcolor{magenta}{#1}}
 
 % Gray out sections
 \newcommand{\grayout}[1]{{\leavevmode\color{gray}#1}}
@@ -364,7 +367,7 @@ Heat flux is then used to estimate effective size of such molecule, as described
 
 For elastic macromolecule there are more bounded degrees of freedom and not just the rotation but also deformation can affect instantaneous diffusion coefficient and a judicious choice of tracking point can remove much of the spurious overestimation.
 An intuitive first guess is to track 'the middle' or geometric average of molecules constituent parts, slightly more refined approach is to use centre of mass -- this is clearly not an optimal strategy as shown by the exact result for the rigid molecule.
-Location, or more specifically the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
+Location, or more specifically, the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
 
 Treating translational mobility $\mu^{tt}$ as a tensor (with indices space, space, bead, bead) we can definite an inverse matrix of per-particle ensemble-average traces of mobility $b$ as
 \begin{equation}
@@ -809,6 +812,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2021_stability}{Stability of sedimenting flexible loops}
     \commentary{
+
         As mentioned earlier, AUC techniques involve applying extremely high centrifugal forces.
         During our investigation, a theoretical concern arose about the potential for buckling in sedimentation processes.
         To address this concern, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the consideration of buckling.
@@ -823,15 +827,35 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}{Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
     \commentary{
-        In nanopore sequencing, a relevant experimental setup for DNA analysis, the efficiency hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
-        While the former has been extensively studied with well-established models accounting for various contributing factors, the latter presents a challenge.
-        Existing capture models often overlook hydrodynamic interactions, a significant factor when the DNA fragment is sufficiently close to the nanopore.
-        By discerning the time scales associated with different modes of motion -- rotational and translational -- induced by different force types (Brownian, electrostatic, wall interaction), we successfully identified the pore distance at which wall interaction terms exert a dominant influence.
+        % In nanopore sequencing, a relevant experimental setup for DNA analysis, the efficiency hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
+        % While the former has been extensively studied with well-established models accounting for various contributing factors, the latter presents a challenge.
+        % Existing capture models often overlook hydrodynamic interactions, a significant factor when the DNA fragment is sufficiently close to the nanopore.
+        % By discerning the time scales associated with different modes of motion -- rotational and translational -- induced by different force types (Brownian, electrostatic, wall interaction), we successfully identified the pore distance at which wall interaction terms exert a dominant influence.
 
-        In this study, the PhD candidate prepared all numerical results and visualisations.
-        In particular, they implemented the near-wall corrections to the mobility tensor\cite{Lisicki_2016} using Mathematica and computed the trajectories of the nanorod.
-        Additionally, they conducted scaling analyses in collaboration with Maciej Lisicki.
-    }
+        % In this study, the PhD candidate prepared all numerical results and visualisations.
+        % In particular, they implemented the near-wall corrections to the mobility tensor\cite{Lisicki_2016} using Mathematica and computed the trajectories of the nanorod.
+        % Additionally, they conducted scaling analyses in collaboration with Maciej Lisicki.
+
+        %%% ML – propozycja 
+
+        \ml{Propozycja ML:} {Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
+            It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
+            Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
+
+            In a relevant experimental setup for DNA analysis, the efficiency of sequencing hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
+            The complex process of translocation is now understood in great detail and has been studied extensively to assess the importance of multiple contributing factors.
+            However, the process of approach and capture by a nanopore still poses a challenge.
+            Existing models of capture mostly overlook hydrodynamic interactions which might play an important role when the DNA fragment is sufficiently close to the nanopore.
+            This work aimed to fill this gap by discerning and examining the time scales associated with different modes of motion – rotational and translational – induced by different types of forces present in the system: Brownian fluctuations, electrostatic attraction to the pore, and hindering effects of hydrodynamic interaction with the wall.
+            By the analysis of different regimes, we successfully identified the pore distance at which wall interaction terms exert a dominant influence and therefore should be accounted for in quantitative models.
+
+            To perform the analysis, we constructed a simple coarse-grained model of an anisotropic, rod-shaped particle, representing the elongated nature of a DNA filament of length short compared to its persistence length.
+            In such a case the molecules can be treated as a stiff rigid body, for which an approximate form of the mobility tensor in the presence of a wall has been proposed \cite{Lisicki_2016}.
+            In this work, we performed scaling analysis to identify the regimes where different types of forces are dominant.
+            We then calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall.
+            In this study, the PhD candidate: co-developed the scaling analysis and the theoretical description, implemented the near-wall corrections to the mobility tensors and generated all numerical results and visualisations presented, participated in the analysis of results, prepared all figures, wrote the first draft and edited all subsequent versions.
+        }}
+
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_hydrodynamic}
 
