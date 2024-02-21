@@ -811,7 +811,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \clearpage
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}{Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
-    \commentary{
+    \commentary{               
         Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
         It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
         Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
@@ -840,18 +840,17 @@ The excellent agreement in the range of scattering vectors corresponding to feat
         In extreme cases high values of compression in the fore of the sedimenting particle can lead to buckling in sedimentation processes.
         To address this concern, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
 
-        To determine cases where the buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation, where the tension inside the loop at each moment can be simply described by a ordinary differential equation.
+        To determine cases where the buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation, where the tension inside the loop at each moment can be simply described by a ordinary differential equation. 
         We calculated the evolution of the conformation of a sedimenting loop using a custom numerical integrator based on a truncated Fourier series.
 
-        In this study, the PhD candidate: conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
-        Additionally they are a corresponding author.
+        In this study, the PhD candidate: conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions. Additionally they are a corresponding author.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
 
 \begin{publicationpage}{Waszkiewicz_2023_dna}{DNA supercoiling-induced shapes alter minicircle hydrodynamic properties}
     \commentary{
-        Bio-relevance of the DNA requires little introduction.
+        Bio-relevance of the DNA requires little introduction. 
         Even though the basic structure of the DNA is well understood at least since the 1950s, undestanding the secondary structure of the DNA filament remains an imporant, but challegning task.
         Since the overall 3D conformation of the DNA can influence gene expression understanding the forces governing its elasticity is key.
         By using a selection of small DNA loops which differ only in the linking number we were able to measure conformational changes of the DNA via its hydrodynamic properties in the diffusive measurements.
@@ -866,8 +865,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
         The biosynthesis group leveraged their prior experience in preparing these molecules, coupled with an interest in understanding the physical origins of changes in the bio-activity of writhed DNA.
         Lastly, for the AUC group, the remarkable sample stability of DNA minicircles allowed for numerous re-runs of experiments.
 
-        In this study, the PhD candidate: proposed and implemented a numerical method to obtain equilibrium configurations of the supercoiled DNA minicircles.
-        They computed the hydrodynamic properties of these configurations using GRPY, pygrpy, and Zeno software (with only Zeno being included in the published manuscript); wrote the first draft and edited all subsequent versions of the manuscript, produced all graphs and visualisations incorporated in the manuscript.
+        In this study, the PhD candidate: proposed and implemented a numerical method to obtain equilibrium configurations of the supercoiled DNA minicircles. They computed the hydrodynamic properties of these configurations using GRPY, pygrpy, and Zeno software (with only Zeno being included in the published manuscript); wrote the first draft and edited all subsequent versions of the manuscript, produced all graphs and visualisations incorporated in the manuscript.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
@@ -890,8 +888,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2024_mda}{Minimum dissipation approximation: A fast algorithm for the prediction of diffusive properties of intrinsically disordered proteins}
     \commentary{
-        Intrinsically Disordered Proteins (IDPs) constitute a large class of bio-relevant elastic macromolecules.
-        TODO 
+        Intrinsically Disordered Proteins (IDPs) constitute a large class of bio-relevant elastic macromolecules. TODO
 
         From a modelling perspective, intrinsically disordered proteins differ significantly from DNA.
         They consist of globular fragments connected with linkers, where the former are essentially rigid, and the latter are almost ideally flexible.
