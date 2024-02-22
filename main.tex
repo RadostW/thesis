@@ -812,21 +812,27 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}{Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
     \commentary{
+        %1. Topic relevance
         Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
         It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
         Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
-
         In a relevant experimental setup for DNA analysis, the efficiency of sequencing hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
+
+        %2. Literature overview
         The complex process of translocation is now understood in great detail and has been studied extensively to assess the importance of multiple contributing factors.
         However, the process of approach and capture by a nanopore still poses a challenge.
         Existing models of capture mostly overlook hydrodynamic interactions which might play an important role when the DNA fragment is sufficiently close to the nanopore.
         This work aimed to fill this gap by discerning and examining the time scales associated with different modes of motion -- rotational and translational -- induced by different types of forces present in the system: Brownian fluctuations, electrostatic attraction to the pore, and hindering effects of hydrodynamic interaction with the wall.
         By the analysis of different regimes, we successfully identified the pore distance at which wall interaction terms exert a dominant influence and therefore should be accounted for in quantitative models.
 
+        %3. What techique was used
         To perform the analysis, we constructed a simple coarse-grained model of an anisotropic, rod-shaped particle, representing the elongated nature of a DNA filament of length short compared to its persistence length.
         In such a case the molecules can be treated as a stiff rigid body, for which an approximate form of the mobility tensor in the presence of a wall has been proposed \cite{Lisicki_2016}.
         In this work, we performed scaling analysis to identify the regimes where different types of forces are dominant.
+        %4. What was the outcome        
         We then calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall.
+
+        %5. PhD candidate
         In this study, the PhD candidate: co-developed the scaling analysis and the theoretical description, implemented the near-wall corrections to the mobility tensors and generated all numerical results and visualisations presented, participated in the analysis of results, prepared all figures, wrote the first draft and edited all subsequent versions.
     }
 
@@ -835,14 +841,26 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2021_stability}{Stability of sedimenting flexible loops}
     \commentary{
+        %1. Topic relevance   
         Analytical Ultracentrifugation, a method for determination of hydrodynamic radius and effective density of a molecule, involves applying extremely high centrifugal forces to a colloidal suspension.
         This well established technique has been successfully used to measure various colloidal particles, however, its application to flexible macromolecules raises concerns over the influence of large forces (or more precisely large force gradients) imposed on the molecule.
         In extreme cases high values of compression in the fore of the sedimenting particle can lead to buckling in sedimentation processes.
         To address this concern, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
 
-        To determine cases where the buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation, where the tension inside the loop at each moment can be simply described by a ordinary differential equation.
-        We calculated the evolution of the conformation of a sedimenting loop using a custom numerical integrator based on a truncated Fourier series.
+        %2. Literature overview
+        Earlier studies of sedimenting flexible rings using bead-model approach\cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions.
+        Assessing which parts of this complexity are atributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goad of this investigation.
 
+        %3. What techique was used
+        To determine cases where the buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation under which hydrodynamic drag is a local quantity.
+        Under this simplification the tension inside the loop at each moment can be computed from an ordinary differential equation.
+
+        %4. What was the outcome        
+        We calculated the evolution of the conformation of a sedimenting loop using a custom numerical integrator based on a truncated Fourier series.
+        These results were compared with a linear stability analysis of the initial, circular configuration, which provides a near analytical stability boundary.
+        We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
+
+        %5. PhD candidate
         In this study, the PhD candidate: conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
         Additionally they are a corresponding author.
     }
@@ -851,11 +869,19 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2023_dna}{DNA supercoiling-induced shapes alter minicircle hydrodynamic properties}
     \commentary{
+        %1. Topic relevance
         Bio-relevance of the DNA requires little introduction.
         Even though the basic structure of the DNA is well understood at least since the 1950s, undestanding the secondary structure of the DNA filament remains an imporant, but challegning task.
-        Since the overall 3D conformation of the DNA can influence gene expression understanding the forces governing its elasticity is key.
+        Since the overall 3D conformation of the DNA can influence gene expression, understanding the forces governing its elasticity is key.
         By using a selection of small DNA loops which differ only in the linking number we were able to measure conformational changes of the DNA via its hydrodynamic properties in the diffusive measurements.
 
+        %2. Literature overview
+        Earlier works such as \textcite{Coleman_2000} established correct energy density functional for modelling slender loops subject to torsional stress.
+        Unfortunately the original code giving piecewise analytical solutions for the problem is lost and thus re-implementation of the solver was required.
+        This work used DNA loops as inspiration but was never directly tested against experimental results.
+        On the other hand a variety of software packages are capable of predicting hydrodynamic radius given shape of a rigid molecule (Zeno, US-Somo, GRPY), but as far as we know they were not yet used for prediction of hydrodynamic properties of DNA loops.
+
+        %3. What techique was used
         This study emerged from the collaborative efforts of three distinct groups.
         The first group, specialising in theoretical modelling, comprised the PhD candidate, Maria L Ekiel-Jeżewska, Maciej Lisicki, and Piotr Szymczak from the Warsaw University Physics Department and the Institute of Fundamental Technological Research, Polish Academy of Sciences.
         The second group, responsible for the biosynthesis of DNA minicircles, included Jonathan M Fogg, Daniel J Catanese Jr, and Lynn Zechiedrich from the Department of Pharmacology and Chemical Biology at Baylor College of Medicine.
@@ -866,6 +892,10 @@ The excellent agreement in the range of scattering vectors corresponding to feat
         The biosynthesis group leveraged their prior experience in preparing these molecules, coupled with an interest in understanding the physical origins of changes in the bio-activity of writhed DNA.
         Lastly, for the AUC group, the remarkable sample stability of DNA minicircles allowed for numerous re-runs of experiments.
 
+        %4. What was the outcome
+        Using the selected approach we were able to calibrate hydrodynamic thickness of the DNA filament agains measurements of the configurations which adopt toroidal shape and use that value to predict hydrodynamic radius of all topoisomers that were experimentally measured.
+
+        %5. PhD candidate
         In this study, the PhD candidate: proposed and implemented a numerical method to obtain equilibrium configurations of the supercoiled DNA minicircles.
         They computed the hydrodynamic properties of these configurations using GRPY, pygrpy, and Zeno software (with only Zeno being included in the published manuscript); wrote the first draft and edited all subsequent versions of the manuscript, produced all graphs and visualisations incorporated in the manuscript.
     }
@@ -874,13 +904,22 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}{Pychastic: Precise Brownian dynamics using Taylor-Ito integrators in Python}
     \commentary{
+        %1. Topic relevance
         The major theoretical limitation in earlier studies revolved around the incomplete treatment of Brownian motion.
         In the case of \cite{Waszkiewicz_2021_hydrodynamic}, dynamics had to be simplified to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
-        Similarly, in \cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles challenging.
+        Similarly, in \cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles exceptionally challenging.
 
-        Addressing the treatment of Brownian motion through stochastic differential equations presented a well-posed mathematical problem.
-        However, surprisingly, there was no readily available, easy-to-use solution, such as the package described in the publication below.
+        %2. Literature overview
+        Addressing the treatment of Brownian motion through stochastic differential equations presented a well-posed mathematical problem, with a range of solutions described for example in \cite{Kloeden_1992}.
+        However, surprisingly, there was no readily available, easy-to-use software solution, such as the package described in the publication below.
 
+        %3. What techique was used
+        We decided to take advantage of the modern python features such as introspection and metaprgoraming with enable efficient automatic differentiaion of functions combined with the package \code{jax} for just-in-time compilation of python code to machine code for performance.
+
+        %4. What was the outcome
+        The resultant package, \code{pychastic}, is now available for instal via \code{pip} or directly from GitHub\cite{gh_pychastic}.
+
+        %5. PhD candidate
         In this study the PhD candidate: lead a small programming team, which included the author, Maciej Bartczak, and Kamil Kolasa, co-developed a Python package complete with documentation, examples, and tests, created test cases and debugging tools that facilitated the correction of multiple typos found in existing literature (outlined in the publication).
         Together with Maciej Lisicki, designed illustrative examples showcasing concrete applications of the tools developed during the thesis preparation.
         Additionally wrote the first draft and edited all subsequent versions of the manuscript.
@@ -890,9 +929,17 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
 \begin{publicationpage}{Waszkiewicz_2024_mda}{Minimum dissipation approximation: A fast algorithm for the prediction of diffusive properties of intrinsically disordered proteins}
     \commentary{
+        %1. Topic relevance
         Intrinsically Disordered Proteins (IDPs) constitute a large class of bio-relevant elastic macromolecules.
-        TODO 
+        They typically consist of approximately rigid domains connected with flexible linkers.
+        This type of molecule comprises up to a third of proteins in eukaryotes yet remains understudied because it cannot be easily analysed using crystalographic techniques due to their ever changing confromations.
+        Determining relative imporance of diferent physical processes determining conformations of the IDPs and role of flexible linkers in interactions between their domains remains an open problem.
 
+        %2. Literature overview
+        To the best knowledge of the authors this is the first publication comparing a first-principles approach (in contrast to many phenomenological attempts such as \cite{Tomasso_2016,Forman-Kay_2022}) to prediction of hydrodynamic size of IDPs with experimental data.
+        Earlier approaches to the prediction of the protein hydrodynamic radius (for example \cite{Fleming_2018}) generally focus on techniques which approximate the protein as a rigid body.
+
+        %3. What techique was used
         From a modelling perspective, intrinsically disordered proteins differ significantly from DNA.
         They consist of globular fragments connected with linkers, where the former are essentially rigid, and the latter are almost ideally flexible.
         Such proteins are ideal subjects for the application of the minimum dissipation approximation, specifically designed for the fast computation of diffusion coefficients for molecules exhibiting substantial conformational variability and parts of varying sizes.
@@ -902,6 +949,11 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 
         The second group, responsible for synthesis and FCS measurements, comprised Agnieszka Michaś, Michał K.~Białobrzewski, Barbara P.~Klepka, Maja K.~Cieplak-Rotowska, Zuzanna Staszałek, and Anna Niedźwiecka from the Institute of Physics of the Polish Academy of Sciences.
 
+        %4. What was the outcome
+        We were able to obtain favourable comparison with experimental data, with substantially better agreeement than all phenomenological models selected for comparison and noticeably better agreement than simple power law fit.
+        The resulting code was packaged into an easy to use python library and command line tool called \code{glm_mda_diffusion} ready to install via \code{pip} and available directly on GitHub.
+
+        %5. PhD candidate
         In this study the PhD candidate: investigated the Flexible Meccano conformer generation scheme, implemented the python port \code{pygrpy} of the generalised Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}), implemented the globule-linker conformer generation scheme, performed the numerical calculations and statistical analysis to assess deviations between theory and experiment.
         Additionally wrote the first draft and edited all subsequent versions of the manuscript.
     }
