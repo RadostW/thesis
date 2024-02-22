@@ -71,7 +71,7 @@ As such deviations from these models can be used as quantitative indicators of s
 \clearpage
 
 \section*{Funding}
-Research on the topic of the Thesis was supported by the grant Deformations of filaments in viscous liquids, financed by the National Centre of Science in Poland under the grant agreement to Maciej Lisicki no.
+Research on the topic of the Thesis was supported by the grant \emph{Dynamic deformations of elastic filaments in viscous flows}, financed by the National Centre of Science in Poland under the grant agreement to Maciej Lisicki no.
 2018/31/D/ST3/02408
 \clearpage
 
@@ -89,15 +89,15 @@ Chapter .
 
 A fundamental technique for assessing the relative importance of different physical mechanisms within a theoretical framework, originating in the domain of fluid mechanics (cf.
 Reynolds, \cite{Reynolds_1883}), involves the consideration of dimensionless numbers.
-Here we follow the approach of \cite{Nagele_2013} whereby he motivates common approximations in colloidal physics by consideration of timescale ratios.
+Here we follow the approach of Nagele \cite{Nagele_2013} whereby he motivates common approximations in colloidal physics by consideration of timescale ratios.
 
-The subject of colloidal hydrodynamics are the properties of colloidal suspensions -- mixtures of very small objects and a solvent, typically water.
+The subject of colloidal hydrodynamics are the properties of colloidal suspensions -- mixtures of very small objects (with sizes such as $0.1 \mathrm{\mu m}$) and a solvent, typically water.
 At human-length scale water is easily treated as incompressible (for example by considering volume change at typical pressures that are of the order of atmospheric pressure).
 This is less obvious at the microscopic length scale where granularity of matter becomes significant.
-Relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $L$ can be estimated from the speed of sound in water $c$ as $\tau_s = L/c$ which is much shorter than any experimentally relevant time scale prompting us to use the incompressible Navier-Stokes equation
-\begin{equation}
+Relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $L$ can be estimated from the speed of sound in water $c$ as $\tau_s = L/c \approx 6 \times 10^{-11}$ which is much shorter than any experimentally relevant time scale prompting us to use the incompressible Navier-Stokes equations
+\begin{eqnarray}
     \rho \left( \frac{\pd \bm{u}}{\pd t} + \bm{u} \cdot \bm{\nabla u} \right) = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}, \label{eqn:navier-stokes-equation}
-\end{equation}
+\end{eqnarray}
 together with the incompressible continuity equation
 \begin{equation}
     \nabla \cdot \bm{u} = 0 \label{eqn:incompressibility}.
@@ -107,19 +107,19 @@ The Navier-Stokes equation \eqref{eqn:navier-stokes-equation} is famously nonlin
 The relative importance of the nonlinear momentum advection term compared to the viscous dissipation term is measured by the Reynolds number $\Reynolds$.
 In a quiescent fluid it can be estimated from velocity of a colloidal particle $V_p$ as
 \begin{equation}
-    \Reynolds = \frac{\rho V_p L}{\eta} \sim \frac{|\rho \bm{u} \cdot \bm{\nabla}\bm{u}|}{|\eta \Delta \bm{u}|}.
+    \Reynolds = \frac{|\rho \bm{u} \cdot \bm{\nabla}\bm{u}|}{|\eta \Delta \bm{u}|} \sim \frac{\rho V_p L}{\eta}.
     \label{eqn:reynolds-based-estimate}
 \end{equation}
 
-Taking $L = 100$ \AA{} and $V_p$ as determined from equipartition of energy for a particle of mass $100 \mathrm{k Da}$ at room temperature we get $\Reynolds \sim TODO$ thus we can disregard the nonlinear terms and arrive at time-dependent Stokes equation
+Taking $L = 100$ \AA{} for a particle of mass $m = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k T / m} \approx 7 \mathrm{m/s}$) at room temperature we get $\Reynolds \sim 0.7$ thus we can disregard the nonlinear terms and arrive at time-dependent Stokes equation
 \begin{equation}
     \rho \frac{\pd \bm{u}}{\pd t} = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}.
     \label{eqn:time-dependent-stokes-equation}
 \end{equation}
 
-By taking curl of both sides of this equation we arrive at the vorticity diffusion equation
+By taking curl of both sides of this equation we arrive at the vorticity diffusion equation, for $\omega = \bm{\nabla} \times u$
 \begin{equation}
-    \frac{\pd}{\pd t} \left( \bm{\nabla} \times \bm{u} \right) = \frac{\eta}{\rho} \Delta \left( \bm{\nabla} \times \bm{u} \right), \label{eqn:vorticity-diffusion}
+    \frac{\pd}{\pd t} \bm{\omega}  = \frac{\eta}{\rho} \Delta \bm{\omega} , \label{eqn:vorticity-diffusion}
 \end{equation}
 which has a heat-kernel-type solution with characteristic time of
 \begin{equation}
@@ -127,34 +127,36 @@ which has a heat-kernel-type solution with characteristic time of
     \label{eqn:vorticity-timescale}
 \end{equation}
 
-Turns out this timescale is of the same order as the Raighley particle velocity relaxation timescale $\tau_B$ (following the naming convention of \textcite{vanKampen_2011}) describing the half-life of velocity of a particle slowing down due to Stokes drag $F_{stokes} = 6 \pi \eta a V_p = \zeta V_p$ as shown by
+It turns out that this timescale is of the same order as the Rayleigh particle velocity relaxation timescale $\tau_B$ (following the naming convention of \textcite{vanKampen_2011}) describing the exponential decay of the velocity of a particle slowing down due to Stokes drag $F_{stokes} = 6 \pi \eta a V_p = \zeta V_p$ as shown by
 \begin{equation}
     \tau_B = \frac{M}{\zeta} = \frac{2}{9} \left( \frac{\rho_p}{\rho} \right) \tau_\omega, \label{eqn:raighley-timescale}
 \end{equation}
 where $\rho_p$ is the density of the colloidal particle, which is often neutrally buoyant.
 
-Finally we can define diffusive timescale $\tau_D$ as the time required for a particle to move distance comparable with its size
+Finally we can define the diffusive timescale $\tau_D$ as the time required for a particle to move distance comparable with its size
 \begin{equation}
     \tau_D = \frac{a^2}{D}.
     \label{eqn:diffusive-timescale}
 \end{equation}
 
 For colloidal particles $\tau_D \gg \tau_\omega \sim \tau_B$ thus we can neglect time dependent terms of the Stokes equation (this is not always the case, for example in the motion of carpets of cilia or bacterial flagella the time dependent terms play a role \cite{Wei_2021}).
-Consequently we arrive at the Stokes equation
-\begin{equation}
-    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0.
+Consequently, we arrive at the Stokes equations
+\begin{eqnarray}
+    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0,\\
+    \nabla \cdot \bm{u} = 0.
     \label{eqn:stokes-equation}
-\end{equation}
+\end{eqnarray}
 
 Stokes equation \eqref{eqn:stokes-equation} has important properties of linearity and instant information propagation throughout the domain (velocity at any moment is fully determined by the fluid boundary conditions at the same time instance).
 These are vital for the construction of mobility matrices discussed in the next section.
 
 \section{Method of mobility matrices}
 
-Extending this the presented reasoning to multiple particles is easier with supervector notation, here following convention of \cite{Nagele_2013}.
+% TODO: introduction to this section
 
-Let us denote a concatenated vector of particle velocities as $V = (\bm{V_1},\bm{V_2},.
-    ..,\bm{V_N})^{T}$, angular velocities and $\Omega = (\bm{\Omega_1},\bm{\Omega_2},...,\bm{\Omega_N})^{T}$ and analogously for forces $\bm{F_i}$ and torques $\bm{T_i}$
+Consider $N$ spherical particles located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
+
+For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}. Let us denote a concatenated vector of particle velocities as $V = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\Omega = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$
 
 From the linearity of the Stokes equation and the no-slip boundary conditions of the fluid velocity at the surface of the colloids we know that they obey a linear relationship.
 We can introduce mobility tensors $\mu$ in the following fashion
@@ -171,15 +173,15 @@ We can introduce mobility tensors $\mu$ in the following fashion
     \cdot
     \begin{pmatrix}
         F \\
-        T.
-    \end{pmatrix}
+        T
+    \end{pmatrix}.
     \label{eqn:mobility-matrix-definition}
 \end{equation}
 
 For spherical colloids suspended in a quiescent fluid these depend on relative positions of the spheres.
 In the lowest order approximation in turns out only pairwise displacements are required to compute them.
 (An even simpler approximation is also possible where the spheres simply do not interact).
-Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere from the surface tractions integral by combining Faxen's law TODO cite with the green function of the Stokes equation called the Osseen tensor $\bm{T}^0$,
+Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere from the surface tractions integral by combining Faxen's law TODO cite with the green function of the Stokes equation called the Oseen tensor $\bm{T}^0$,
 \begin{equation}
     \bm{V_i} = -\mu_0^t F_i + \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) \int_{S_j} \dd S' \bm{T^0}(\bm{R}_i-\bm{r'})\cdot \bm{f}^{(s)}(\bm{r'}).
     \label{eqn:faxen-theorem}
@@ -193,15 +195,17 @@ Next one can approximate the integrand by Taylor expanding around centres of sph
     \bm{V_i} \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \bm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
     \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \bm{T}^{0} (\bm{x} = \bm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
 \end{eqnarray}
-because $\Delta_i \Delta_j T^0(\bm{R}_{ij}) = 0$.
+because $\Delta_i \Delta_j \bm{T}^0(\bm{R}_{ij}) = 0$.
 %(recall surface integrals of polynomials of order up to 2, express them in terms of surface area
 
 Evaluating the Laplacians and rearranging the explicit formulae for mobility tensors can be obtained
 \begin{eqnarray}
-    \bm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \bm{1}                                                                                                                                                                                                                                  \\
+    \bm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \bm{1},                                                                                                                                                                                                                                  \\
     \bm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R} \right) \left( \bm{1} + \bm{\hat{R}}\bm{\hat{R}} \right) + \frac{1}{2} \left( \frac{a}{R} \right)^3 \left( \bm{1} -3  \bm{\hat{R}}\bm{\hat{R}} \right) \right) \quad \mathrm{for} \quad i \neq j.
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
+
+% TODO - write that this is RP approximation, cite relevant literature "Dhont, Nagele, ..."
 
 Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
 That and further improvements (such as differentiable continuation for overlaps) are discussed by \textcite{Zuk_2018}.
@@ -222,7 +226,7 @@ with $F^B_t$ a time dependent force arising from the bombardment of the colloid 
 Solving equation \eqref{eqn:langevin-velocity} naively we obtain $V_t$ as a convolution of $F_t^B$ with an appropriate Green's function.
 Such convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity by means of a double integral
 \begin{equation}
-    \langle V_t^2 \rangle = \frac{1}{M^2} \int_0^t \dd t' \int_0^t \dd t'' \exp\left(-\zeta (2t - t' - t'') / M\right) \langle F_{t'}^B F_{t''}^B \rangle.
+    \langle V_t^2 \rangle = \frac{1}{M^2} \int_0^t \dd t' \int_0^t \dd t'' \exp\left( - \frac{\zeta}{M} (2t - t' - t'') \right) \langle F_{t'}^B F_{t''}^B \rangle.
     \label{eqn:velocity-variance-integral}
 \end{equation}
 
@@ -233,7 +237,7 @@ Recall that the Brownian timescale is much longer than the fluid relaxation time
 
 Evaluating the integral \eqref{eqn:velocity-variance-integral} we get
 \begin{equation}
-    \frac{1}{2} M \langle V_t^2 \rangle = \frac{\alpha_B}{4 \zeta} (1 - \exp(-2\zeta t / M)).
+    \frac{1}{2} M \langle V_t^2 \rangle = \frac{\alpha_B}{4 \zeta} (1 - \exp(-2\zeta \frac{t}{M})).
     \label{eqn:velocity-variance-solution}
 \end{equation}
 
@@ -251,13 +255,13 @@ Furthermore we can heuristically go to the limit $M/\zeta \to 0$ and obtain equa
 \end{equation}
 
 A proper treatment of the equation \eqref{eqn:langevin-position} is possible with the help of stochastic differential equations (SDE).
-First we define standard Wiener process as a Gaussian martingale with the following covariance structure
+First we define standard Wiener process $W_t$ as a Gaussian martingale with the following covariance structure
 \begin{equation}
     \langle W_{t_1} W_{t_2} \rangle = \int_0^{t_1} \dd t' \int_0^{t_2} \dd t'' \delta(t' - t'') = \min(t_1, t_2) \label{eqn:wiener-process-definition}
 \end{equation}
 
 Note that this time covariance is non-singular and usual theory of Gaussian processes is directly applicable.
-Heuristically we expect $V_t$ to be described by the following integral
+Heuristically, we expect $V_t$ to be described by the following integral
 \begin{equation}
     V_t = \frac{\sqrt{2 k_b T \zeta}}{M} \int_0^t \exp\left( -\zeta(t - t')/M \right) \dd W_{t'}.
     \label{eqn:velocity-integral-sde}
@@ -278,7 +282,7 @@ For these processes the stochastic (Ito) integral is simply defined as
 \begin{equation}
     \int_0^{t_{\mathrm{max}}} X_t \dd W_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} (W_{t_j} - W_{t_{j-1}}) \label{eqn:ito-integral-step-function}
 \end{equation}
-there is a noticeable lack of symmetry in this expression -- we evaluate the integrand on the left end of each interval, as a result $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the $X_t$ process.
+there is a noticeable lack of symmetry in this expression -- we evaluate the integrand on the left end of each interval, as a result $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the process $X_t$.
 This 'direction of anticipation' asymmetry plays a central role in the differences between Ito and classical calculus (and is notably absent in Stratonovich calculus).
 % $X_{j-1} \perp (W_{t_j} - W_{t_{j-1}})$
 
@@ -298,7 +302,7 @@ It turns out that the correct notion of limit here is that of mean square error,
 
 To show explicitly that this notion of integration is really fundamentally distinct from the usual integration consider a famous integral $\int_0^t W_{t'} \dd W_{t'}$.
 We can easily construct sequence of approximating step functions of $W_{t}$ by uniform discretisation of a given interval with mesh approaching to zero.
-By straight forward calculation we obtain a surprising result
+By a straightforward calculation we obtain a surprising result
 \begin{equation}
     \int_{0}^{t} W_{t'} \dd W_{t'} = \frac{1}{2} \left( W_t^2 - t \right).
     \label{eqn:celebrated-integral}
@@ -310,7 +314,7 @@ Fundamental advantage of using Ito's calculus over Langevin's heuristics (apart 
 Suppose that $\dd X_t = A_t \dd t + B_t \dd W_t$ in the weak sense of Ito integral and $Y_t = f(X_t,t)$.
 Then we know that
 \begin{equation}
-    \dd Y_t = \left( \frac{\pd f}{\pd t} + \frac{\pd f}{\pd x} A_t + \frac{1}{2} \frac{\pd^2 f}{\pd x^2} B_t^2 \right) \dd t + \frac{\pd f}{\pd x} B_t \dd W.
+    \dd Y_t = \left( \frac{\pd f}{\pd t} + \frac{\pd f}{\pd x} A_t + \frac{1}{2} \frac{\pd^2 f}{\pd x^2} B_t^2 \right) \dd t + \frac{\pd f}{\pd x} B_t \dd W_t.
     \label{eqn:itos-formula}
 \end{equation}
 This equation allows for solution of the previous integral \eqref{eqn:celebrated-integral}
@@ -561,16 +565,16 @@ where $\rho_i$ gives scattering intensity on site $i$.
 Changing the integral \eqref{eqn:intensity-profile-integral} to a double sum 
 
 \begin{equation}
-    I(\mathbf{Q}) = A_0^2 \sum_i \sum_j \rho_i \rho_j \exp(i \mathbf{q} \cdot (\mathbf{s}_i - \mathbf{s}_j))
+    I(\mathbf{q}) = A_0^2 \sum_i \sum_j \rho_i \rho_j \exp(i \mathbf{q} \cdot (\mathbf{s}_i - \mathbf{s}_j))
 \end{equation}
 
 Inside the colloid the distribution of orientations of the macromolecules with respect to the lab frame is invariant under action of rotations.
 For a vector $\mathbf{v} = \mathbf{s}_i - \mathbf{s}_j$ this simply implies $\mathbf{v}$ distributed uniformly on a sphere and its projection onto a vector $\mathbf{q}$ distributed uniformly on an interval according to orange slicing theorem\footnote{the orange slicing theorem: if you slice an orange into slices of equal thickness each slice has the same share of the orange peel} giving 
 
 \begin{eqnarray}
-    \left< I(\mathbf{Q}) \right> & = & A_0 \sum_i \sum_j \rho_i \rho_j \int \exp(i Q s) \mathbb{I}(|s| < |\mathbf{s}_i - \mathbf{s}_j|) \dd s \\
-                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|Q||\mathbf{s}_i - \mathbf{s}_j|)                  \\
-                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|Q||\mathbf{R}_{ij}|)
+    \left< I(\mathbf{q}) \right> & = & A_0 \sum_i \sum_j \rho_i \rho_j \int \exp(i q s) \mathbb{I}(|s| < |\mathbf{s}_i - \mathbf{s}_j|) \dd s \\
+                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\mathbf{s}_i - \mathbf{s}_j|)                  \\
+                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\mathbf{R}_{ij}|)
 \end{eqnarray}
 
 Thus the prediction of the scattering intensity of in a SAXS measurement of a colloidal suspension reduces to the computation of the distance matrix $R_{ij}$ between scattering sites given the values of scattering intensities $\rho_i(q)$.
@@ -598,9 +602,8 @@ Some authors, unfortunately, do not provide any error estimates\cite{Poznar_2017
 
 Variety of bio-chemical insights into (both folded and disordered) protein behaviour invites phenomenological models to use many covariates in explaining hydrodynamic size of these molecules.
 A specific example of one such insight could be the relative rigidity of polyhistidine fragments and tags, their presence (or more simply share of histidines in the totality of amino-acids forming a molecule) is sometimes used as a explanatory variable in a process of phenomenological modelling \cite{Tomasso_2016,Marsh_2010}.
-As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{ This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.
-    %
-    In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
+As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.    
+In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
 }.
 Even if we perform all of the statistical analyses correctly and we observe a statistically significant correlation between, for example, presence of a his-tag and increase in hydrodynamic size how can we be sure that it is not simply the case of a confounding cause?
 One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
