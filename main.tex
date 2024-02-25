@@ -737,60 +737,6 @@ This feature proved particularly advantageous in simulating shear-relaxed dynami
 Answer to the correct development direction (in the opinion of the author) lies in future experimental data with resolutions capable of probing inaccuracies of the force-fields used or showing clear dependencies on buffer conditions such as temperature or ionic strength.
 Such measurements are in the making and early results give a glimpse into the future DNA models\cite{Ranasinghe_2023}.
 
-\section{Results not Included in Submitted Manuscripts}
-\label{sec:further_conclusions}
-
-\subsection{Thermal Effects on the Shapes of DNA Minicircles}
-
-Utilising the \code{pychastic} package, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the minimum dissipation method described in \textcite{Cichocki_2019}.
-
-In these simulations, we assumed that torsional stresses in the DNA are relaxed.
-Consequently, the total elastic energy $E_{el}$ of such a minicircle is given by
-\begin{equation}
-    E_{el} = \frac{1}{2} \int_0^L EI \kappa^2 + \left( \frac{2\pi (Lk - Wr)}{L} \right)^2 dl.
-\end{equation}
-
-Both $\kappa$ and $Wr$ can be computed from the shape of the centreline alone (or a suitable discretisation thereof), reducing the dimensionality of the problem compared to an approach where both the position and orientation of filament segments are simulated.
-It is worth noting that simulating rotational dynamics, even of a single body, is a complex task, as outlined in \textcite{Waszkiewicz_2023_pychastic}.
-
-Given that $Wr$ is a nonlocal quantity, the computation of forces from $E_{el}$ can be cumbersome.
-Fortunately, this task can be accomplished with the assistance of \code{jax.grad}, which is compatible with the SDE solver \code{pychastic}.
-
-This gives further insight into the intermediate region ($1 < Lk < 2.5$) where minicircles have multiple stable configurations at absolute zero temperature discussed in \textcite{Waszkiewicz_2023_dna}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[height=0.5\linewidth]{figures/with_thermal_effects.pdf}
-    \caption{Relative hydrodynamic radius of the 336bp minicircle as a function of the linking number.}
-    \label{fig:thermalized_loops}
-\end{figure}
-
-It turns out that the effects of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible.
-Moreover, the range of $Lk$ values for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small—less than 0.2 turns.
-When considering the difference in total elastic energy between the flat circular configuration and the configuration with self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{4\pi^2 \cdot 2}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the transitional region width of approximately $0.03$.
-%TODO: redo this calculation and check
-This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
-One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
-
-\subsection{Comparing Conformations to SAXS Data}
-The author would like to thank dr.
-Bartosz Różycki for his guidance regarding experimental SAXS data.
-
-As detailed in \textcite{Waszkiewicz_2024_mda}, computing the diffusion coefficient for a given IDP requires generating samples from the equilibrium ensemble.
-To assess the quality of the conformer generation method independently of hydrodynamic modelling, we utilised available SAXS data.
-One example of such a comparison is illustrated in Figure~\ref{fig:saxs_compare}, where experimental data from \textcite{Sicorello_2021} is compared with our implementation of the globule-linker model (\code{sarw-spheres}) combined with our implementation of the one-site-per-amino-acid scattering model (\code{saxs-single-bead}).
-This model is based on form factors computed by \textcite{Tong_2016}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[height=0.5\linewidth]{figures/saxs_single_bead.pdf}
-    \caption{Kratky plot generated using \code{saxs_single_bead} package for {ataxin-3} (pdb id \code{1yzb}) compared with experimental data from \textcite{Sicorello_2021}.}
-    \label{fig:saxs_compare}
-\end{figure}
-
-The conformations used to predict the SAXS curve in Figure~\ref{fig:saxs_compare} were generated using the globule-linker engine, with the globule replaced by crystallographically obtained data retrieved from the Protein Data Bank (PDB)\cite{rcsb_org}.
-The excellent agreement in the range of scattering vectors corresponding to features larger than the $C_{\alpha}$ distance (small values of $q$) is a result of the combination of adequate modelling of both the rigid and flexible parts.
-
 \section{Software packages}
 
 \begin{table}[htbp]
@@ -910,6 +856,43 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
+\subsection{Thermal Effects on the Shapes of DNA Minicircles}
+
+One shortcoming of the publication \cite{Waszkiewicz_2023_dna} was limited assesment of the influence of the thermal fluctuations on the shape and hydrodynamics of the DNA loops. 
+This was caused by lack of readily available tools for brownian dynamics simulation under nonlocal force fields - such as the energy functional depending on writhe (which is a nonlocal quantity).
+
+Utilising the later developed \code{pychastic} package, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the minimum dissipation method described in \textcite{Cichocki_2019}.
+
+In these simulations, we assumed that torsional stresses in the DNA are relaxed.
+Consequently, the total elastic energy $E_{el}$ of such a minicircle is given by
+\begin{equation}
+    E_{el} = \frac{1}{2} \int_0^L EI \kappa^2 + \left( \frac{2\pi (Lk - Wr)}{L} \right)^2 dl.
+\end{equation}
+
+Both $\kappa$ and $Wr$ can be computed from the shape of the centreline alone (or a suitable discretisation thereof), reducing the dimensionality of the problem compared to an approach where both the position and orientation of filament segments are simulated.
+It is worth noting that simulating rotational dynamics, even of a single body, is a complex task, as outlined in \textcite{Waszkiewicz_2023_pychastic}.
+
+Given that $Wr$ is a nonlocal quantity, the computation of forces from $E_{el}$ can be cumbersome.
+Fortunately, this task can be accomplished with the assistance of \code{jax.grad}, which is compatible with the SDE solver \code{pychastic}.
+
+This gives further insight into the intermediate region ($1 < Lk < 2.5$) where minicircles have multiple stable configurations at absolute zero temperature discussed in \textcite{Waszkiewicz_2023_dna}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[height=0.5\linewidth]{figures/with_thermal_effects.pdf}
+    \caption{Relative hydrodynamic radius of the 336bp minicircle as a function of the linking number.}
+    \label{fig:thermalized_loops}
+\end{figure}
+
+It turns out that the effects of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible.
+Moreover, the range of $Lk$ values for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small—less than 0.2 turns.
+When considering the difference in total elastic energy between the flat circular configuration and the configuration with self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{4\pi^2 \cdot 2}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the transitional region width of approximately $0.03$.
+%TODO: redo this calculation and check
+This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
+One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
+
+The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.
+
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}{Pychastic: Precise Brownian dynamics using Taylor-Ito integrators in Python}
     \commentary{
         %1. Topic relevance
@@ -970,13 +953,59 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \end{publicationpage}
 \includepdf[pages={-}]{publications/Waszkiewicz_2024_mda}
 
-\begin{publicationpage}{Waszkiewicz_2023_trimer}{TODO: toc title}
+\subsection{Comparing Conformations to SAXS Data}
+The author would like to thank dr.~Bartosz Różycki for his guidance regarding experimental SAXS data.
+
+As detailed in \textcite{Waszkiewicz_2024_mda}, computing the diffusion coefficient for a given IDP requires generating samples from the equilibrium ensemble.
+To assess the quality of the conformer generation method independently of hydrodynamic modelling, we utilised available SAXS data (which was not included in the final manuscript).
+One example of such a comparison is illustrated in Figure~\ref{fig:saxs_compare}, where experimental data from \textcite{Sicorello_2021} is compared with our implementation of the globule-linker model (\code{sarw-spheres}) combined with our implementation of the one-site-per-amino-acid scattering model (\code{saxs-single-bead}).
+This model is based on form factors computed by \textcite{Tong_2016}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[height=0.5\linewidth]{figures/saxs_single_bead.pdf}
+    \caption{Kratky plot generated using \code{saxs_single_bead} package for {ataxin-3} (pdb id \code{1yzb}) compared with experimental data from \textcite{Sicorello_2021}.}
+    \label{fig:saxs_compare}
+\end{figure}
+
+The conformations used to predict the SAXS curve in Figure~\ref{fig:saxs_compare} were generated using the globule-linker engine, with the globule replaced by crystallographically obtained data retrieved from the Protein Data Bank (PDB)\cite{rcsb_org}.
+The excellent agreement in the range of scattering vectors corresponding to features larger than the $C_{\alpha}$ distance (small values of $q$) is a result of the combination of adequate modelling of both the rigid and flexible parts.
+
+The treatment of the distirbution in the globule-linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions). 
+Theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between constituent parts of a molecule are treated as arbitrarily rigid springs. 
+Comparing stiff spring limit with a distribution of maximal entropy for even a very short chain of 3 beads leads to a disagreement dubbed trimer paradox.
+We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
+
+\begin{publicationpage}{Waszkiewicz_2024_trimer}{Trimer paradox revisited}
     \commentary{
-        TODO - are we even including this?
-        Performing theoretical calculations regarding equilibrium distributions of molecules with arbitrarily stiff bonds and numerical calculations using \code{pychastic} package to give illustrative examples of the discussed phenomena.
+        %1. Topic relevance
+
+        Feely jointed chains form a basis of many soft matter models and determinantion of their statistical properties were amongs the earlies victories of the field with predicitons of end-to-end distances of Rouse and Zimm.
+        Moreover freely jointed chain is a fundamental component of globule-linker conformer generation scheme which used together with the Minimum Dissipation Approximation (MDA) yielded good predictions for the IDPs' hydordynamic radii.
+        On the other hand MDA assumes loose binding with short time diffusion along the bonds contributing to the short time diffusion coefficient.
+        So far we are able to compute hydrodynamic radii only in two extreme cases: very loosely bound components (MDA) or completely rigid conglomerates (GRPY), with the intermediate regime not treated by either.
+        A first step towards designing an extension of the MDA method to molecules with some but rigid constraints but capable of reorientation is to understand the equilibrium distributions in such cases.
+
+        %2. Literature overview
+        The problem of a freely jointed trimer in a limit of stiff bonds was first approached by \textcite{Fixman_1964}. 
+        They identified some, but not all, of the complications of the stiff limit. 
+        Further refinements of the work of \cite{Fixman_1974} gave the outline of the correct treatment but only in low dimensional setting and no general treatment for larger systems was presented to our best knowledge.
+        Moreover, no attention was given to computational feasibility of the techniques outlined.
+
+        %3. What techique was used
+        We have re-phrased the stiff limit in a mathematically rigorous way.
+        By examining the action of the limiting distribution on a smooth compactly supported trial function all the terms contributing to the limiting distribution arise naturally.        
+
+        %4. What was the outcome
+        By examining a general parametrisation which separates soft from hard coordinates we were able to provide an efficient way of computing the confinement shape factor.
+        We have filled the gaps in previous works by providing explicit treatment of cases with many degrees of freedom with many constrains.
+        By considering a cyclic tetramer we have shown that the shape-factor corrections can be arbitrarily large even for molecules with identical harmonic springs.
+
+        %5. PhD candidate
+        In this study the PhD candidate: proposed the research question of the manuscrit, performed the calculation of the limiting distribution, performed the numerical simulations used in illustrations, wrote the first draft and edited all subsequent versions of the manuscript.        
     }
 \end{publicationpage}
-%\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
+\includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
 
 \chapter{Conclusions}
 
