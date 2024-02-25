@@ -858,7 +858,7 @@ Such measurements are in the making and early results give a glimpse into the fu
 
 \subsection{Thermal Effects on the Shapes of DNA Minicircles}
 
-One shortcoming of the publication \cite{Waszkiewicz_2023_dna} was limited assesment of the influence of the thermal fluctuations on the shape and hydrodynamics of the DNA loops.
+One shortcoming of the publication \cite{Waszkiewicz_2023_dna} was limited assesment of the influence of the thermal fluctuations on the shape and hydrodynamics of the DNA loops. 
 This was caused by lack of readily available tools for brownian dynamics simulation under nonlocal force fields - such as the energy functional depending on writhe (which is a nonlocal quantity).
 
 Utilising the later developed \code{pychastic} package, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the minimum dissipation method described in \textcite{Cichocki_2019}.
@@ -971,8 +971,8 @@ This model is based on form factors computed by \textcite{Tong_2016}.
 The conformations used to predict the SAXS curve in Figure~\ref{fig:saxs_compare} were generated using the globule-linker engine, with the globule replaced by crystallographically obtained data retrieved from the Protein Data Bank (PDB)\cite{rcsb_org}.
 The excellent agreement in the range of scattering vectors corresponding to features larger than the $C_{\alpha}$ distance (small values of $q$) is a result of the combination of adequate modelling of both the rigid and flexible parts.
 
-The treatment of the distirbution in the globule-linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions).
-Theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between constituent parts of a molecule are treated as arbitrarily rigid springs.
+The treatment of the distirbution in the globule-linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions). 
+Theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between constituent parts of a molecule are treated as arbitrarily rigid springs. 
 Comparing stiff spring limit with a distribution of maximal entropy for even a very short chain of 3 beads leads to a disagreement dubbed trimer paradox.
 We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
 
@@ -987,14 +987,14 @@ We examine this limit in greater detail to better inform the treatment and simul
         A first step towards designing an extension of the MDA method to molecules with some but rigid constraints but capable of reorientation is to understand the equilibrium distributions in such cases.
 
         %2. Literature overview
-        The problem of a freely jointed trimer in a limit of stiff bonds was first approached by \textcite{Fixman_1974}.
-        They identified some, but not all, of the complications of the stiff limit.
+        The problem of a freely jointed trimer in a limit of stiff bonds was first approached by \textcite{Fixman_1974}. 
+        They identified some, but not all, of the complications of the stiff limit. 
         Further refinements of the work of \cite{Fixman_1974} gave the outline of the correct treatment but only in low dimensional setting and no general treatment for larger systems was presented to our best knowledge.
         Moreover, no attention was given to computational feasibility of the techniques outlined.
 
         %3. What techique was used
         We have re-phrased the stiff limit in a mathematically rigorous way.
-        By examining the action of the limiting distribution on a smooth compactly supported trial function all the terms contributing to the limiting distribution arise naturally.
+        By examining the action of the limiting distribution on a smooth compactly supported trial function all the terms contributing to the limiting distribution arise naturally.        
 
         %4. What was the outcome
         By examining a general parametrisation which separates soft from hard coordinates we were able to provide an efficient way of computing the confinement shape factor.
@@ -1002,7 +1002,7 @@ We examine this limit in greater detail to better inform the treatment and simul
         By considering a cyclic tetramer we have shown that the shape-factor corrections can be arbitrarily large even for molecules with identical harmonic springs.
 
         %5. PhD candidate
-        In this study the PhD candidate: proposed the research question of the manuscrit, performed the calculation of the limiting distribution, performed the numerical simulations used in illustrations, wrote the first draft and edited all subsequent versions of the manuscript.
+        In this study the PhD candidate: proposed the research question of the manuscrit, performed the calculation of the limiting distribution, performed the numerical simulations used in illustrations, wrote the first draft and edited all subsequent versions of the manuscript.        
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
