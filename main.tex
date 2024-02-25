@@ -5,6 +5,7 @@
 \usepackage{bm}
 \usepackage{tikz}
 \usepackage{xcolor}
+\usepackage{indentfirst}
 
 % Mathematical symbol abbreviations
 \newcommand{\pd}{\partial}
@@ -142,7 +143,7 @@ Finally we can define the diffusive timescale $\tau_D$ as the time required for 
 For colloidal particles $\tau_D \gg \tau_\omega \sim \tau_B$ thus we can neglect time dependent terms of the Stokes equation (this is not always the case, for example in the motion of carpets of cilia or bacterial flagella the time dependent terms play a role \cite{Wei_2021}).
 Consequently, we arrive at the Stokes equations
 \begin{eqnarray}
-    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0,\\
+    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0, \\
     \nabla \cdot \bm{u} = 0.
     \label{eqn:stokes-equation}
 \end{eqnarray}
@@ -156,7 +157,8 @@ These are vital for the construction of mobility matrices discussed in the next 
 
 Consider $N$ spherical particles located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
 
-For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}. Let us denote a concatenated vector of particle velocities as $V = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\Omega = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$
+For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}.
+Let us denote a concatenated vector of particle velocities as $V = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\Omega = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
 
 From the linearity of the Stokes equation and the no-slip boundary conditions of the fluid velocity at the surface of the colloids we know that they obey a linear relationship.
 We can introduce mobility tensors $\mu$ in the following fashion
@@ -174,7 +176,8 @@ We can introduce mobility tensors $\mu$ in the following fashion
     \begin{pmatrix}
         F \\
         T
-    \end{pmatrix}.
+    \end{pmatrix}
+    .
     \label{eqn:mobility-matrix-definition}
 \end{equation}
 
@@ -200,7 +203,7 @@ because $\Delta_i \Delta_j \bm{T}^0(\bm{R}_{ij}) = 0$.
 
 Evaluating the Laplacians and rearranging the explicit formulae for mobility tensors can be obtained
 \begin{eqnarray}
-    \bm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \bm{1},                                                                                                                                                                                                                                  \\
+    \bm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \bm{1},                                                                                                                                                                                                                                 \\
     \bm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R} \right) \left( \bm{1} + \bm{\hat{R}}\bm{\hat{R}} \right) + \frac{1}{2} \left( \frac{a}{R} \right)^3 \left( \bm{1} -3  \bm{\hat{R}}\bm{\hat{R}} \right) \right) \quad \mathrm{for} \quad i \neq j.
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
@@ -602,8 +605,8 @@ Some authors, unfortunately, do not provide any error estimates\cite{Poznar_2017
 
 Variety of bio-chemical insights into (both folded and disordered) protein behaviour invites phenomenological models to use many covariates in explaining hydrodynamic size of these molecules.
 A specific example of one such insight could be the relative rigidity of polyhistidine fragments and tags, their presence (or more simply share of histidines in the totality of amino-acids forming a molecule) is sometimes used as a explanatory variable in a process of phenomenological modelling \cite{Tomasso_2016,Marsh_2010}.
-As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.    
-In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
+As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.
+    In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
 }.
 Even if we perform all of the statistical analyses correctly and we observe a statistically significant correlation between, for example, presence of a his-tag and increase in hydrodynamic size how can we be sure that it is not simply the case of a confounding cause?
 One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
@@ -816,6 +819,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}{Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
     \commentary{
         %1. Topic relevance
+
         Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
         It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
         Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
@@ -873,6 +877,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \begin{publicationpage}{Waszkiewicz_2023_dna}{DNA supercoiling-induced shapes alter minicircle hydrodynamic properties}
     \commentary{
         %1. Topic relevance
+
         Bio-relevance of the DNA requires little introduction.
         Even though the basic structure of the DNA is well understood at least since the 1950s, undestanding the secondary structure of the DNA filament remains an imporant, but challegning task.
         Since the overall 3D conformation of the DNA can influence gene expression, understanding the forces governing its elasticity is key.
@@ -908,6 +913,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}{Pychastic: Precise Brownian dynamics using Taylor-Ito integrators in Python}
     \commentary{
         %1. Topic relevance
+
         The major theoretical limitation in earlier studies revolved around the incomplete treatment of Brownian motion.
         In the case of \cite{Waszkiewicz_2021_hydrodynamic}, dynamics had to be simplified to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
         Similarly, in \cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles exceptionally challenging.
@@ -933,6 +939,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 \begin{publicationpage}{Waszkiewicz_2024_mda}{Minimum dissipation approximation: A fast algorithm for the prediction of diffusive properties of intrinsically disordered proteins}
     \commentary{
         %1. Topic relevance
+
         Intrinsically Disordered Proteins (IDPs) constitute a large class of bio-relevant elastic macromolecules.
         They typically consist of approximately rigid domains connected with flexible linkers.
         This type of molecule comprises up to a third of proteins in eukaryotes yet remains understudied because it cannot be easily analysed using crystalographic techniques due to their ever changing confromations.
