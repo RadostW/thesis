@@ -477,13 +477,12 @@ FCS experiments perform best when at each moment expected number of excited mole
     \centering
     \begin{tabular}{llll}
         a)                                                                     &
-        \includegraphics[height=0.3\linewidth,valign=t]{figures/fcs_setup.png} &
+        \includegraphics[height=0.4\linewidth,valign=t]{figures/fcs_setup_clean.pdf}  &
         b)                                                                     &
-        \includegraphics[height=0.32\linewidth,valign=t]{figures/fcs_data_and_fit.pdf}
+        \includegraphics[height=0.4\linewidth,valign=t,trim=0 0 0 0.5cm]{figures/fcs_data_and_fit.pdf}
     \end{tabular}
 
-    \caption{a) A typical FCS setup diagram  b) Fluorescence correlation spectroscopy (FCS) data fit with a model for 3d diffusion.
-        By Mllyjn CC BY-SA 3.0 TODO-REPLACE-WITH-AN-DATA-FROM-ARXIV} \label{fig:fcs_diagram}
+    \caption{a) A typical FCS setup diagram  b) Fluorescence correlation spectroscopy (FCS) data with a fited a model for 3d diffusion (\textcite{Waszkiewicz_2024_mda} CC-BY-NC 4.0)} \label{fig:fcs_diagram}
 \end{figure}
 
 The frequency of the fluctuations due to diffusion can be quantified (and thus used to derive the diffusion coefficient) by considering signal autocorrelation function $G(\tau)$ given by 
@@ -891,7 +890,7 @@ When considering the difference in total elastic energy between the flat circula
 This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
 One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
 
-The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.
+The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.\clearpage
 
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}{Pychastic: Precise Brownian dynamics using Taylor-Ito integrators in Python}
     \commentary{
@@ -974,7 +973,7 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 The treatment of the distirbution in the globule-linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions).
 Theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between constituent parts of a molecule are treated as arbitrarily rigid springs.
 Comparing stiff spring limit with a distribution of maximal entropy for even a very short chain of 3 beads leads to a disagreement dubbed trimer paradox.
-We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
+We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.\clearpage
 
 \begin{publicationpage}{Waszkiewicz_2024_trimer}{Trimer paradox revisited}
     \commentary{
