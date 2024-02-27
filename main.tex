@@ -6,15 +6,17 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{indentfirst}
+\usepackage{apptools}
+
 
 % Mathematical symbol abbreviations
 \newcommand{\pd}{\partial}
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\Reynolds}{\mathrm{Re}}
+\newcommand{\mm}[1]{\bm{\mathsf{#1}}} % for typesetting matrices
 
 % Display names of python packages
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-
 \newcommand{\ml}[1]{\textcolor{magenta}{#1}}
 
 % Gray out sections
@@ -78,11 +80,11 @@ Research on the topic of the Thesis was supported by the grant \emph{Dynamic def
 
 \tableofcontents
 
-\chapter*{Preface}
-
-TODO TODO - what was the objective - the results of this study form the content of the present PhD thesis and include: - bullet list of findings - the present dissertation is based on thematically linked publications and preprints: - bullet list of publications follows this thesis is organised as follows.
-Chapter .
-.. gives, chapter provides, finally in chapter we provide a summary and prospects of further research
+%\chapter*{Preface}
+%
+%TODO TODO - what was the objective - the results of this study form the content of the present PhD thesis and include: - bullet list of findings - the present dissertation is based on thematically linked publications and preprints: - bullet list of publications follows this thesis is organised as follows.
+%Chapter .
+%.. gives, chapter provides, finally in chapter we provide a summary and prospects of further research
 
 \chapter{Introduction}
 
@@ -95,7 +97,8 @@ Here we follow the approach of Nagele \cite{Nagele_2013} whereby he motivates co
 The subject of colloidal hydrodynamics are the properties of colloidal suspensions -- mixtures of very small objects (with sizes such as $0.1 \mathrm{\mu m}$) and a solvent, typically water.
 At human-length scale water is easily treated as incompressible (for example by considering volume change at typical pressures that are of the order of atmospheric pressure).
 This is less obvious at the microscopic length scale where granularity of matter becomes significant.
-Relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $L$ can be estimated from the speed of sound in water $c$ as $\tau_s = L/c \approx 6 \times 10^{-11}$ which is much shorter than any experimentally relevant time scale prompting us to use the incompressible Navier-Stokes equations
+Relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $a$ can be estimated from the speed of sound in water $c$ as $\tau_s = a/c \approx 6 \times 10^{-11}$ which is much shorter than any experimentally relevant time scale prompting us to use the incompressible Navier-Stokes equations.
+For a fluid (such as water) of density $\rho$ and viscosity $\eta$ it describes the evolution of the velocity field $\bm{u}$ in response to the pressure gradient $\bm{\nabla} p$ and body forces $\bm{f}$ acting on the fluid as
 \begin{eqnarray}
     \rho \left( \frac{\pd \bm{u}}{\pd t} + \bm{u} \cdot \bm{\nabla u} \right) = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}, \label{eqn:navier-stokes-equation}
 \end{eqnarray}
@@ -105,36 +108,36 @@ together with the incompressible continuity equation
 \end{equation}
 
 The Navier-Stokes equation \eqref{eqn:navier-stokes-equation} is famously nonlinear and further simplifications are necessary for almost any problem of practical relevance.
-The relative importance of the nonlinear momentum advection term compared to the viscous dissipation term is measured by the Reynolds number $\Reynolds$.
+The relative importance of the nonlinear momentum advection term compared to the viscous dissipation term is measured by the Reynolds number $\Reynolds$\cite{Reynolds_1883}.
 In a quiescent fluid it can be estimated from velocity of a colloidal particle $V_p$ as
 \begin{equation}
     \Reynolds = \frac{|\rho \bm{u} \cdot \bm{\nabla}\bm{u}|}{|\eta \Delta \bm{u}|} \sim \frac{\rho V_p L}{\eta}.
     \label{eqn:reynolds-based-estimate}
 \end{equation}
 
-Taking $L = 100$ \AA{} for a particle of mass $m = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k T / m} \approx 7 \mathrm{m/s}$) at room temperature we get $\Reynolds \sim 0.7$ thus we can disregard the nonlinear terms and arrive at time-dependent Stokes equation
+Taking $a = 100$ \AA{} for a particle of mass $M = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k_{B} T / M} \approx 7 \mathrm{m/s}$, where $k_B$ is the Boltzman constant) at room temperature $T$ we get $\Reynolds \sim 0.7$ thus we can disregard the nonlinear terms and arrive at time-dependent Stokes equation
 \begin{equation}
     \rho \frac{\pd \bm{u}}{\pd t} = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}.
     \label{eqn:time-dependent-stokes-equation}
 \end{equation}
 
-By taking curl of both sides of this equation we arrive at the vorticity diffusion equation, for $\omega = \bm{\nabla} \times u$
+By taking curl of both sides of this equation we arrive at the vorticity diffusion equation, for vorticity $\omega = \bm{\nabla} \times u$
 \begin{equation}
     \frac{\pd}{\pd t} \bm{\omega}  = \frac{\eta}{\rho} \Delta \bm{\omega} , \label{eqn:vorticity-diffusion}
 \end{equation}
 which has a heat-kernel-type solution with characteristic time of
 \begin{equation}
-    \tau_\omega = \frac{\rho L^2}{\eta}.
+    \tau_\omega = \frac{\rho a^2}{\eta}.
     \label{eqn:vorticity-timescale}
 \end{equation}
 
-It turns out that this timescale is of the same order as the Rayleigh particle velocity relaxation timescale $\tau_B$ (following the naming convention of \textcite{vanKampen_2011}) describing the exponential decay of the velocity of a particle slowing down due to Stokes drag $F_{stokes} = 6 \pi \eta a V_p = \zeta V_p$ as shown by
+It turns out that this timescale is of the same order as the Rayleigh particle velocity relaxation timescale $\tau_B$ (following the naming convention of \textcite{vanKampen_2011}) describing the exponential decay of the velocity of a solid particle of radius $a$ slowing down due to Stokes drag $F_{stokes} = 6 \pi \eta a V_p = \zeta V_p$ as shown by
 \begin{equation}
     \tau_B = \frac{M}{\zeta} = \frac{2}{9} \left( \frac{\rho_p}{\rho} \right) \tau_\omega, \label{eqn:raighley-timescale}
 \end{equation}
 where $\rho_p$ is the density of the colloidal particle, which is often neutrally buoyant.
 
-Finally we can define the diffusive timescale $\tau_D$ as the time required for a particle to move distance comparable with its size
+Finally we can define the diffusive timescale $\tau_D$ as the time required for a particle to move distance comparable with its size while diffusing with coefficient of diffusion $D$
 \begin{equation}
     \tau_D = \frac{a^2}{D}.
     \label{eqn:diffusive-timescale}
@@ -153,40 +156,56 @@ These are vital for the construction of mobility matrices discussed in the next 
 
 \section{Method of mobility matrices}
 
-% TODO: introduction to this section
+An immediate corollary of the linearity of the Stokes equation is the existence of so-called mobility matrices -- linear operators that provide particle velocities resulting from forces and torques acting within a given configuration of colloidal particles.
+Unfortunately, closed-form expressions for these relationships exist only in very simple geometries where flows can be easily computed, such as for a single sphere or ellipsoid.
+Even for highly symmetric shapes, such as a torus \cite{Goren_1980,Majumdar_1977}, solutions are, at best, expressed in terms of a series expansion.
+However, all hope is not lost.
+We can leverage the very simple solution for flow around a sphere and construct an approximate solution for flow around multiple spheres.
+In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, either rigidly connected or through some potentials.
+This construction is facilitated by the method of mobility matrices, which we describe below.
 
 Consider $N$ spherical particles located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
-
+We seek the matrix connecting these velocties to these forces.
 For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}.
-Let us denote a concatenated vector of particle velocities as $V = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\Omega = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
+Let us denote a concatenated vector of particle velocities as $\bm{V} = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\bm{\Omega} = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
 
 From the linearity of the Stokes equation and the no-slip boundary conditions of the fluid velocity at the surface of the colloids we know that they obey a linear relationship.
-We can introduce mobility tensors $\mu$ in the following fashion
+We can introduce mobility tensors $\mm{\mu}$ in the following fashion
 \begin{equation}
     \begin{pmatrix}
-        V \\
-        \Omega
+        \bm{V} \\
+        \bm{\Omega}
     \end{pmatrix}
     = -
     \begin{pmatrix}
-        \mu^{tt} & \mu^{tr} \\
-        \mu^{rt} & \mu^{rr}
+        \mm{\mu}^{tt} & \mm{\mu}^{tr} \\
+        \mm{\mu}^{rt} & \mm{\mu}^{rr}
     \end{pmatrix}
     \cdot
     \begin{pmatrix}
-        F \\
-        T
+        \bm{F} \\
+        \bm{T}
     \end{pmatrix}
     .
     \label{eqn:mobility-matrix-definition}
 \end{equation}
 
-For spherical colloids suspended in a quiescent fluid these depend on relative positions of the spheres.
-In the lowest order approximation in turns out only pairwise displacements are required to compute them.
-(An even simpler approximation is also possible where the spheres simply do not interact).
-Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere from the surface tractions integral by combining Faxen's law TODO cite with the green function of the Stokes equation called the Oseen tensor $\bm{T}^0$,
+For a point force acting on the fluid the green function of the Stokes equation is called the Oseen tensor $\mm{T}^0$ and is given by
 \begin{equation}
-    \bm{V_i} = -\mu_0^t F_i + \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) \int_{S_j} \dd S' \bm{T^0}(\bm{R}_i-\bm{r'})\cdot \bm{f}^{(s)}(\bm{r'}).
+    \mm{T}^{0} = \frac{1}{8\pi\eta |\bm{r}|} \left( \mm{1} + \bm{\hat{r}}\bm{\hat{r}}\right)
+\end{equation}
+
+For multiple spherical colloids suspended in a quiescent fluid, the mobility matrices depend on the relative positions of the spheres.
+In the lowest order approximation, it turns out that only pairwise displacements are required to compute them.
+It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
+As a result, this approach is not just a little inaccurate but completely fruitless when square roots of mobility matrices are required, such as in the case of Brownian dynamics.
+Introducing $\bm{R}_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1992} cite with the Oseen tensor.
+\begin{equation}
+    \bm{V_i} =
+    -\mu_0^t \bm{F}_i
+    + \sum_{j\neq i}^N
+    (1 + \frac{a^2}{6} \Delta_i)
+    \int_{S_j} \dd S' \mm{T}^0(\bm{R}_i-\bm{r'})\cdot \bm{f}^{(s)}(\bm{r'}).
     \label{eqn:faxen-theorem}
 \end{equation}
 
@@ -195,21 +214,22 @@ If we only take into account the average surface traction on each sphere  by $\b
 Next one can approximate the integrand by Taylor expanding around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors 
 
 \begin{eqnarray}
-    \bm{V_i} \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \bm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
-    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \bm{T}^{0} (\bm{x} = \bm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
+    \bm{V}_i \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \mm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
+    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \mm{T}^{0} (\bm{x} = \bm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
 \end{eqnarray}
-because $\Delta_i \Delta_j \bm{T}^0(\bm{R}_{ij}) = 0$.
+because $\Delta_i \Delta_j \mm{T}^0(\bm{R}_{ij}) = 0$.
 %(recall surface integrals of polynomials of order up to 2, express them in terms of surface area
 
 Evaluating the Laplacians and rearranging the explicit formulae for mobility tensors can be obtained
 \begin{eqnarray}
-    \bm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \bm{1},                                                                                                                                                                                                                                 \\
-    \bm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R} \right) \left( \bm{1} + \bm{\hat{R}}\bm{\hat{R}} \right) + \frac{1}{2} \left( \frac{a}{R} \right)^3 \left( \bm{1} -3  \bm{\hat{R}}\bm{\hat{R}} \right) \right) \quad \mathrm{for} \quad i \neq j.
+    \mm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \mm{1},                                                                                                                                                                                                                                 \\
+    \mm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R} \right) \left( \mm{1} + \mm{\hat{R}}\mm{\hat{R}} \right) + \frac{1}{2} \left( \frac{a}{R} \right)^3 \left( \bm{1} -3  \mm{\hat{R}}\mm{\hat{R}} \right) \right) \quad \mathrm{for} \quad i \neq j.
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
 
-% TODO - write that this is RP approximation, cite relevant literature "Dhont, Nagele, ..."
-
+The $\mm{\mu}_{ij}^{tt,RP}$ approximation the well known Rotne-Prager approximation\cite{Nagele_2013,Dhont_2008,Kim_2013}.
+It turns out that this approximation is always positive definite thus a great candiate for Brownian dynamics applications.
+Moreover it turns out that tensor divergence of these tensors is equal to zero (which is not true for the exact solution) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner.
 Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
 That and further improvements (such as differentiable continuation for overlaps) are discussed by \textcite{Zuk_2018}.
 
@@ -453,7 +473,7 @@ Inside the centrifuge rotor a small window allows for optical measurements of ei
 
 Changes of concentration inside the container are governed by the Lamm equation containing the divergence of two currents
 \begin{equation}
-    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( \underbrace{D \nabla \phi}_\text{diffusion} + \underbrace{s \omega^2 \mathbf{R} \phi}_\text{sedimentation} \right).
+    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( \underbrace{D \nabla \phi}_\text{diffusion} + \underbrace{s \omega^2 \bm{R} \phi}_\text{sedimentation} \right).
     \label{eqn:lamm-equation}
 \end{equation}
 
@@ -476,13 +496,14 @@ FCS experiments perform best when at each moment expected number of excited mole
 \begin{figure}[h]
     \centering
     \begin{tabular}{llll}
-        a)                                                                     &
-        \includegraphics[height=0.4\linewidth,valign=t]{figures/fcs_setup_clean.pdf}  &
-        b)                                                                     &
+        a)                                                                           &
+        \includegraphics[height=0.4\linewidth,valign=t]{figures/fcs_setup_clean.pdf} &
+        b)                                                                           &
         \includegraphics[height=0.4\linewidth,valign=t,trim=0 0 0 0.5cm]{figures/fcs_data_and_fit.pdf}
     \end{tabular}
 
-    \caption{a) A typical FCS setup diagram  b) Fluorescence correlation spectroscopy (FCS) data with a fited a model for 3d diffusion (\textcite{Waszkiewicz_2024_mda} CC-BY-NC 4.0)} \label{fig:fcs_diagram}
+    \caption{a) A typical FCS setup diagram  b) Fluorescence correlation spectroscopy (FCS) data with a fited a model for 3d diffusion (\textcite{Waszkiewicz_2024_mda}
+        CC-BY-NC 4.0)} \label{fig:fcs_diagram}
 \end{figure}
 
 The frequency of the fluctuations due to diffusion can be quantified (and thus used to derive the diffusion coefficient) by considering signal autocorrelation function $G(\tau)$ given by 
@@ -496,22 +517,22 @@ with $\left< .
 This function is composed of two terms -- constant background (in case of non-interacting molecules) term due to photos coming from two different molecules and a delay dependent term quantifying probability of detecting a photon from the same molecule again.
 For simplicity of this overview let's focus only on the last term.
 
-Suppose for simplicity that a position-dependent probability of excitation describing the shape of the excitation volume can be described by a axisymmetric Gaussian profile $U(\mathbf{r})$ given by
+Suppose for simplicity that a position-dependent probability of excitation describing the shape of the excitation volume can be described by a axisymmetric Gaussian profile $U(\bm{r})$ given by
 \begin{equation}
-    U(\mathbf{r}) = \kappa \exp\left( - \frac{2}{a^2} \left( x^2 + y^2 \right) - \frac{2}{b^2} z^2 \right) \label{eqn:excitation_profile}
+    U(\bm{r}) = \kappa \exp\left( - \frac{2}{a^2} \left( x^2 + y^2 \right) - \frac{2}{b^2} z^2 \right) \label{eqn:excitation_profile}
 \end{equation}
-with $\mathbf{r} = [x,y,z]$ and $\kappa$ is some overall constant.
+with $\bm{r} = [x,y,z]$ and $\kappa$ is some overall constant.
 
-If we now consider the Green's function $g(\mathbf{\rho},\tau)$ of the diffusion problem given by 
+If we now consider the Green's function $g(\bm{\rho},\tau)$ of the diffusion problem given by 
 
 \begin{equation}
-    g(\mathbf{\rho},\tau) = \frac{1}{(4\pi D \tau)^{3/2}} \exp\left( - \frac{|\rho|^2}{4 D \tau}\right)
+    g(\bm{\rho},\tau) = \frac{1}{(4\pi D \tau)^{3/2}} \exp\left( - \frac{|\rho|^2}{4 D \tau}\right)
 \end{equation}
 
 we can express the autocorrelation function according to 
 
 \begin{eqnarray}
-    G(\tau) & = & \int \int U(\mathbf{r} + \mathbf{\rho}) g(\mathbf{\rho},\tau) U(\mathbf{r}) \dd \mathbf{r} \dd \rho \\
+    G(\tau) & = & \int \int U(\bm{r} + \bm{\rho}) g(\bm{\rho},\tau) U(\bm{r}) \dd \bm{r} \dd \rho                \\
             & = & \frac{\pi^{3/2}}{8} \frac{a^2 b}{(1+4 D \tau / a^2)\sqrt{1+4D\tau/b^2}} \label{eqn:fcs_theory}
 \end{eqnarray}
 
@@ -527,7 +548,7 @@ We can obtain diffusion coefficient $D$ from the residence time by comparing a r
 \label{sec:SAXS}
 
 This section follows notation of \cite{Hermann_2008}.
-Another experimental technique is based on the analysis of the X-ray scattering on the colloidal particles as a function of the beams deflection vector $\mathbf{q}$ defined as a difference between incoming wave vector $\mathbf{k}_i$ and scattered wave vector $\mathbf{k}_s$.
+Another experimental technique is based on the analysis of the X-ray scattering on the colloidal particles as a function of the beams deflection vector $\bm{q}$ defined as a difference between incoming wave vector $\bm{k}_i$ and scattered wave vector $\bm{k}_s$.
 
 \begin{figure}[h]
     \centering
@@ -540,43 +561,43 @@ For colloidal particles the Born approximation of single-event scattering (as sh
 Within this approximation the scattering pattern is computed as an interference pattern of the scattered signals from different scattering sites due to phase shift $\Delta \Phi$ resulting from difference in optical path length.
 
 \begin{equation}
-    \Delta \Phi = \mathbf{R}_{ij} \cdot (\mathbf{k}_s - \mathbf{k}_i) = \mathbf{R}_{ij} \cdot \mathbf{q}
+    \Delta \Phi = \bm{R}_{ij} \cdot (\bm{k}_s - \bm{k}_i) = \bm{R}_{ij} \cdot \bm{q}
     \label{eqn:scattering-phase-shift}
 \end{equation}
 
-We can express the complex amplitude of the scattered wave $A(\mathbf{q})$ as a Fourier transform of the scattering intensity distribution $\rho(\mathbf{r})$.
+We can express the complex amplitude of the scattered wave $A(\bm{q})$ as a Fourier transform of the scattering intensity distribution $\rho(\bm{r})$.
 
 \begin{equation}
-    A(q) = A_0 \int \rho(\mathbf{r}) \exp(i \mathbf{q} \cdot \mathbf{r}) \dd \mathbf{r} \label{eqn:scattering-amplitude-integral}
+    A(q) = A_0 \int \rho(\bm{r}) \exp(i \bm{q} \cdot \bm{r}) \dd \bm{r} \label{eqn:scattering-amplitude-integral}
 \end{equation}
 
-Since the observed intensity on the screen $I$ is proportional to the squared absolute value of the wave amplitude $I(\mathbf{q}) \propto |A(\mathbf{q})|^2$ we can express $I(\mathbf{q})$ as a double integral 
+Since the observed intensity on the screen $I$ is proportional to the squared absolute value of the wave amplitude $I(\bm{q}) \propto |A(\bm{q})|^2$ we can express $I(\bm{q})$ as a double integral 
 
 \begin{eqnarray}
-    |A(\mathbf{q})|^2 & = & A A^{*}                                                                                                                                        \\
-                      & = & A_0^2 \int \int \rho^{*}(\mathbf{r}') \rho(\mathbf{r}'') \exp(i \mathbf{q} \cdot (\mathbf{r}'-\mathbf{r}'')) \dd \mathbf{r}' \dd \mathbf{r}''.
+    |A(\bm{q})|^2 & = & A A^{*}                                                                                                            \\
+                  & = & A_0^2 \int \int \rho^{*}(\bm{r}') \rho(\bm{r}'') \exp(i \bm{q} \cdot (\bm{r}'-\bm{r}'')) \dd \bm{r}' \dd \bm{r}''.
     \label{eqn:intensity-profile-integral}
 \end{eqnarray}
 
-If we assume that the scattering sites are point-like we can express the scattering density distribution as a sum of Dirac distributions $\delta$ centred at locations of scattering sites $\mathbf{s}_i$ 
+If we assume that the scattering sites are point-like we can express the scattering density distribution as a sum of Dirac distributions $\delta$ centred at locations of scattering sites $\bm{s}_i$ 
 
 \begin{equation}
-    \rho(\mathbf{r}) = \sum_i \rho_i \delta(\mathbf{r}-\mathbf{s}_i)
+    \rho(\bm{r}) = \sum_i \rho_i \delta(\bm{r}-\bm{s}_i)
 \end{equation}
 where $\rho_i$ gives scattering intensity on site $i$.
 Changing the integral \eqref{eqn:intensity-profile-integral} to a double sum 
 
 \begin{equation}
-    I(\mathbf{q}) = A_0^2 \sum_i \sum_j \rho_i \rho_j \exp(i \mathbf{q} \cdot (\mathbf{s}_i - \mathbf{s}_j))
+    I(\bm{q}) = A_0^2 \sum_i \sum_j \rho_i \rho_j \exp(i \bm{q} \cdot (\bm{s}_i - \bm{s}_j))
 \end{equation}
 
 Inside the colloid the distribution of orientations of the macromolecules with respect to the lab frame is invariant under action of rotations.
-For a vector $\mathbf{v} = \mathbf{s}_i - \mathbf{s}_j$ this simply implies $\mathbf{v}$ distributed uniformly on a sphere and its projection onto a vector $\mathbf{q}$ distributed uniformly on an interval according to orange slicing theorem\footnote{the orange slicing theorem: if you slice an orange into slices of equal thickness each slice has the same share of the orange peel} giving 
+For a vector $\bm{v} = \bm{s}_i - \bm{s}_j$ this simply implies $\bm{v}$ distributed uniformly on a sphere and its projection onto a vector $\bm{q}$ distributed uniformly on an interval according to orange slicing theorem\footnote{the orange slicing theorem: if you slice an orange into slices of equal thickness each slice has the same share of the orange peel} giving 
 
 \begin{eqnarray}
-    \left< I(\mathbf{q}) \right> & = & A_0 \sum_i \sum_j \rho_i \rho_j \int \exp(i q s) \mathbb{I}(|s| < |\mathbf{s}_i - \mathbf{s}_j|) \dd s \\
-                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\mathbf{s}_i - \mathbf{s}_j|)                  \\
-                                 & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\mathbf{R}_{ij}|)
+    \left< I(\bm{q}) \right> & = & A_0 \sum_i \sum_j \rho_i \rho_j \int \exp(i q s) \mathbb{I}(|s| < |\bm{s}_i - \bm{s}_j|) \dd s \\
+                             & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\bm{s}_i - \bm{s}_j|)                  \\
+                             & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\bm{R}_{ij}|)
 \end{eqnarray}
 
 Thus the prediction of the scattering intensity of in a SAXS measurement of a colloidal suspension reduces to the computation of the distance matrix $R_{ij}$ between scattering sites given the values of scattering intensities $\rho_i(q)$.
@@ -890,7 +911,8 @@ When considering the difference in total elastic energy between the flat circula
 This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
 One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
 
-The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.\clearpage
+The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.
+\clearpage
 
 \begin{publicationpage}{Waszkiewicz_2023_pychastic}{Pychastic: Precise Brownian dynamics using Taylor-Ito integrators in Python}
     \commentary{
@@ -973,7 +995,8 @@ The excellent agreement in the range of scattering vectors corresponding to feat
 The treatment of the distirbution in the globule-linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions).
 Theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between constituent parts of a molecule are treated as arbitrarily rigid springs.
 Comparing stiff spring limit with a distribution of maximal entropy for even a very short chain of 3 beads leads to a disagreement dubbed trimer paradox.
-We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.\clearpage
+We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
+\clearpage
 
 \begin{publicationpage}{Waszkiewicz_2024_trimer}{Trimer paradox revisited}
     \commentary{
@@ -1021,6 +1044,15 @@ The main achievements of this thesis can be summarised as follows:
 Thus the presented method can be used as a numerically feasible null-hypothesis model in future investigations by multiple experimental groups with large deviations from its predictions being an indicator of new and exciting physical phenomena.
 Additionally we hope that the theoretical soft matter physics community will be able to use the software prepared as part of the presented thesis in multiple ways.
 Either in its current form for predicting diffusion coefficients of similar molecules or by taking advantage of its modular design by either extending its current capabilities or using its parts in isolation.
+
+\appendix
+
+\chapter{Other research activity}
+\begin{itemize}
+    \item \fullcite{Waszkiewicz_2024_goldilocks}
+    \item \fullcite{Turczynowicz_2024}
+    \item \fullcite{Waszkiewicz_2024_parenthood}
+\end{itemize}
 
 \printbibliography[heading=bibchapter]
 
