@@ -42,6 +42,12 @@ format:
 #	latexindent -l -m $(TEXFILE).tex -o formatted_main.tex
 #	echo "Check formatted_main.tex" for formatted source.
 
+htmldiff:
+	git diff --word-diff --color | fold -w 160 -s | aha > diff.html
+#   Create a diff in html format to share with non-git friends
+#   open with system default
+	open diff.html
+
 spellcheck:
 	aspell -c -t -d british --mode=tex $(TEXFILE).tex
 
