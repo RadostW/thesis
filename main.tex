@@ -454,30 +454,35 @@ The need for assessing relative values for each problem is apparent -- there is 
     } \label{tab:lengthscales}
 \end{table}
 
-First type of molecules investigated in this doctoral thesis are the DNA minicircles, their persistence length is comparable to the length of the very short DNA minicircles under investigation by the group of Professor Lynn Zechiedrich at Baylor College of Medicine.
-As a result even their conformation is determined primarily by minimization of elastic forces and is relatively stable.
+The first type of molecules investigated in this doctoral thesis are DNA minicircles, whose persistence length is comparable to the length of the very short DNA minicircles under investigation by the group of Professor Lynn Zechiedrich at Baylor College of Medicine.
+Consequently, their conformation is primarily determined by the minimization of elastic forces and is relatively stable.
 
-Second type of molecule investigated in this thesis are the intrinsically disordered proteins (IDPs).
-Their persistence length is very small and comparable with building block size ($C_\alpha$ distance between consequetive aminoacids along the chain).
-This leads to a large conformational variability in an equilibrium ensemble making both measurement and modelling challenging.
+The second type of molecule investigated in this thesis is intrinsically disordered proteins (IDPs).
+Their persistence length is very small and comparable to the building block size (the $C_\alpha$ distance between consecutive amino acids along the chain).
+This characteristic leads to a large conformational variability in an equilibrium ensemble, making both measurement and modeling challenging.
 
-Much of theoretical enthusiasm in developing complex models of IDPs, with a multitude of interactions is hampered by an insufficient quantity or quality of experimental calibration data, necessarily required for determination of molecular ``material constants''.
-In the polymer science domains where data is plentiful (such as the area of globular proteins that can be readily measured by, for example, x-ray crystallography techniques), significant numerical progress could and was made using machine learning techniques leading to a celebrated example of AlphaFold \cite{Jumper_2021} reaching even pop-science recognisability.
+Much of the theoretical enthusiasm in developing complex models of IDPs, with a multitude of interactions, is hampered by an insufficient quantity or quality of experimental calibration data necessary for the determination of molecular "material constants".
+In polymer science domains where data is plentiful, such as the area of globular proteins that can be readily measured by techniques like x-ray crystallography, significant numerical progress has been made using machine learning techniques, leading to celebrated examples like AlphaFold \cite{Jumper_2021}, which has achieved even popular science recognizability.
 
 Progress in the domain of IDPs is much more modest, even though they constitute a large proportion of proteins\cite{Ward_2004} and play an important role in multiple bio-relevant processes, such as the functioning of the COVID-19 virus\cite{Rozycki_2022} (to name just one example particularly resonant in 2023).
 In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data -- compare over 200 thousand conformations available in the Protein Data Bank\cite{rcsb_org} with not even 50 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works\cite{Waszkiewicz_2024_mda} or 118 proteins in the Small Angle Scattering Database\cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database\cite{proteinensemble_org}.
 
-Simulataneously a variety of bio-chemical insights into (both folded and disordered) protein behaviour invites phenomenological models with many covariates in explaining hydrodynamic size of these molecules.
-A specific example of one such insight could be the relative rigidity of polyhistidine fragments and tags, their presence (or more simply share of histidines in the totality of amino-acids forming a molecule) is sometimes used as a explanatory variable in a process of phenomenological modelling \cite{Tomasso_2016,Marsh_2010}.
-As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists -- available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{ This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.
-    In the example study of his-tag influence we cannot simply, randomly separate proteins into two groups and add or remove his-tags as required.
+Simultaneously, a variety of biochemical insights into both folded and disordered protein behavior invite phenomenological models with many covariates to explain the hydrodynamic size of these molecules.
+A specific example of such insight could be the relative rigidity of polyhistidine fragments and tags.
+Their presence (or, more simply, the share of histidines in the totality of amino acids forming a molecule) is sometimes used as an explanatory variable in the process of phenomenological modeling \cite{Tomasso_2016, Marsh_2010}.
+
+As data concerning the hydrodynamic properties of IDPs is scarce, and direct intervention in the protein sequence can be prohibitively expensive since the synthesis of each new protein construct can take months, we encounter an issue more familiar to social scientists than physicists.
+The available information essentially forms an observational study where correlation is difficult to separate from causation \footnote{This is in contrast to a typical physics experiment, akin to a randomized controlled trial in a social setting, where the experimenter is free to choose the value of the control variable and measure the outcome.
+    In the example study of his-tag influence, we cannot simply randomly separate proteins into two groups and add or remove his-tags as required.
 }.
-Even if we perform all of the statistical analyses correctly and we observe a statistically significant correlation between, for example, presence of a his-tag and increase in hydrodynamic size how can we be sure that it is not simply the case of a confounding cause?
-One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
-Correlations estimated this way can even have opposite sign to the real causal effect (which is what we are really trying to estimate).
-A comprehensive (and approachable) overview of causal vs correlational discrepancies in observational studies can be fond in \textcite{Cinelli_2022}.
-For a more introductory exposition refer to \textcite{Neal_2020}.
-Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principles theoretical models should take precedence over phenomenological models (not just because of their precision as we show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
+Even if we perform all statistical analyses correctly and observe a statistically significant correlation between, for example, the presence of a his-tag and an increase in hydrodynamic size, how can we be sure that it is not simply a case of a confounding cause?
+One can easily imagine a scenario where compact proteins containing a his-tag are simply harder to synthesize, leading to a distorted sample (selection bias) and forming our phenomenological conclusion based on biased data.
+Correlations estimated this way can even have the opposite sign to the real causal effect, which is what we are really trying to estimate.
+A comprehensive and approachable overview of the discrepancies between causal and correlational findings in observational studies can be found in \textcite{Cinelli_2022}.
+For a more introductory exposition, refer to \textcite{Neal_2020}.
+
+Until and unless we have a very large dataset of hydrodynamic properties of a bias-free, representative subset of IDPs, first principles theoretical models should take precedence over phenomenological models.
+This is not just because of their precision, as demonstrated in \textcite{Waszkiewicz_2024_mda}, but also because they correctly model the causal dependency between the covariates of interest and hydrodynamic size.
 
 \section{Diffusion coefficients in hot and cold limits}
 
