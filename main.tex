@@ -164,7 +164,7 @@ We can leverage the very simple solution for flow around a sphere and construct 
 In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, either rigidly connected or through some potentials.
 This construction is facilitated by the method of mobility matrices, which we describe below.
 
-Consider $N$ spherical particles located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
+Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
 We seek the matrix connecting these velocties to these forces.
 For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}.
 Let us denote a concatenated vector of particle velocities as $\bm{V} = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\bm{\Omega} = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
@@ -190,7 +190,7 @@ We can introduce mobility tensors $\mm{\mu}$ in the following fashion
     \label{eqn:mobility-matrix-definition}
 \end{equation}
 
-For a point force acting on the fluid the green function of the Stokes equation is called the Oseen tensor $\mm{T}^0$ and is given by
+For a point force acting on the fluid the Greens function of the Stokes equation is called the Oseen tensor $\mm{T}^0$ and is given by
 \begin{equation}
     \mm{T}^{0} = \frac{1}{8\pi\eta |\bm{r}|} \left( \mm{1} + \bm{\hat{r}}\bm{\hat{r}}\right)
 \end{equation}
@@ -199,7 +199,7 @@ For multiple spherical colloids suspended in a quiescent fluid, the mobility mat
 In the lowest order approximation, it turns out that only pairwise displacements are required to compute them.
 It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
 As a result, this approach is not just a little inaccurate but completely fruitless when square roots of mobility matrices are required, such as in the case of Brownian dynamics.
-Introducing $\bm{R}_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1922} cite with the Oseen tensor.
+Introducing $\mm{R}_{ij} = |\mm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1922} cite with the Oseen tensor.
 \begin{equation}
     \bm{V_i} =
     -\mu_0^t \bm{F}_i
@@ -215,15 +215,15 @@ Next one can approximate the integrand by Taylor expanding around centres of sph
 
 \begin{eqnarray}
     \bm{V}_i \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \mm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
-    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \mm{T}^{0} (\bm{x} = \bm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
+    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \mm{T}^{0} (\bm{x} = \mm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
 \end{eqnarray}
-because $\Delta_i \Delta_j \mm{T}^0(\bm{R}_{ij}) = 0$.
+because $\Delta_i \Delta_j \mm{T}^0(\mm{R}_{ij}) = 0$.
 %(recall surface integrals of polynomials of order up to 2, express them in terms of surface area
 
 Evaluating the Laplacians and rearranging the explicit formulae for mobility tensors can be obtained
 \begin{eqnarray}
-    \mm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \mm{1},                                                                                                                                                                                                                                 \\
-    \mm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R} \right) \left( \mm{1} + \mm{\hat{R}}\mm{\hat{R}} \right) + \frac{1}{2} \left( \frac{a}{R} \right)^3 \left( \bm{1} -3  \mm{\hat{R}}\mm{\hat{R}} \right) \right) \quad \mathrm{for} \quad i \neq j.
+    \mm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \mm{1},                                                                                                                                                                                                                                                                     \\
+    \mm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{|\mm{R}_ij|} \right) \left( \mm{1} + \mm{\hat{R}}_ij\mm{\hat{R}_ij} \right) + \frac{1}{2} \left( \frac{a}{|\mm{R}_ij|} \right)^3 \left( \bm{1} -3  \mm{\hat{R}}_{ij}\mm{\hat{R}}_{ij} \right) \right) \quad \mathrm{for} \quad i \neq j.
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
 
@@ -248,7 +248,7 @@ Historically $V_t$ was modelled by the Langevin equation
 with $F^B_t$ a time dependent force arising from the bombardment of the colloid by the water molecules.
 
 Solving equation \eqref{eqn:langevin-velocity} naively we obtain $V_t$ as a convolution of $F_t^B$ with an appropriate Green's function.
-Such convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity by means of a double integral
+Such convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity $\langle V_t^2 \rangle$, with $\langle \cdot \rangle$ denoting expected value by means of a double integral
 \begin{equation}
     \langle V_t^2 \rangle = \frac{1}{M^2} \int_0^t \dd t' \int_0^t \dd t'' \exp\left( - \frac{\zeta}{M} (2t - t' - t'') \right) \langle F_{t'}^B F_{t''}^B \rangle.
     \label{eqn:velocity-variance-integral}
@@ -312,7 +312,7 @@ This 'direction of anticipation' asymmetry plays a central role in the differenc
 % $X_{j-1} \perp (W_{t_j} - W_{t_{j-1}})$
 
 Thanks to the non-anticipation property we can immediately conclude two very useful lemmas for random step functions (which are also true for general non-anticipating processes).
-First, by deonting expectations as $\left< \cdot \right>$, Ito integrals are martingales
+First, Ito integrals are martingales
 \begin{equation}
     \left< \int_0^{t_{\mathrm{max}}} X_t \dd W_t \right> = 0.
     \label{eqn:ito-integrals-are-martingales}
@@ -360,7 +360,7 @@ Equation \eqref{eqn:ito-formula-applied} shows that this is exactly the behaviou
 \section{The hydrodynamic radius}
 
 Experiments such as Analytical Ultracentrifugation (AUC) observe macroscopic changes in the concentration field $\phi$ which evolves due to sedimentation and diffusion forces.
-Disregarding for now the sedimentation component of the Lamm equation discussed in section \ref{sec:AUC} concentration field evolved according to the Fick's equation with macroscopic diffusion coefficient $D$
+Disregarding for now the sedimentation component of the Lamm equation the concentration field evolves according to the Fick's equation with macroscopic diffusion coefficient $D$
 \begin{equation}
     \frac{\pd}{\pd t} \phi = \nabla \cdot ( D \nabla \phi ).
     \label{eqn:ficks-law}
@@ -373,7 +373,7 @@ For a suspension of microscopic solid spheres of size $a$ the celebrated Stokes-
     \label{eqn:stokes-einstein-relation}
 \end{equation}
 
-\textit{Ceteris paribus}, the relationship \eqref{eqn:stokes-einstein-relation} captures all relevant properties of the buffer.
+\textit{Ceteris paribus}, the relationship \eqref{eqn:stokes-einstein-relation} captures all relevant properties of fluid in which colloids are suspended, which in biochemical context is referred to as buffer.
 We can invert it to define hydrodynamic radius $R_h$ for an arbitrary colloid as
 \begin{equation}
     R_h :=  \frac{k_B T}{6 \pi \eta D}.
@@ -383,8 +383,8 @@ $R_h$ is the size of a microscopic solid sphere with the same diffusion coeffici
 Since $R_h$ is derived from the apparent diffusion coefficient $D$ it is influenced by surface effects such as hydration layers.
 On the other hand, in simple cases, $R_h$ can be treated as a property of the molecule alone disregarding colloid-solvent cohesion and thus computed in a more convenient way.
 
-For a bead model of a rigid macromolecule $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule TODO-CITE-CICHOCKI.
-If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading an overestimate of long term diffusion coefficient.
+For a bead model of a rigid macromolecule $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule\cite{Zuk_2018}.
+If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading an overestimate of long term diffusion coefficient\cite{Cichocki_2015}.
 Note that diffusion centre does not necessarily coincide with centre of mass of the molecule.
 
 For a rigid macromolecule modelled as a conglomerate of spherical beads we can derive hydrodynamic radius from its grand mobility matrix by considering collective translational and rotational motion of constituent beads around any given point.
@@ -398,16 +398,15 @@ For elastic macromolecule there are more bounded degrees of freedom and not just
 An intuitive first guess is to track 'the middle' or geometric average of molecules constituent parts, slightly more refined approach is to use centre of mass -- this is clearly not an optimal strategy as shown by the exact result for the rigid molecule.
 Location, or more specifically, the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
 
-Treating translational mobility $\mu^{tt}$ as a tensor (with indices space, space, bead, bead) we can definite an inverse matrix of per-particle ensemble-average traces of mobility $b$ as
+Treating translational mobility $\mm{\mu}^{tt}$ as a tensor (with indices space, space, bead, bead) we can definite an inverse matrix of per-particle ensemble-average traces of mobility $b$ as
 \begin{equation}
-    b_{ij} (\left< \mu^{tt} \right> )_{jkll} = \delta_{ik}
+    \mm{b}_{ij} \left(\left< \mm{\mu}^{tt} \right> \right)_{jkll} = \mm{\delta}_{ik}
 \end{equation}
-where $\left< .
-    \right>$ denotes ensemble average.
+where $\left< \cdot \right>$ denotes ensemble average.
 
 Then the hydrodynamic radius is estimated by
 \begin{equation}
-    R_h \approx \frac{1}{2 \pi \eta} \left( \sum_i \sum_j b_{ij} \right)^{-1}.
+    R_h \approx \frac{1}{2 \pi \eta} \left( \sum_i \sum_j \mm{b}_{ij} \right)^{-1}.
 \end{equation}
 We called this approach the minimum dissipation approximation (MDA) as explained in \textcite{Waszkiewicz_2024_mda}.
 A complete derivation of the MDA method can be found in \textcite{Cichocki_2019}.
@@ -428,9 +427,8 @@ Soft matter as a discipline of physics evolved out of 'colloid suspensions scien
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
 These include some synthetic plastics but also bio-molecules such as DNA or denatured proteins.
 A celebrated result of Rouse $R_h \sim N^{1/2}$ for a Gaussian chain\cite{Rouse_1953} later improved by Zimm by inclusion of excluded volume interactions \cite{Zimm_1956} $R_h \sim N^\gamma$ with $\gamma=0.588$.
-For a more detailed overview the subject matter see \textcite[chapter 3.
-]{Dhont_2008}.
-These scalings are valid under the assumption of small persistence length $P = \frac{EI}{k_B T}$ which captures the ratio of elastic forces (proportional to rigidity $EI$) to Brownian forces (proportional to fluctuation energy $k_B T$).
+For a more detailed overview the subject matter see \textcite[chapter 3]{Dhont_2008}.
+These scalings are valid under the assumption of small persistence length $P = EI / (k_B T)$ which captures the ratio of elastic forces (proportional to rigidity $EI$) to Brownian forces (proportional to fluctuation energy $k_B T$).
 
 In reality there are more forces influcence the conformation of macromolecules, their relative importance is easiest to compare using lengthscale ratios, which quantify the respective ranges of different interactions within the molecule.
 In our case, the lengthscales of interest include the already mentioned persistence length, the building block size (quantifying excluded volume interactions), and the Debye length (quantifying electrostatic interactions, scaling with the inverse square root of the ionic strength $C_s$ of the buffer).
@@ -475,15 +473,14 @@ In the opinion of the author this progress is (at least in part) determined by t
 
 Simulataneously a variety of bio-chemical insights into (both folded and disordered) protein behaviour invites phenomenological models with many covariates in explaining hydrodynamic size of these molecules.
 A specific example of one such insight could be the relative rigidity of polyhistidine fragments and tags, their presence (or more simply share of histidines in the totality of amino-acids forming a molecule) is sometimes used as a explanatory variable in a process of phenomenological modelling \cite{Tomasso_2016,Marsh_2010}.
-As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists - available information forms essentially an observation study where correlation is difficult to separate from causation.
-\footnote{
-    This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.
-    In the example study of his-tag influence we can't simply, randomly separate proteins into two groups and add/remove his-tags as required.
-}
+As the data concerning hydrodynamic properties of IDPs is scarce and direct intervention in the protein sequence can be prohibitively expensive since synthesis of each new protein construct can take months we arrive at an issue more familiar to the social scientists than physicists -- available information forms essentially an observation study where correlation is difficult to separate from causation \footnote{ This is in contrast to a typical physics experiment, akin to a randomised-controlled trial in social setting, where experimenter is free to chose value of control variable and measure the outcome.
+    In the example study of his-tag influence we cannot simply, randomly separate proteins into two groups and add or remove his-tags as required.
+}.
 Even if we perform all of the statistical analyses correctly and we observe a statistically significant correlation between, for example, presence of a his-tag and increase in hydrodynamic size how can we be sure that it is not simply the case of a confounding cause?
 One can easily imagine a scenario where compact proteins containing his-tag are simply harder to synthesise and thus we form our phenomenological conclusion based on a distorted sample (selection bias).
 Correlations estimated this way can even have opposite sign to the real causal effect (which is what we are really trying to estimate).
 A comprehensive (and approachable) overview of causal vs correlational discrepancies in observational studies can be fond in \textcite{Cinelli_2022}.
+For a more introductory exposition refer to \textcite{Neal_2020}.
 Until and unless we arrive at a very large dataset of hydrodynamic properties of (a bias free, representative subset of) IDPs first principles theoretical models should take precedence over phenomenological models (not just because of their precision as we show in \textcite{Waszkiewicz_2024_mda}), but because they correctly model causal dependency between the covariates of interest and hydrodynamic size.
 
 \section{Diffusion coefficients in hot and cold limits}
