@@ -80,25 +80,20 @@ Research on the topic of the Thesis was supported by the grant \emph{Dynamic def
 
 \tableofcontents
 
-%\chapter*{Preface}
-%
-%TODO TODO - what was the objective - the results of this study form the content of the present PhD thesis and include: - bullet list of findings - the present dissertation is based on thematically linked publications and preprints: - bullet list of publications follows this thesis is organised as follows.
-%Chapter .
-%.. gives, chapter provides, finally in chapter we provide a summary and prospects of further research
-
 \chapter{Introduction}
 
 \section{Mesoscopic world of macromolecules}
 
 A fundamental technique for assessing the relative importance of different physical mechanisms within a theoretical framework, originating in the domain of fluid mechanics (cf.
 Reynolds, \cite{Reynolds_1883}), involves the consideration of dimensionless numbers.
-Here we follow the approach of Nagele \cite{Nagele_2013} whereby he motivates common approximations in colloidal physics by consideration of timescale ratios.
+Here, we follow the approach of Nagele \cite{Nagele_2013}, where he motivates common approximations in colloidal physics by considering timescale ratios.
 
-The subject of colloidal hydrodynamics are the properties of colloidal suspensions -- mixtures of very small objects (with sizes such as $0.1 \mathrm{\mu m}$) and a solvent, typically water.
-At human-length scale water is easily treated as incompressible (for example by considering volume change at typical pressures that are of the order of atmospheric pressure).
-This is less obvious at the microscopic length scale where granularity of matter becomes significant.
-Relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $a$ can be estimated from the speed of sound in water $c$ as $\tau_s = a/c \approx 6 \times 10^{-11}$ which is much shorter than any experimentally relevant time scale prompting us to use the incompressible Navier-Stokes equations.
-For a fluid (such as water) of density $\rho$ and viscosity $\eta$ it describes the evolution of the velocity field $\bm{u}$ in response to the pressure gradient $\bm{\nabla} p$ and body forces $\bm{f}$ acting on the fluid as
+Colloidal hydrodynamics focuses on the properties of colloidal suspensions, which are mixtures of very small objects (with sizes such as $0.1 \mathrm{\mu m}$) and a solvent, typically water.
+At the human-length scale, water is easily treated as incompressible (for example, by considering volume changes at typical pressures on the order of atmospheric pressure).
+However, this becomes less obvious at the microscopic length scale where the granularity of matter becomes significant.
+The relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to our colloidal object of size $a$ can be estimated from the speed of sound in water, $c$, as $\tau_s = a/c \approx 6 \times 10^{-11} \mathrm{s}$, which is much shorter than any experimentally relevant timescale, prompting us to use the incompressible Navier-Stokes equations.
+
+For a fluid (such as water) of density $\rho$ and viscosity $\eta$, these equations describe the evolution of the velocity field $\bm{u}$ in response to the pressure gradient $\bm{\nabla} p$ and body forces $\bm{f}$ acting on the fluid as
 \begin{eqnarray}
     \rho \left( \frac{\pd \bm{u}}{\pd t} + \bm{u} \cdot \bm{\nabla u} \right) = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}, \label{eqn:navier-stokes-equation}
 \end{eqnarray}
@@ -109,19 +104,20 @@ together with the incompressible continuity equation
 
 The Navier-Stokes equation \eqref{eqn:navier-stokes-equation} is famously nonlinear and further simplifications are necessary for almost any problem of practical relevance.
 The relative importance of the nonlinear momentum advection term compared to the viscous dissipation term is measured by the Reynolds number $\Reynolds$\cite{Reynolds_1883}.
-In a quiescent fluid it can be estimated from velocity of a colloidal particle $V_p$ as
+In a quiescent fluid, it can be estimated from the velocity of a colloidal particle $V_p$ as
 \begin{equation}
     \Reynolds = \frac{|\rho \bm{u} \cdot \bm{\nabla}\bm{u}|}{|\eta \Delta \bm{u}|} \sim \frac{\rho V_p L}{\eta}.
     \label{eqn:reynolds-based-estimate}
 \end{equation}
 
-Taking $a = 100$ \AA{} for a particle of mass $M = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k_{B} T / M} \approx 7 \mathrm{m/s}$, where $k_B$ is the Boltzman constant) at room temperature $T$ we get $\Reynolds \sim 0.7$ thus we can disregard the nonlinear terms and arrive at time-dependent Stokes equation
+Taking $a = 100$ \AA{} for a particle of mass $M = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k_{B} T / M} \approx 7 \mathrm{m/s}$, where $k_B$ is the Boltzman constant) at room temperature $T$ we get $\Reynolds \sim 0.7$.
+Thus, we can disregard the nonlinear terms and arrive at the time-dependent Stokes equation
 \begin{equation}
     \rho \frac{\pd \bm{u}}{\pd t} = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}.
     \label{eqn:time-dependent-stokes-equation}
 \end{equation}
 
-By taking curl of both sides of this equation we arrive at the vorticity diffusion equation, for vorticity $\omega = \bm{\nabla} \times u$
+By taking curl of both sides of this equation, we arrive at the vorticity diffusion equation, for vorticity $\omega = \bm{\nabla} \times u$
 \begin{equation}
     \frac{\pd}{\pd t} \bm{\omega}  = \frac{\eta}{\rho} \Delta \bm{\omega} , \label{eqn:vorticity-diffusion}
 \end{equation}
@@ -146,22 +142,22 @@ Finally we can define the diffusive timescale $\tau_D$ as the time required for 
 For colloidal particles $\tau_D \gg \tau_\omega \sim \tau_B$ thus we can neglect time dependent terms of the Stokes equation (this is not always the case, for example in the motion of carpets of cilia or bacterial flagella the time dependent terms play a role \cite{Wei_2021}).
 Consequently, we arrive at the Stokes equations
 \begin{eqnarray}
-    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0, \\
+    \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0, \label{eqn:stokes-equation} \\
     \nabla \cdot \bm{u} = 0.
-    \label{eqn:stokes-equation}
 \end{eqnarray}
 
-Stokes equation \eqref{eqn:stokes-equation} has important properties of linearity and instant information propagation throughout the domain (velocity at any moment is fully determined by the fluid boundary conditions at the same time instance).
-These are vital for the construction of mobility matrices discussed in the next section.
+The Stokes equation \eqref{eqn:stokes-equation} possesses important properties of linearity and instantaneous information propagation throughout the domain.
+This means that the velocity at any moment is fully determined by the fluid boundary conditions at the same time instance.
+These properties are vital for the construction of mobility matrices discussed in the next section.
 
 \section{Method of mobility matrices}
 
 An immediate corollary of the linearity of the Stokes equation is the existence of so-called mobility matrices -- linear operators that provide particle velocities resulting from forces and torques acting within a given configuration of colloidal particles.
 Unfortunately, closed-form expressions for these relationships exist only in very simple geometries where flows can be easily computed, such as for a single sphere or ellipsoid.
-Even for highly symmetric shapes, such as a torus \cite{Goren_1980,Majumdar_1977}, solutions are, at best, expressed in terms of a series expansion.
+Even for highly symmetric shapes, such as a torus \cite{Goren_1980, Majumdar_1977}, solutions are, at best, expressed in terms of a series expansion.
 However, all hope is not lost.
 We can leverage the very simple solution for flow around a sphere and construct an approximate solution for flow around multiple spheres.
-In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, either rigidly connected or through some potentials.
+In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, connected either rigidly or through some potentials.
 This construction is facilitated by the method of mobility matrices, which we describe below.
 
 Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
