@@ -488,15 +488,32 @@ This is not just because of their precision, as demonstrated in \textcite{Waszki
 
 First principles models of elastic molecules come in two flavors: atomistic and coarse-grained.
 
-Atomistic methods, as outlined by \textcite{Karplus_1990}, can be utilized, albeit with certain challenges. These methods either involve the explicit simulation of surrounding water molecules, demanding significant computational resources, or employ an implicit solvent scheme, both of which pose notable numerical difficulties \cite{Frenkel_2001}. Even if simulations are theoretically feasible, generating 10-100 millisecond long trajectories for the direct computation of long-time diffusion coefficients using this method requires great computational power.
+Atomistic methods, as outlined by \textcite{Karplus_1990}, can be utilized, albeit with certain challenges.
+These methods either involve the explicit simulation of surrounding water molecules, demanding significant computational resources, or employ an implicit solvent scheme, both of which pose notable numerical difficulties \cite{Frenkel_2001}.
+Even if simulations are theoretically feasible, generating 10-100 millisecond long trajectories for the direct computation of long-time diffusion coefficients using this method requires great computational power.
 
-On the other hand, coarse-grained methods utilize larger units, typically amino acid residues for proteins, as building blocks for conformation prediction schemes. These units are integrated with a separate hydrodynamic model to predict diffusion coefficients.
+On the other hand, coarse-grained methods utilize larger units, typically amino acid residues for proteins, as building blocks for conformation prediction schemes.
+These units are integrated with a separate hydrodynamic model to predict diffusion coefficients.
 
-However, addressing the problem directly, even within a coarse-grained perspective, still presents numerical challenges. Furthermore, the identification of a minimal model capable of reproducing experimentally observed variations in diffusion coefficients holds intrinsic value, offering a direct interpretation of observed variability through a restricted set of molecular mechanisms. In this context, two different minimal models, termed the "cold limit" and "hot limit," were employed to simulate the conformations of two classes of molecules: DNA minicircles and Intrinsically Disordered Proteins (IDPs).
+However, addressing the problem directly, even within a coarse-grained perspective, still presents numerical challenges.
+Furthermore, the identification of a minimal model capable of reproducing experimentally observed variations in diffusion coefficients holds intrinsic value, offering a direct interpretation of observed variability through a restricted set of molecular mechanisms.
+In this context, two different minimal models, termed the "cold limit" and "hot limit," were employed to simulate the conformations of two classes of molecules: DNA minicircles and Intrinsically Disordered Proteins (IDPs).
 
-A comparison of persistence length to the minicircle length and a visual examination of CryoEM figures from \textcite{Irobalieva_2015} alongside equilibrium configurations of twisted beams as described by \textcite{Coleman_2000} suggested that thermal fluctuations might exert only a minor influence on the overall behavior of these molecules. Consequently, the problem was modeled in the "cold limit" (cf. Table~\ref{tab:tickmarks}), where thermal fluctuations were neglected, and only equilibrium configurations were computed, akin to operating at negligible absolute temperature. Subsequently, these configurations were treated as rigid bodies when determining the hydrodynamic radius, as detailed in \textcite{Waszkiewicz_2023_dna}. The influence of thermal fluctuations was further investigated using the \texttt{pychastic} package post-publication.
+A comparison of persistence length to the minicircle length and a visual examination of CryoEM figures from \textcite{Irobalieva_2015} alongside equilibrium configurations of twisted beams as described by \textcite{Coleman_2000} suggested that thermal fluctuations might exert only a minor influence on the overall behavior of these molecules.
+Consequently, the problem was modeled in the "cold limit" (cf.
+Table~\ref{tab:tickmarks}), where thermal fluctuations were neglected, and only equilibrium configurations were computed, akin to operating at negligible absolute temperature.
+Subsequently, these configurations were treated as rigid bodies when determining the hydrodynamic radius, as detailed in \textcite{Waszkiewicz_2023_dna}.
+The influence of thermal fluctuations was further investigated using the \code{pychastic} package post-publication.
 
-The second type of molecule investigated in this study was the intrinsically disordered proteins (IDPs). These molecules exhibit much smaller stiffness, with a persistence length as small as $3$ \AA{} and an elastohydrodynamic length scale ($8\pi^3 EI / (L^2 g \rho)$) of approximately $2000$ \AA{} -- comparable to the molecule's length. This characteristic further justifies our initial concern regarding the potential influence of buckling forces arising in sedimentation on hydrodynamic sizes in AUC measurements. Fortunately, the group led by Prof. Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule. Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations (however, excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a $\lim T \to \inf$ approximation, hence the name). More precisely, bending forces arising from the Ramachandran angles distributions were neglected, while the forces governing bond length were taken to be infinitely strong. This approach requires care when handling bond-angle distributions, and some apparently paradoxical results can arise, as discussed in \textcite{Waszkiewicz_2024_trimer}. We show that the intuitive distribution 'uniform on a sphere' indeed arises as a limit in the case of linear filaments (notably, a different distribution arises for molecules with loops as shown therein, with deviations in probability density that can be arbitrarily large).
+The second type of molecule investigated in this study was the intrinsically disordered proteins (IDPs).
+These molecules exhibit much smaller stiffness, with a persistence length as small as $3$ \AA{} and an elastohydrodynamic length scale ($8\pi^3 EI / (L^2 g \rho)$) of approximately $2000$ \AA{} -- comparable to the molecule's length.
+This characteristic further justifies our initial concern regarding the potential influence of buckling forces arising in sedimentation on hydrodynamic sizes in AUC measurements.
+Fortunately, the group led by Prof.
+Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule.
+Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations (however, excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a $\lim T \to \inf$ approximation, hence the name).
+More precisely, bending forces arising from the Ramachandran angles distributions were neglected, while the forces governing bond length were taken to be infinitely strong.
+This approach requires care when handling bond-angle distributions, and some apparently paradoxical results can arise, as discussed in \textcite{Waszkiewicz_2024_trimer}.
+We show that the intuitive distribution 'uniform on a sphere' indeed arises as a limit in the case of linear filaments (notably, a different distribution arises for molecules with loops as shown therein, with deviations in probability density that can be arbitrarily large).
 
 \begin{table}[htbp]
     \centering
@@ -525,40 +542,41 @@ The two experimentally inspired problems, even though solvable to a satisfactory
 These error estimates can be compared either to the precision of the experimental data or to the estimates of other approximation errors in the model, such as approximations of the hydrodynamic mobility tensors.
 This can guide the effort in further improvements to the numerical method; for example, should we first work on including thermal fluctuations to the conformations or rather improve hydrodynamic mobility tensor approximations?
 
-When mobility tensors are simply modelled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2\% (based on R8 test case of \cite{Zuk_2018}).
+When mobility tensors are simply modeled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2 
 
 Assessing errors introduced by approximate conformer generation, whether in the hot ($T\to\infty$) or cold ($T\to0$) limit, necessitates simulating the ensemble at finite temperatures.
+% (based on R8 test case of \cite{Zuk_2018}).
 Various methods can be employed for this purpose, but a simulation grounded in physical principles holds particular appeal.
 To achieve good performance, the Brownian Dynamics method was selected.
 This approach relies on formulating the dynamical equation governing conformational changes in the form of an SDE.
 
-Surprisingly, in 2022, the authors found that the only high-quality SDE integration package available was \code{differentialequations.jl} in Julia\cite{Rackauckas_2017}.
-Since Julia is still not very popular among physicists (or at least not inside the soft-matter community) this resulted in frequent re-implementation of SDE integration methods for each problem and often re-implementation of the hydrodynamic interaction tensors as well (possibly due to the fact that the Rotne-Prager-Yamakawa tensors most frequently used in our group were originally implemented in Fortran\cite{Zuk_2018}).
+Surprisingly, in 2022, the authors found that the only high-quality SDE integration package available was \code{differentialequations.jl} in Julia \cite{Rackauckas_2017}.
+Since Julia is still not very popular among physicists (or at least not inside the soft-matter community), this resulted in frequent re-implementation of SDE integration methods for each problem and often re-implementation of the hydrodynamic interaction tensors as well (possibly due to the fact that the Rotne-Prager-Yamakawa tensors most frequently used in our group were originally implemented in Fortran \cite{Zuk_2018}).
 
-We have tried to address this issue by making the packages \code{pychastic} (for SDE integration) and \code{pygrpy} (for Rotne-Prager-Yamakawa tensors) as easily accessible as we can -- single command installation, working on any reasonable linux distribution, MacOS and (as of 2023) even Windows10\cite{jax_on_windows}.
-Additionally, we have invested substantial effort in creating straightforward yet realistic examples in the documentation.
+We have tried to address this issue by ensuring that the packages \code{pychastic} (for SDE integration) and \code{pygrpy} (for Rotne-Prager-Yamakawa tensors) are easily accessible -- with single command installation and compatibility across various operating systems including Linux distributions, MacOS, and (as of 2023) even Windows 10 \cite{jax_on_windows}.
+Additionally, substantial effort has been invested in creating straightforward yet realistic examples in the documentation.
 This not only simplifies the learning curve but also aims to encourage wider adoption of our integration package.
 For a comprehensive understanding of implementation and usage, please refer to the detailed information provided in \textcite{Waszkiewicz_2023_pychastic}.
 
 The specific implementation of \code{pychastic} further streamlines the development of similar models by eliminating the need for explicit force specification.
-Instead, users can now simply define the energy, and the forces can be derived programmatically using \code{jax.grad}.
-This feature proved particularly advantageous in simulating shear-relaxed dynamics of DNA minicircles, where the energy depends on the non-local quantity of writhe ($Wr$), as discussed in detail in section~\ref{sec:further_conclusions}.
+Instead, users can now simply define the energy, and the forces can be derived programmatically using \code{jax.grad} without compromising speed and precision.
+This feature proved particularly advantageous in simulating shear-relaxed dynamics of DNA minicircles, where the energy depends on the non-local quantity of writhe ($Wr$).
 
-Answer to the correct development direction (in the opinion of the author) lies in future experimental data with resolutions capable of probing inaccuracies of the force-fields used or showing clear dependencies on buffer conditions such as temperature or ionic strength.
-Such measurements are in the making and early results give a glimpse into the future DNA models\cite{Ranasinghe_2023}.
+The answer to the correct development direction (in the opinion of the author) lies in future experimental data with resolutions capable of probing inaccuracies of the force-fields used or showing clear dependencies on buffer conditions such as temperature or ionic strength.
+Such measurements are in progress, and early results provide insights into future DNA models \cite{Ranasinghe_2023}.
 
 \section{Experimental techniques}
 
-For the author the experimental challenges of studying bio-macromolecules have been an eye opening lesson in patience.
-The excellent work on biosynthesis of the groups at Baylor College of medicine and Institute of Physics of Polish Academy of Science should not be underestimated.
-These two collaborations give an overview of many experimental challenges: failure or success of initial biosynthesis, obtaining correct concentrations, through purification from by products of biosynthesis and the stability of the resultant molecular constructs to practical obstacles such as replacing discontinued lab equipment and cross border shipping.
+For the author, the experimental challenges of studying biomacromolecules have been an eye-opening lesson in patience.
+The excellent work on biosynthesis by the groups at Baylor College of Medicine and the Institute of Physics of the Polish Academy of Science should not be underestimated.
+These two collaborations provide an overview of many experimental challenges: from the success or failure of initial biosynthesis, obtaining correct concentrations, to purification from by-products of biosynthesis and the stability of the resultant molecular constructs, to practical obstacles such as replacing discontinued lab equipment and cross-border shipping.
 
-Even if everything lines up and one obtains a good sample of the molecule to study the measurement itself is no easy task either.
-Both AUC and FCS methods rely on time-series analysis of an optical signal - in that sense they are both indirect methods requiring model fitting within the experimental procedure as outlined in \ref{sec:AUC,sec:FCS}.
-This complicates the analysis of the direct measurement error (uncertainty of a single measurement), with the current Monte-Carlo based AUC analysis method providing no uncertainty estimates for samples of high purity.
-Single measurement error, however, is not the only and not even a leading source of uncertainty in the measurements of the diffusion (and sedimentation) properties of the molecules.
-Since buffer conditions, concentration and even time from synthesis\cite{Nag_2011} affect the final outcome these have to be incorporated into error analysis to arrive at compound value of confidence interval of the measurements.
-Some authors, unfortunately, do not provide any error estimates\cite{Poznar_2017,Khaymina_2007} and most of them do not discuss multiple sources of error.
+Even if everything aligns and one obtains a good sample of the molecule to study, the measurement itself is no easy task either.
+Both AUC and FCS methods rely on time-series analysis of an optical signal -- in that sense, they are both indirect methods requiring model fitting within the experimental procedure.
+This complicates the analysis of direct measurement error (uncertainty of a single measurement), with the current Monte Carlo-based AUC analysis method providing no uncertainty estimates for samples of high purity.
+However, single measurement error is not the only, and not even the leading, source of uncertainty in the measurements of the diffusion (and sedimentation) properties of the molecules.
+Since buffer conditions, concentration, and even the time from synthesis \cite{Nag_2011} affect the final outcome, these factors must be incorporated into error analysis to arrive at a comprehensive confidence interval for the measurements.
+Unfortunately, some authors do not provide any error estimates \cite{Poznar_2017, Khaymina_2007}, and most of them do not discuss multiple sources of error.
 
 The following sections describe the theoretical underpinnings of the experimental methods relevant to the publications included in this thesis.
 
@@ -626,10 +644,8 @@ The frequency of the fluctuations due to diffusion can be quantified (and thus u
 \begin{equation}
     G(\tau) = \left< F(t) F(t-\tau) \right>
 \end{equation}
-with $\left< .
-    % G(\tau) = \frac{\left< F(t) F(t-\tau)\right>}{\left< F(t)^2 \right>} - 1 %% Definition in Nancy Tompsons book
-    \right>$ denoting time average.
-This function is composed of two terms -- constant background (in case of non-interacting molecules) term due to photos coming from two different molecules and a delay dependent term quantifying probability of detecting a photon from the same molecule again.
+with $\left< \cdot \right>$ denoting time average.
+This function is composed of two terms -- constant background (in case of non-interacting molecules) term due to photons coming from two different molecules and a delay dependent term quantifying probability of detecting a photon from the same molecule again.
 For simplicity of this overview we focus only on the last term.
 
 Suppose for simplicity that a position-dependent probability of excitation describing the shape of the excitation volume can be described by a axisymmetric Gaussian profile $U(\bm{r})$ given by
@@ -1012,9 +1028,9 @@ Either in its current form for predicting diffusion coefficients of similar mole
 
 \chapter{Other research activity}
 \begin{itemize}
-    \item \fullcite{Waszkiewicz_2024_goldilocks}
-    \item \fullcite{Turczynowicz_2024}
-    \item \fullcite{Waszkiewicz_2024_parenthood}
+    \item \publicationblock{Waszkiewicz_2024_goldilocks}
+    \item \publicationblock{Turczynowicz_2024}
+    \item \publicationblock{Waszkiewicz_2024_parenthood}
 \end{itemize}
 
 \printbibliography[heading=bibchapter]

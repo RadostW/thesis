@@ -101,15 +101,15 @@
     \section{Paper \thepublications: \texorpdfstring{\emph{\pubtitle{#1}}}{#2}}
     \begin{center}
         \hrule
-        \vspace{1em}
+        \vspace{0.7em}
         {\Large \textsc{Paper \thepublications}}\\
-        \vspace{1em}
+        \vspace{0.7em}
         \hrule
-        \vspace{4em}
+        \vspace{2em}
         {\Large ``\emph{\pubtitle{#1}}''}\\
-        \vspace{4em}
+        \vspace{2em}
         {\Large \pubauthors{#1}}\\
-        \vspace*{4em}
+        \vspace*{3em}
     \end{center}
 
     \long\def\commentary##1{
@@ -122,6 +122,34 @@
 }{
     \stepcounter{publications}
     \clearpage
+}
+
+% Other research activity citation page style
+% #1 - cictaion key
+
+\newcommand{\publicationblock}[1]{%
+    \AtNextCite{%
+        \DeclareNameAlias{labelname}{given-family}%
+        \AtEachCitekey{\defcounter{maxnames}{999}}%
+    }%
+    \abstractfullcite{#1}%
+}
+
+\DeclareCiteCommand{\abstractfullcite}
+  {\usebibmacro{prenote}}
+  {\usedriver
+     {\DeclareNameAlias{sortname}{default}}
+     {\thefield{entrytype}}}
+  {\multicitedelim}
+  {
+    \par    
+    \usebibmacro{printabstract}
+    \usebibmacro{postnote}
+    \rule{\linewidth}{0.4pt}
+  }
+
+\newbibmacro{printabstract}{%
+  \textsc{Abstract}: \printfield{abstract}%
 }
 
 \endinput
