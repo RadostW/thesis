@@ -73,6 +73,7 @@
 % Make line breaks less terrible
 \emergencystretch 3em%
 \vfuzz \hfuzz
+\interfootnotelinepenalty=10000
 
 \def\supervisor#1{\gdef\@supervisor{#1}}
 \def\affiliation#1{\gdef\@affiliation{#1}}
