@@ -210,7 +210,7 @@ As a result, this approach is not just inaccurate but completely fruitless in th
 Most methods for computing square roots (such as the Cholesky decomposition) are singular for singular matrices.
 thus even a very small error in the components of the mobility tensor can lead to arbitrarily large erros of the square root unless positive definiteness can be guaranteed.
 
-Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1922} with the Oseen tensor.
+Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor.
 \begin{equation}
     \bm{V_i} =
     -\mu_0^t \bm{F}_i
@@ -238,7 +238,7 @@ Evaluating the Laplacians and rearranging the explicit formulae for mobility ten
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
 
-The $\mm{\mu}_{ij}^{tt,RP}$ approximation is the well known Rotne-Prager approximation\cite{Nagele_2013,Dhont_2008,Kim_2013}.
+The $\mm{\mu}_{ij}^{tt,RP}$ approximation is the well known Rotne-Prager approximation \cite{Nagele_2013,Dhont_2008,Kim_2013}.
 It turns out that this approximation is always positive definite thus a great candiate for Brownian dynamics applications.
 Moreover, it turns out that tensor divergence of $\mm{\mu}^{tt,RP}$ is equal to zero (which is not true for the exact solution $\mm{\mu}^{tt}$) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner.
 Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
@@ -395,8 +395,8 @@ We define $R_h$ as the size of a microscopic solid sphere with the same diffusio
 Since $R_h$ is derived from the apparent diffusion coefficient $D$ it is influenced by surface effects such as hydration layers.
 On the other hand, in simple cases, $R_h$ can be treated as a property of the molecule alone, disregarding colloid-solvent cohesion, and thus computed in a more convenient way.
 
-For a bead model of a rigid macromolecule, $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule\cite{Zuk_2018}.
-If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient\cite{Cichocki_2015}.
+For a bead model of a rigid macromolecule, $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule \cite{Zuk_2018}.
+If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient \cite{Cichocki_2015}.
 Note that the diffusion centre does not necessarily coincide with the centre of mass of the molecule.
 
 For a rigid macromolecule modelled as a conglomerate of spherical beads, we can derive hydrodynamic radius from its grand mobility matrix by considering collective translational and rotational motion of constituent beads around any given point.
@@ -438,7 +438,7 @@ Both of these problems are more pronounced when very stiff springs are used as m
 Soft matter as a discipline of physics evolved out of 'colloid suspensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity, with universal being interpreted as insensitive to bio-chemical details of the molecules.
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
 These include some synthetic plastics but also bio-molecules such as DNA or denatured proteins.
-A celebrated result of Rouse $R_h \sim N^{1/2}$ for a Gaussian chain\cite{Rouse_1953} later improved by Zimm by inclusion of excluded volume interactions \cite{Zimm_1956} $R_h \sim N^\gamma$ with $\gamma=0.588$.
+A celebrated result of Rouse $R_h \sim N^{1/2}$ for a Gaussian chain \cite{Rouse_1953} later improved by Zimm by inclusion of excluded volume interactions \cite{Zimm_1956} $R_h \sim N^\gamma$ with $\gamma=0.588$.
 For a more detailed overview the subject matter see \textcite[chapter 3]{Dhont_2008}.
 These scalings are valid under the assumption of small persistence length $P = EI / (k_B T)$, which captures the ratio of elastic forces (proportional to rigidity $EI$) to Brownian forces (proportional to fluctuation energy $k_B T$).
 
@@ -480,8 +480,8 @@ This characteristic leads to a large conformational variability in an equilibriu
 Much of the theoretical enthusiasm in developing complex models of IDPs, with a multitude of interactions, is hampered by an insufficient quantity or quality of experimental calibration data necessary for the determination of molecular "material constants".
 In polymer science domains where data is plentiful, such as the area of globular proteins that can be readily measured by techniques like x-ray crystallography, significant numerical progress has been made using machine learning techniques, leading to celebrated examples like AlphaFold \cite{Jumper_2021}, which has achieved even popular science recognizability.
 
-Progress in the domain of IDPs is much more modest, even though they constitute a large proportion of proteins\cite{Ward_2004} and play an important role in multiple bio-relevant processes, such as the functioning of the COVID-19 virus\cite{Rozycki_2022} (to name just one example particularly resonant in 2024).
-In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data -- compare over 200 thousand conformations available in the Protein Data Bank\cite{rcsb_org} with not even 50 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works\cite{Waszkiewicz_2024_mda} or 118 proteins in the Small Angle Scattering Database\cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database\cite{proteinensemble_org}.
+Progress in the domain of IDPs is much more modest, even though they constitute a large proportion of proteins \cite{Ward_2004} and play an important role in multiple bio-relevant processes, such as the functioning of the COVID-19 virus \cite{Rozycki_2022} (to name just one example particularly resonant in 2024).
+In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data -- compare over 200 thousand conformations available in the Protein Data Bank \cite{rcsb_org} with not even 50 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works \cite{Waszkiewicz_2024_mda} or 118 proteins in the Small Angle Scattering Database \cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database \cite{proteinensemble_org}.
 
 Simultaneously, a variety of biochemical insights into both folded and disordered protein behavior invite phenomenological models with many covariates to explain the hydrodynamic size of these molecules.
 A specific example of such insight could be the relative rigidity of polyhistidine fragments and tags.
@@ -540,9 +540,9 @@ We show that the intuitive distribution 'uniform on a sphere' indeed arises as a
         \textbf{Thermodynamics}                                   &
         \textbf{Hydrodynamics}                                                                           \\
         \midrule
-        DNA\cite{Waszkiewicz_2023_dna,Waszkiewicz_2021_stability} & \checkmark & .          & \checkmark \\
-        IDP\cite{Waszkiewicz_2024_mda,Waszkiewicz_2024_trimer}    & .          & \checkmark & \checkmark \\
-        Pychastic\cite{Waszkiewicz_2023_pychastic}                & \checkmark & \checkmark & \checkmark \\
+        DNA \cite{Waszkiewicz_2023_dna,Waszkiewicz_2021_stability} & \checkmark & .          & \checkmark \\
+        IDP \cite{Waszkiewicz_2024_mda,Waszkiewicz_2024_trimer}    & .          & \checkmark & \checkmark \\
+        Pychastic \cite{Waszkiewicz_2023_pychastic}                & \checkmark & \checkmark & \checkmark \\
         \bottomrule
     \end{tabular}
     \caption{Three domains of interest for the study of elastic molecules.
@@ -817,7 +817,7 @@ With the help of tabulated values of scattering intensities of each amino-acid o
         To understand when this might happen, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
 
         %2. Literature overview
-        Earlier studies of sedimenting flexible rings using bead-model approach\cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions.
+        Earlier studies of sedimenting flexible rings using bead-model approach \cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions.
         Assessing which parts of this complexity are attributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goal of this investigation.
 
         %3. What techique was used
@@ -904,7 +904,7 @@ It turns out that the effects of thermal fluctuations on the overall hydrodynami
 Moreover, the range of $Lk$ values for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small—less than 0.2 turns.
 When considering the difference in total elastic energy between the flat circular configuration and the configuration with self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{8\pi^2 \cdot}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the transitional region width of approximately $0.03$.
 %TODO: redo this calculation and check
-This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
+This contrasts starkly with CryoEM data \cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
 One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
 
 The example above highlights our motivations for the development of the \code{pychastic} package which is described in detail in the next publication.
@@ -926,7 +926,7 @@ The example above highlights our motivations for the development of the \code{py
         We took advantage of the modern python features such as introspection and metaprgoraming which enable efficient automatic differentiaion of functions combined with the package \code{jax} for just-in-time compilation of python code to machine code for performance.
 
         %4. What was the outcome
-        The resultant package, \code{pychastic}, is now available to instal via \code{pip} or directly from GitHub\cite{gh_pychastic}.
+        The resultant package, \code{pychastic}, is now available to instal via \code{pip} or directly from GitHub \cite{gh_pychastic}.
 
         %5. PhD candidate
         In this study the PhD candidate: conceptualized the problem, lead a small programming team, which included the author, Maciej Bartczak, and Kamil Kolasa, co-developed a Python package complete with documentation, examples, and tests, created test cases and debugging tools that facilitated the correction of multiple typos found in existing literature (outlined in the publication).
@@ -964,7 +964,7 @@ The example above highlights our motivations for the development of the \code{py
         The resulting code was packaged into an easy to use python library and command line tool called \code{glm_mda_diffusion} ready to install via \code{pip} and available directly on GitHub.
 
         %5. PhD candidate
-        In this study the PhD candidate: co-conceptualized the modelling approach, investigated the available conformer generation schemes, implemented the Python port \code{pygrpy} of the generalised Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}), implemented the globule-linker conformer generation scheme, performed numerical calculations and statistical analysis to assess deviations between theory and experiment.
+        In this study the PhD candidate: co-conceptualized the modelling approach, investigated the available conformer generation schemes, implemented the Python port \code{pygrpy} of the generalised Rotne-Prager mobility tensors (originally implemented in Fortran \cite{Zuk_2018}), implemented the globule-linker conformer generation scheme, performed numerical calculations and statistical analysis to assess deviations between theory and experiment.
         Additionally, they wrote the first draft and edited all subsequent versions of the manuscript.
     }
 \end{publicationpage}
