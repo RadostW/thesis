@@ -34,10 +34,9 @@
 \addbibresource{sources.bib}
 
 \begin{document}
-\sortcitefirst{%
-    Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer, } \maketitle 
+\sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer, } \maketitle
 
-\section*{Summary} 
+\section*{Summary}
 
 Recent, increasingly accurate measurements of the properties of bio-relevant molecules challenge our understanding of macromolecules as having well-defined, fixed shapes that determine their function.
 The doctoral thesis presents a theoretical description of the diffusion of elastic macromolecules.
@@ -247,10 +246,18 @@ That and further improvements (such as differentiable continuation for overlaps)
 \section{Mathematical treatment of Brownian motion}
 \label{sec:SDE}
 
+Although the fundamentals of kinetic theory of gases had been established since the 1870s and Navier-Stokes equations since the 1840s, the formulation of the earliest fluctuation-dissipation-type equation, now known as the Stokes-Einstein relationship ($D = 1 / (6 \pi \eta a)$ for a spherical particle), was precipitated by the contributions of Einstein \cite{Einstein_1905} and Smoluchowski \cite{Smoluchowski_1906}.
+Their theoretical insights were experimentally verified by Perrin \cite{Perrin_1909}, culminating in his Nobel Prize in Physics in 1926.
+The conceptual challenge of merging two formerly distinct branches of physics was further complicated by the necessity to develop new mathematical tools capable of handling random functions describing the position and velocity of Brownian particles.
+The physical heuristics devised to capture the probabilistic nature of temperature were later formalized into what is now known as stochastic calculus.
+The applications of stochastic calculus found utility in the economic context, where Merton and Scholes were awarded the Nobel Prize in Economics in 1997 for their development of the Black-Scholes-Merton formula for option pricing.
+However, the misuse of their results by the financial industry, coupled with inadequate regulation of the derivatives sector, led to the 2008 financial crisis \cite{fcic_report}.
+
 We outline the central complication of the stochastic calculus (second order terms in the chain rule equivalent) using a physically motivated example.
 A more succinct description of this domain can also be found in \textcite{Waszkiewicz_2023_pychastic}.
-
 For simplicity, we will again focus on just a single colloidal sphere.
+In case of isotropic diffusion in a quiescent fluid the problem is separable with each cartesian direction being independent, in this simple case we can just consider scalar velocty and displacement.
+In more complex cases (single sphere near a wall, or more than one sphere, or any other shape) more care is needed because displecements in different directions are no longer independent and often also dependent on angular displacements which complicates the problem significantly.
 Following the notation of \textcite{Ottinger_2012}, we will denote time dependence in subscripts such that the (time dependent) velocity of such sphere is $V_t$.
 Historically $V_t$ was modelled by the Langevin equation
 \begin{equation}
@@ -360,14 +367,12 @@ This equation allows for solution of the previous integral \eqref{eqn:celebrated
 \end{equation}
 but more importantly for the physics applications, it gives change of coordinates rules which are vital when trying to take advantage of symmetries of studied systems.
 
-Finally we can see that integral \eqref{eqn:celebrated-integral} is not only of academic interest.
-Equation \eqref{eqn:ito-formula-applied} shows that this is exactly the behaviour of the square displacements which play a central role in determination of the diffusion coefficient.
-
-% $f(x) = \exp(x - (t/2))$
-% \begin{equation}
-%    \dd Y_t = - \frac{1}{2} Y_t \dd t + Y_t \dd W_t + \frac{1}{2} Y_t \dd t = Y_t \dd W_t.
-% \end{equation}
-% $\dd Y_t = - Y_t \dd W_t$ has a solution $Y_t = \exp( W_t - (t/2)) \neq \exp(W_t)$ contrary to heuristic application of ordinary calculus.
+Summarising, we can see that integral \eqref{eqn:celebrated-integral} is not only of academic interest.
+Equation \eqref{eqn:ito-formula-applied} shows that this behavior exactly describes the square displacements, which play a central role in determining the diffusion coefficient.
+Given an SDE describing trajectories of Brownian motion, we can proceed by generating sample trajectories and attempt to estimate the diffusion coefficient from them.
+For a very simple case of a spherical colloid in a quiescent fluid, estimating diffusion directly from the mean square displacement works fine.
+However, for a molecule of arbitrary shape or an elastic one that changes shape while diffusing, the convergence of this method is impracticably slow.
+Better approaches for estimating effective size are required, as outlined in the next section.
 
 \section{The hydrodynamic radius}
 
@@ -407,6 +412,9 @@ An alternative method of computation of $R_h$ is based on a heuristic observatio
 Heat flux is then used to estimate the effective size of such a molecule, as described by the authors of the Zeno package \cite{Juba_2017}, which we used in \textcite{Waszkiewicz_2023_dna}.
 
 For an elastic macromolecule, there are more bounded degrees of freedom and not just the rotation, but also deformation can affect instantaneous diffusion coefficient and a judicious choice of tracking point can remove much of the spurious overestimation.
+
+TODO - figure from pychastic TODO - equations 1.1 an 1.2 from Cichocki_2019 
+
 An intuitive first guess is to track 'the middle' or geometric average of molecules constituent parts, whereas slightly more refined approach is to use centre of mass -- this is clearly not an optimal strategy as shown by the exact result for the rigid molecule.
 Location, or more specifically, the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
 
@@ -433,12 +441,14 @@ There are two potential difficulties with computing this measure: determining th
 We discuss both of them in greater detail in \textcite{Waszkiewicz_2024_trimer}.
 Both of these problems are more pronounced when very stiff springs are used as models of bonds leading to superficially paradoxical results such as the 'trimer paradox' discussed therein.
 
-\section{Elastic macromolecules}
+TODO: Write bridge - "we will use the methods from previous chapters becasue our molecules are elastic" 
+
+\section{Elastic macromolecules} 
 
 Soft matter as a discipline of physics evolved out of 'colloid suspensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity, with universal being interpreted as insensitive to bio-chemical details of the molecules.
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
 These include some synthetic plastics but also bio-molecules such as DNA or denatured proteins.
-A celebrated result of Rouse $R_h \sim N^{1/2}$ for a Gaussian chain \cite{Rouse_1953} later improved by Zimm by inclusion of excluded volume interactions \cite{Zimm_1956} $R_h \sim N^\gamma$ with $\gamma=0.588$.
+A celebrated result of Rouse $R_h \sim N^{1/2}$ for a Gaussian chain with $N$ elements \cite{Rouse_1953} later improved by Zimm by inclusion of excluded volume interactions \cite{Zimm_1956} $R_h \sim N^\gamma$ with $\gamma=0.588$.
 For a more detailed overview the subject matter see \textcite[chapter 3]{Dhont_2008}.
 These scalings are valid under the assumption of small persistence length $P = EI / (k_B T)$, which captures the ratio of elastic forces (proportional to rigidity $EI$) to Brownian forces (proportional to fluctuation energy $k_B T$).
 
@@ -551,9 +561,6 @@ We show that the intuitive distribution 'uniform on a sphere' indeed arises as a
     \label{tab:tickmarks}
 \end{table}
 
-\section{Combining hot and cold limits}
-
-\label{sec:combining_hot_and_cold_approaches}
 The two experimentally inspired problems, even though solvable to a satisfactory degree within the presented approximations, leave a desire to assess the size of the error introduced by these particular simplifications.
 These error estimates can be compared either to the precision of the experimental data or to the estimates of other approximation errors in the model, such as approximations of the hydrodynamic mobility tensors.
 This can guide the effort in further improvements to the numerical method; for example, should we first work on including thermal fluctuations to the conformations or rather improve hydrodynamic mobility tensor approximations?
