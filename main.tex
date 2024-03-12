@@ -47,7 +47,7 @@ Lynn Zechiedrich, focusing on DNA loops, and the second with the group led by Pr
 Anna Niedźwiecka, studying intrinsically disordered proteins (IDPs).
 The main results of the thesis are presented as a collection of thematically linked series of manuscripts, the first four of which are already published, while the last two are currently under review.
 
-The first publication, titled \emph{Stability of Sedimenting Flexible Loops}, co-authored by Piotr Szymczak and Maciej Lisicki, provides a linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modeled with Euler-Bernoulli equation.
+The first publication, titled \emph{Stability of Sedimenting Flexible Loops}, co-authored by Piotr Szymczak and Maciej Lisicki, provides a linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modeled with the Euler-Bernoulli equation.
 We were able to establish a semi-analytic stability criterion and re-derive the dimensionless quantity governing the buckling instability for this and similar problems.
 
 The second publication, titled \emph{Hydrodynamic Effects in the Capture of Rod-like Molecules by a Nanopore}, co-authored by Maciej Lisicki, provides an analysis of the influence of wall interaction and hydrodynamic anisotropy in the process of nanopore capture.
@@ -98,12 +98,12 @@ A fundamental technique for assessing the relative importance of different physi
 Reynolds, \cite{Reynolds_1883}), involves the consideration of dimensionless numbers.
 Here, we follow the approach of Nagele \cite{Nagele_2013}, where he motivates common approximations in colloidal physics by considering timescale ratios.
 
-Colloidal hydrodynamics focuses on the properties of colloidal suspensions, which are mixtures of very small objects (with sizes such as $0.1 \mathrm{\mu m}$) and a solvent, typically water.
+Colloidal hydrodynamics focuses on the properties of colloidal suspensions, which are mixtures of very small objects (with sizes of the order of $0.1 \mathrm{\mu m}$) and a solvent, typically water.
 At human-length scale, water is easily treated as incompressible (for example, by considering volume changes at typical pressures on the order of atmospheric pressure).
 However, this becomes less obvious at the microscopic length scale where the granularity of matter becomes significant.
 The relevant bulk density relaxation timescale $\tau_s$ at the length scales relevant to the colloidal object of size $a$ can be estimated from the speed of sound in water, $c$, as $\tau_s = a/c \approx 6 \times 10^{-11} \mathrm{s}$, which is much shorter than any experimentally relevant timescale, prompting us to use the incompressible Navier-Stokes equations.
 
-For a fluid (such as water) of density $\rho$ and viscosity $\eta$, these equations describe the evolution of the velocity field $\bm{u}$ in response to the pressure gradient $\bm{\nabla} p$ and body forces $\bm{f}$ acting on the fluid as
+For a Newtonian fluid (such as water) of density $\rho$ and viscosity $\eta$, these equations describe the evolution of the velocity field $\bm{u}$ in response to the pressure gradient $\bm{\nabla} p$ and body forces $\bm{f}$ acting on the fluid as
 \begin{eqnarray}
     \rho \left( \frac{\pd \bm{u}}{\pd t} + \bm{u} \cdot \bm{\nabla u} \right) = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}, \label{eqn:navier-stokes-equation}
 \end{eqnarray}
@@ -149,7 +149,7 @@ Finally we can define the diffusive timescale $\tau_D$ as the time required for 
     \label{eqn:diffusive-timescale}
 \end{equation}
 
-Thus for colloidal particles $\tau_D \gg \tau_\omega \sim \tau_B$ and we can neglect time dependent terms of the Stokes equation (this is not always the case, for example in the motion of carpets of cilia or bacterial flagella the time dependent terms play a role \cite{Wei_2021}).
+Thus for colloidal particles $\tau_D \gg \tau_\omega \sim \tau_B$ and on experimentally relevant time scales $\sim \tau_D$ we can neglect time dependent terms of the Stokes equation (this is not always the case, for example in the motion of carpets of cilia or bacterial flagella the time dependent terms play a role \cite{Wei_2021}).
 Consequently, we arrive at the Stokes equations
 \begin{eqnarray}
     \eta \Delta \bm{u} - \bm{\nabla} p + \bm{f} = 0, \label{eqn:stokes-equation} \\
@@ -160,17 +160,16 @@ The Stokes equation \eqref{eqn:stokes-equation} possesses important properties o
 This means that the velocity at any moment is fully determined by the fluid boundary conditions at the same time instance.
 These properties are vital for the construction of mobility matrices discussed in the next section.
 
-\section{Method of mobility matrices}
+\section{Mobility matrices}
 
 An immediate corollary of the linearity of the Stokes equation is the existence of so-called mobility matrices -- linear operators that provide particle velocities resulting from forces and torques acting within a given configuration of colloidal particles.
 Unfortunately, closed-form expressions for these relationships exist only in very simple geometries where flows can be easily computed, such as for a single sphere or ellipsoid.
 Even for highly symmetric shapes, such as a torus \cite{Goren_1980, Majumdar_1977}, solutions are, at best, expressed in terms of a series expansion.
-However, all hope is not lost.
 We can leverage the very simple solution for flow around a sphere and construct an approximate solution for flow around multiple spheres.
-In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, connected either rigidly or through some potentials.
+In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, connected either rigidly or through appropriate potentials.
 This construction is facilitated by the method of mobility matrices, which we describe below.
 
-Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocity $\bm{V}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
+Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocities $\bm{V}_i$ and angular velocities $\bm{Omega}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
 We seek the matrix connecting these velocties to these forces.
 For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}.
 Let us denote a concatenated vector of particle velocities as $\bm{V} = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\bm{\Omega} = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
@@ -195,17 +194,23 @@ We can introduce mobility tensors $\mm{\mu}$ in the following fashion
     .
     \label{eqn:mobility-matrix-definition}
 \end{equation}
+Often one is interested in a torque free case where only submatrix $\mm{\mu}^{tt}$ plays a role and is referred to as translational mobility matrix or grand translation mobility matrix (to emphasise that it captures particle-particle interactions).
 
-For a point force acting on the fluid the Greens function of the Stokes equation is called the Oseen tensor $\mm{T}^0$ and is given by
+For a point force $\bm{f}$ acting on the fluid Green's function of the Stokes equation is called the Oseen tensor $\mm{T}^0$ with fluid velocity satistying $\bm{u}(\bm{r}) = \mm{T}^{0}(\bm{r}).
+    \bm{f}$.
+Said tensor is given by
 \begin{equation}
-    \mm{T}^{0} = \frac{1}{8\pi\eta |\bm{r}|} \left( \mm{1} + \bm{\hat{r}}\bm{\hat{r}}\right)
+    \mm{T}^{0}(\bm{r}) = \frac{1}{8\pi\eta |\bm{r}|} \left( \mm{1} + \bm{\hat{r}}\bm{\hat{r}}\right).
 \end{equation}
 
 For multiple spherical colloids suspended in a quiescent fluid, the mobility matrices depend on the relative positions of the spheres.
 In the lowest order approximation, it turns out that only pairwise displacements are required to compute them.
 It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
-As a result, this approach is not just a little inaccurate but completely fruitless when square roots of mobility matrices are required, such as in the case of Brownian dynamics.
-Introducing $\mm{R}_{ij} = |\mm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1922} with the Oseen tensor.
+As a result, this approach is not just inaccurate but completely fruitless in the case of Brownian Dynamics where square roots of mobility matrices are required at each simulation step.
+Most methods for computing square roots (such as the Cholesky decomposition) are singular for singular matrices.
+thus even a very small error in the components of the mobility tensor can lead to arbitrarily large erros of the square root unless positive definiteness can be guaranteed.
+
+Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law\cite{Faxen_1922} with the Oseen tensor.
 \begin{equation}
     \bm{V_i} =
     -\mu_0^t \bm{F}_i
@@ -217,25 +222,25 @@ Introducing $\mm{R}_{ij} = |\mm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determi
 
 A direct use of equation \eqref{eqn:faxen-theorem} is not very practical since it requires solving for surface traction distribution.
 If we only take into account the average surface traction on each sphere  by $\bm{f}_j^{(s)}(\bm{r'}) = -\bm{F}_j / (4\pi a^2)$ taking one obtains relationship of the form \eqref{eqn:mobility-matrix-definition}.
-Next one can approximate the integrand by Taylor expanding around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors 
+Next, one can approximate the integrand by Taylor expanding it around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors 
 
 \begin{eqnarray}
     \bm{V}_i \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \mm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
-    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \mm{T}^{0} (\bm{x} = \mm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
+    \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{3} \Delta_x) \mm{T}^{0} (\bm{x} = \bm{R}_{ij}) \cdot \bm{F}_j \label{eqn:rotne-prager-derivation}
 \end{eqnarray}
-because $\Delta_i \Delta_j \mm{T}^0(\mm{R}_{ij}) = 0$.
+because $\Delta_i \Delta_j \mm{T}^0(\bm{R}_{ij}) = 0$.
 %(recall surface integrals of polynomials of order up to 2, express them in terms of surface area
 
 Evaluating the Laplacians and rearranging the explicit formulae for mobility tensors can be obtained
 \begin{eqnarray}
-    \mm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \mm{1},                                                                                                                                                                                                                                                                     \\
-    \mm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{|\mm{R}_ij|} \right) \left( \mm{1} + \mm{\hat{R}}_ij\mm{\hat{R}_ij} \right) + \frac{1}{2} \left( \frac{a}{|\mm{R}_ij|} \right)^3 \left( \bm{1} -3  \mm{\hat{R}}_{ij}\mm{\hat{R}}_{ij} \right) \right) \quad \mathrm{for} \quad i \neq j.
+    \mm{\mu}_{ii}^{tt,RP} & = & \mu_0^t \mm{1},                                                                                                                                                                                                                                                                  \\
+    \mm{\mu}_{ij}^{tt,RP} & = & \mu_0^t \left( \frac{3}{4} \left( \frac{a}{R_{ij}} \right) \left( \mm{1} + \bm{\hat{R}}_{ij} \bm{\hat{R}_{ij}} \right) + \frac{1}{2} \left( \frac{a}{|R_{ij}|} \right)^3 \left( \bm{1} -3  \bm{\hat{R}}_{ij}\bm{\hat{R}}_{ij} \right) \right) \quad \mathrm{for} \quad i \neq j.
     \label{eqn:rotne-prager-translation}
 \end{eqnarray}
 
 The $\mm{\mu}_{ij}^{tt,RP}$ approximation is the well known Rotne-Prager approximation\cite{Nagele_2013,Dhont_2008,Kim_2013}.
 It turns out that this approximation is always positive definite thus a great candiate for Brownian dynamics applications.
-Moreover it turns out that tensor divergence of these tensors is equal to zero (which is not true for the exact solution) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner.
+Moreover, it turns out that tensor divergence of $\mm{\mu}^{tt,RP}$ is equal to zero (which is not true for the exact solution $\mm{\mu}^{tt}$) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner.
 Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
 That and further improvements (such as differentiable continuation for overlaps) are discussed by \textcite{Zuk_2018}.
 
@@ -254,7 +259,7 @@ Historically $V_t$ was modelled by the Langevin equation
 with $F^B_t$ a time dependent force arising from the bombardment of the colloid by the water molecules.
 
 Solving equation \eqref{eqn:langevin-velocity} naively, we obtain $V_t$ as a convolution of $F_t^B$ with an appropriate Green's function.
-Such convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity $\langle V_t^2 \rangle$, with $\langle \cdot \rangle$ denoting expected value by means of a double integral
+Such a convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity $\langle V_t^2 \rangle$, with $\langle \cdot \rangle$ denoting expected value by means of a double integral
 \begin{equation}
     \langle V_t^2 \rangle = \frac{1}{M^2} \int_0^t \dd t' \int_0^t \dd t'' \exp\left( - \frac{\zeta}{M} (2t - t' - t'') \right) \langle F_{t'}^B F_{t''}^B \rangle.
     \label{eqn:velocity-variance-integral}
@@ -264,11 +269,11 @@ Recall that the Brownian timescale is much longer than the fluid relaxation time
 \begin{equation}
     \langle F_{t'}^B F_{t''}^B \rangle = \alpha_B \delta(t'-t''), \label{eqn:white-noise-langevin}
 \end{equation}
-where $\delta$ deontes the Dirac delta funcitonal.
+where $\delta$ deontes the Dirac delta functional.
 
 Evaluating the integral \eqref{eqn:velocity-variance-integral} we get
 \begin{equation}
-    \frac{1}{2} M \langle V_t^2 \rangle = \frac{\alpha_B}{4 \zeta} (1 - \exp(-2\zeta \frac{t}{M})).
+    \frac{1}{2} M \langle V_t^2 \rangle = \frac{\alpha_B}{4 \zeta} \left[ 1 - \exp \left(-2\zeta \frac{t}{M} \right) \right].
     \label{eqn:velocity-variance-solution}
 \end{equation}
 
@@ -291,13 +296,13 @@ First we define standard Wiener process $W_t$ as a Gaussian martingale with the 
     \langle W_{t_1} W_{t_2} \rangle = \int_0^{t_1} \dd t' \int_0^{t_2} \dd t'' \delta(t' - t'') = \min(t_1, t_2) \label{eqn:wiener-process-definition}
 \end{equation}
 
-Note that, this time, covariance is non-singular and usual theory of Gaussian processes is directly applicable.
+Note that, this time, covariance is non-singular and the usual theory of Gaussian processes is directly applicable.
 Heuristically, we expect $V_t$ to be described by the following integral
 \begin{equation}
-    V_t = \frac{\sqrt{2 k_b T \zeta}}{M} \int_0^t \exp\left( -\zeta(t - t')/M \right) \dd W_{t'}.
+    V_t = \frac{\sqrt{2 k_b T \zeta}}{M} \int_0^t \exp\left( -\zeta\frac{t - t'}{M} \right) \dd W_{t'}.
     \label{eqn:velocity-integral-sde}
 \end{equation}
-Unfortunately this integral cannot be performed pathwise because $W_t$ has infinite variation in every interval, even though the issues of almost-surely nowhere differetniability of equation~\eqref{eqn:langevin-position} are avoided.
+Unfortunately, this integral cannot be performed pathwise because $W_t$ has infinite variation in every interval, even though the issues of almost-surely nowhere differetniability of equation~\eqref{eqn:langevin-position} are avoided.
 We need some generalisation of the usual integration to formalise this notion.
 
 These integrals turn out to be formally tractable for a class of processes called non-anticipatory.
@@ -311,9 +316,10 @@ We begin construction of the stochastic integral by considering non-anticipatory
 
 For these processes the stochastic (Ito) integral is simply defined as
 \begin{equation}
-    \int_0^{t_{\mathrm{max}}} X_t \dd W_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} (W_{t_j} - W_{t_{j-1}}) \label{eqn:ito-integral-step-function}
+    \int_0^{t_{\mathrm{max}}} X_t \dd W_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} (W_{t_j} - W_{t_{j-1}}).
+    \label{eqn:ito-integral-step-function}
 \end{equation}
-there is a noticeable lack of symmetry in this expression -- we evaluate the integrand on the left end of each interval, as a result $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the process $X_t$.
+There is a noticeable lack of symmetry in this expression -- we evaluate the integrand on the left end of each interval, as a result $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the process $X_t$.
 This 'direction of anticipation' asymmetry plays a central role in the differences between Ito and classical calculus (and is notably absent in Stratonovich calculus).
 % $X_{j-1} \perp (W_{t_j} - W_{t_{j-1}})$
 
@@ -332,7 +338,7 @@ To complete the construction of Ito's integral, we need an appropriate limiting 
 It turns out that the correct notion of limit here is that of mean square error, and that both the approximating processes and the integral itself converge in that sense.
 
 To show explicitly that this notion of integration is really fundamentally distinct from the usual integration, consider a famous integral $\int_0^t W_{t'} \dd W_{t'}$.
-We can easily construct sequence of approximating step functions of $W_{t}$ by uniform discretisation of a given interval with mesh approaching to zero.
+We can easily construct a sequence of approximating step functions of $W_{t}$ by a uniform discretisation of a given interval with the mesh size approaching to zero.
 By a straightforward calculation we obtain a surprising result
 \begin{equation}
     \int_{0}^{t} W_{t'} \dd W_{t'} = \frac{1}{2} \left( W_t^2 - t \right).
@@ -340,7 +346,7 @@ By a straightforward calculation we obtain a surprising result
 \end{equation}
 The additional term $-\frac{1}{2}t$ does not have a classical counterpart.
 
-Fundamental advantage of using Ito's calculus over Langevin's heuristics (apart from being formally sound and the lemmas \eqref{eqn:ito-integrals-are-martingales} and \eqref{eqn:itos-lemma}) are the transformation rules of Ito's formula -- the stochastic counterpart to chain rule.
+The fundamental advantage of using Ito's calculus over Langevin's heuristics (apart from being formally sound and the lemmas \eqref{eqn:ito-integrals-are-martingales} and \eqref{eqn:itos-lemma}) are the transformation rules of Ito's formula -- the stochastic counterpart to chain rule.
 
 Suppose that $\dd X_t = A_t \dd t + B_t \dd W_t$ in the weak sense of Ito integral and $Y_t = f(X_t,t)$.
 Then we know that
@@ -366,26 +372,26 @@ Equation \eqref{eqn:ito-formula-applied} shows that this is exactly the behaviou
 \section{The hydrodynamic radius}
 
 Experiments such as Analytical Ultracentrifugation (AUC) observe macroscopic changes in the concentration field $\phi$ which evolves due to sedimentation and diffusion forces.
-Disregarding for now the sedimentation component of the Lamm equation the concentration field evolves according to the Fick's equation with macroscopic diffusion coefficient $D$
+In the simplest case of isotropic diffusion the concentration field evolves according to Fick's equation with macroscopic diffusion coefficient $D$
 \begin{equation}
     \frac{\pd}{\pd t} \phi = \nabla \cdot ( D \nabla \phi ).
     \label{eqn:ficks-law}
 \end{equation}
 
-In case of dilute suspensions macroscopic $D$ can be identified with the individual diffusion coefficient of a single colloid.
+In the case of dilute suspensions macroscopic $D$ can be identified with the self-diffusion coefficient of a single colloid.
 For a suspension of microscopic solid spheres of size $a$ the celebrated Stokes-Einstein relation gives $D$ in terms of viscosity and temperature
 \begin{equation}
     D = \frac{k_B T}{6 \pi \eta a}.
     \label{eqn:stokes-einstein-relation}
 \end{equation}
 
-\textit{Ceteris paribus}, the relationship \eqref{eqn:stokes-einstein-relation} captures all relevant properties of the fluid in which colloids are suspended, which in biochemical context is referred to as buffer.
-We can invert it to define hydrodynamic radius $R_h$ for an arbitrary colloid as
+\textit{Ceteris paribus}, the relationship \eqref{eqn:stokes-einstein-relation} captures all relevant properties of the fluid in which colloids are suspended, which in biochemical context is referred to as a buffer.
+We can invert equation~\eqref{eqn:stokes-einstein-relation} to define hydrodynamic radius $R_h$ for an arbitrary colloid as
 \begin{equation}
     R_h :=  \frac{k_B T}{6 \pi \eta D}.
     \label{eqn:hydrodynamic-radius-definition}
 \end{equation}
-$R_h$ is the size of a microscopic solid sphere with the same diffusion coefficient as the studied macromolecule.
+We define $R_h$ as the size of a microscopic solid sphere with the same diffusion coefficient as the studied macromolecule.
 Since $R_h$ is derived from the apparent diffusion coefficient $D$ it is influenced by surface effects such as hydration layers.
 On the other hand, in simple cases, $R_h$ can be treated as a property of the molecule alone, disregarding colloid-solvent cohesion, and thus computed in a more convenient way.
 
@@ -417,7 +423,7 @@ Then the hydrodynamic radius is estimated by
 We called this approach the minimum dissipation approximation (MDA) as explained in \textcite{Waszkiewicz_2024_mda}.
 A complete derivation of the MDA method can be found in \textcite{Cichocki_2019}.
 
-Clearly the MDA method (and earlier, simpler Kirkwood-Reismann method TODO-CITE-KR) require estimating ensemble averaged translational-grand-mobility matrix.
+Clearly the MDA method (and earlier, simpler Kirkwood-Reismann method \cite{Kirkwood_1948}) require estimating ensemble averaged translational-grand-mobility matrix.
 Given approximations \eqref{eqn:rotne-prager-translation}, we require only the relative positions of the constituent elements of the molecule and their effective sizes.
 These should be drawn from the equilibrium distribution given by the Boltzmannian
 \begin{equation}
@@ -520,7 +526,7 @@ These molecules exhibit much smaller stiffness, with a persistence length as sma
 This characteristic further justifies our initial concern regarding the potential influence of buckling forces arising in sedimentation on hydrodynamic sizes in AUC measurements.
 Fortunately, the group led by Prof.
 Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule.
-Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations (however, the excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a $\lim T \to \inf$ approximation, hence the name).
+Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations (however, the excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a $\lim T \to \infty$ approximation, hence the name).
 More precisely, bending forces arising from the Ramachandran angles distributions were neglected, while the forces governing bond length were taken to be infinitely strong.
 This approach requires care when handling bond-angle distributions, and some apparently paradoxical results can arise, as discussed in \textcite{Waszkiewicz_2024_trimer}.
 We show that the intuitive distribution 'uniform on a sphere' indeed arises as a limit in the case of linear filaments (notably, a different distribution arises for molecules with loops as shown therein, with deviations in probability density that can be arbitrarily large).
@@ -552,7 +558,7 @@ The two experimentally inspired problems, even though solvable to a satisfactory
 These error estimates can be compared either to the precision of the experimental data or to the estimates of other approximation errors in the model, such as approximations of the hydrodynamic mobility tensors.
 This can guide the effort in further improvements to the numerical method; for example, should we first work on including thermal fluctuations to the conformations or rather improve hydrodynamic mobility tensor approximations?
 
-When mobility tensors are simply modeled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2 
+When mobility tensors are simply modeled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2\% 
 
 Assessing errors introduced by approximate conformer generation, whether in the hot ($T\to\infty$) or cold ($T\to0$) limit, necessitates simulating the ensemble at finite temperatures.
 % (based on R8 test case of \cite{Zuk_2018}).
@@ -630,8 +636,8 @@ The overview of the Fluorescence Correlation Spectroscopy (FCS) technique follow
 The FCS method, introduced about 50 years after invention of AUC, relies on temporal analysis of fluorescence signal to determine properties of the studied sample.
 These include the hydrodynamic size (relevant to this work), but it is also possible to determine adsorption or reaction kinetics using this method.
 
-In case of diffusion constant measurements, a very dilute sample of studied molecule (typically marked with an added fluorophore) is illuminated by a laser inside a confocal microscope.
-Excited fluorophore then emits light back through the microscope but at a slightly shorter wavelength (due to Stokes shift) which reaches the detector shielded from laser light with a dichroic mirror (cf \ref{fig:fcs_diagram}).
+In the case of diffusion constant measurements, a very dilute sample of studied molecule (typically marked with an added fluorophore) is illuminated by a laser inside a confocal microscope.
+Excited fluorophore then emits light back through the microscope but at a slightly shorter wavelength (due to the Stokes shift) which reaches the detector shielded from laser light with a dichroic mirror (cf Fig.~\ref{fig:fcs_diagram}).
 
 Recorded fluorescence signal $F(t)$ is time dependent, since the number of molecules inside the laser beam changes in time due to diffusion.
 FCS experiments perform best when at each moment expected number of excited molecules is close to one giving largest relative fluctuations of the fluorescence signal.
@@ -655,7 +661,7 @@ The frequency of the fluctuations due to diffusion can be quantified (and thus u
     G(\tau) = \left< F(t) F(t-\tau) \right>
 \end{equation}
 with $\left< \cdot \right>$ denoting time average.
-This function is composed of two terms -- constant background (in case of non-interacting molecules) term due to photons coming from two different molecules and a delay dependent term quantifying probability of detecting a photon from the same molecule again.
+This function is composed of two terms -- constant background (in the case of non-interacting molecules) term due to photons coming from two different molecules and a delay dependent term quantifying probability of detecting a photon from the same molecule again.
 For simplicity of this overview, we focus only on the last term.
 
 Suppose for simplicity that a position-dependent probability of excitation describing the shape of the excitation volume can be described by a axisymmetric Gaussian profile $U(\bm{r})$ given by
@@ -808,14 +814,14 @@ With the help of tabulated values of scattering intensities of each amino-acid o
         Analytical Ultracentrifugation, a method for determination of hydrodynamic radius and effective density of a molecule, involves applying extremely high centrifugal forces to a colloidal suspension.
         This well established technique has been successfully used to measure various colloidal particles, however, its application to flexible macromolecules raises concerns over the influence of large forces (or more precisely large force gradients) imposed on the molecule.
         In extreme cases high values of compression in the fore of the sedimenting particle can lead to buckling in sedimentation processes.
-        To address this concern, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
+        To understand when this might happen, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
 
         %2. Literature overview
         Earlier studies of sedimenting flexible rings using bead-model approach\cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions.
-        Assessing which parts of this complexity are atributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goad of this investigation.
+        Assessing which parts of this complexity are attributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goal of this investigation.
 
         %3. What techique was used
-        To determine cases where the buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation under which hydrodynamic drag is a local quantity.
+        To determine the cases where buckling may occur we performed linear stability analysis within the Resistive Force Theory approximation under which hydrodynamic drag is a local quantity.
         Under this simplification the tension inside the loop at each moment can be computed from an ordinary differential equation.
 
         %4. What was the outcome        
@@ -824,7 +830,7 @@ With the help of tabulated values of scattering intensities of each amino-acid o
         We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
 
         %5. PhD candidate
-        In this study, the PhD candidate: conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
+        In this study, the PhD candidate: co-developed the theoretical description, conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
         Additionally they are a corresponding author.
     }
 \end{publicationpage}
@@ -835,20 +841,20 @@ With the help of tabulated values of scattering intensities of each amino-acid o
         %1. Topic relevance
 
         Bio-relevance of the DNA requires little introduction.
-        Even though the basic structure of the DNA is well understood at least since the 1950s, undestanding the secondary structure of the DNA filament remains an imporant, but challegning task.
-        Since the overall 3D conformation of the DNA can influence gene expression, understanding the forces governing its elasticity is key.
+        Even though the basic structure of the DNA is well understood at least since the 1950s, understanding the secondary structure of the DNA filament remains an an important but challenging task.
+        Since the overall 3D conformation of the DNA can influence gene expression, understanding the forces governing its elasticity is crucial.
         By using a selection of small DNA loops which differ only in the linking number, we were able to measure conformational changes of the DNA via its hydrodynamic properties in the diffusive measurements.
 
         %2. Literature overview
-        Earlier works such as \textcite{Coleman_2000} established correct energy density functional for modelling slender loops subject to torsional stress.
+        Earlier works such as \textcite{Coleman_2000} established the correct energy density functional for modelling slender loops subject to torsional stress.
         Unfortunately the original code giving piecewise analytical solutions for the problem is lost and thus re-implementation of the solver was required.
         That work used DNA loops as inspiration but was never directly tested against experimental results.
         On the other hand a variety of software packages are capable of predicting hydrodynamic radius given shape of a rigid molecule (Zeno, US-Somo, GRPY), but as far as we know, they were not yet used for prediction of hydrodynamic properties of DNA loops.
 
         %3. What techique was used
         This study emerged from the collaborative efforts of three distinct groups.
-        The first group, specialising in theoretical modelling, comprised the PhD candidate, Maria L Ekiel-Jeżewska, Maciej Lisicki, and Piotr Szymczak from the Warsaw University Physics Department and the Institute of Fundamental Technological Research, Polish Academy of Sciences.
-        The second group, responsible for the biosynthesis of DNA minicircles, included Jonathan M Fogg, Daniel J Catanese Jr, and Lynn Zechiedrich from the Department of Pharmacology and Chemical Biology at Baylor College of Medicine.
+        The first group, specialising in theoretical modelling, comprised the PhD candidate, Maciej Lisicki, and Piotr Szymczak from the Faculty of Physics, Univeristy of Warsaw and Maria L Ekiel-Jeżewska from the Institute of Fundamental Technological Research, Polish Academy of Sciences.
+        The second group, responsible for the biosynthesis of DNA minicircles, included Jonathan M Fogg, Daniel J Catanese Jr, and Lynn Zechiedrich from the Department of Pharmacology and Chemical Biology at Baylor College of Medicine and Rice Univeristy.
         The third group, overseeing AUC measurements, included Maduni Ranasinghe and Borries Demeler from the Department of Chemistry and Biochemistry at the University of Lethbridge.
 
         The choice of topoisomers of DNA minicircles as the subject of collaboration proved strategic.
@@ -866,10 +872,10 @@ With the help of tabulated values of scattering intensities of each amino-acid o
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
-\subsection{Thermal Effects on the Shapes of DNA Minicircles}
+\subsection{Comment: Thermal Effects on the Shapes of DNA Minicircles}
 
-One shortcoming of the publication \cite{Waszkiewicz_2023_dna} was limited assesment of the influence of the thermal fluctuations on the shape and hydrodynamics of the DNA loops.
-This was caused by lack of readily available tools for brownian dynamics simulation under nonlocal force fields - such as the energy functional depending on writhe (which is a nonlocal quantity).
+One model limitation of publication \cite{Waszkiewicz_2023_dna} was a limited assesment of the influence of thermal fluctuations on the shape and hydrodynamics of DNA loops.
+This was caused by lack of readily available tools for Brownian dynamics simulation under nonlocal force fields -- such as the energy functional depending on writhe (which is a nonlocal quantity).
 
 Utilising the later developed \code{pychastic} package, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the minimum dissipation method described in \textcite{Cichocki_2019}.
 
@@ -890,13 +896,13 @@ This gives further insight into the intermediate region ($1 < Lk < 2.5$) where m
 \begin{figure}[htbp]
     \centering
     \includegraphics[height=0.5\linewidth]{figures/with_thermal_effects.pdf}
-    \caption{Relative hydrodynamic radius of the 336bp minicircle as a function of the linking number.}
+    \caption{Hydrodynamic radius relative to $Lk = 0$ configuration of the 336bp minicircle as a function of the linking number.}
     \label{fig:thermalized_loops}
 \end{figure}
 
 It turns out that the effects of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible.
 Moreover, the range of $Lk$ values for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small—less than 0.2 turns.
-When considering the difference in total elastic energy between the flat circular configuration and the configuration with self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{4\pi^2 \cdot 2}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the transitional region width of approximately $0.03$.
+When considering the difference in total elastic energy between the flat circular configuration and the configuration with self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{8\pi^2 \cdot}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the transitional region width of approximately $0.03$.
 %TODO: redo this calculation and check
 This contrasts starkly with CryoEM data\cite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
 One possible explanation for this discrepancy lies in the temperature dependence of the geometric properties of DNA, as hinted at by the results of \textcite{Ranasinghe_2023}.
@@ -909,22 +915,22 @@ The example above highlights our motivations for the development of the \code{py
         %1. Topic relevance
 
         The major theoretical limitation in earlier studies revolved around the incomplete treatment of Brownian motion.
-        In the case of \cite{Waszkiewicz_2021_hydrodynamic}, dynamics had to be simplified to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
-        Similarly, in \cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles exceptionally challenging.
+        Ref.~\cite{Waszkiewicz_2021_hydrodynamic}, dynamics was simplified to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
+        Similarly, in Ref.~\cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles exceptionally challenging.
 
         %2. Literature overview
-        Addressing the treatment of Brownian motion through stochastic differential equations presented a well-posed mathematical problem, with a range of solutions described for example in \cite{Kloeden_1992}.
+        Addressing the treatment of Brownian motion through stochastic differential equations presented a well-posed mathematical problem, with a range of solutions described for example in Ref.~\cite{Kloeden_1992}.
         However, surprisingly, there was no readily available, easy-to-use software solution, such as the package described in the publication below.
 
         %3. What techique was used
-        We decided to take advantage of the modern python features such as introspection and metaprgoraming which enable efficient automatic differentiaion of functions combined with the package \code{jax} for just-in-time compilation of python code to machine code for performance.
+        We took advantage of the modern python features such as introspection and metaprgoraming which enable efficient automatic differentiaion of functions combined with the package \code{jax} for just-in-time compilation of python code to machine code for performance.
 
         %4. What was the outcome
         The resultant package, \code{pychastic}, is now available to instal via \code{pip} or directly from GitHub\cite{gh_pychastic}.
 
         %5. PhD candidate
-        In this study the PhD candidate: lead a small programming team, which included the author, Maciej Bartczak, and Kamil Kolasa, co-developed a Python package complete with documentation, examples, and tests, created test cases and debugging tools that facilitated the correction of multiple typos found in existing literature (outlined in the publication).
-        Together with Maciej Lisicki, designed illustrative examples showcasing concrete applications of the tools developed during the thesis preparation.
+        In this study the PhD candidate: conceptualized the problem, lead a small programming team, which included the author, Maciej Bartczak, and Kamil Kolasa, co-developed a Python package complete with documentation, examples, and tests, created test cases and debugging tools that facilitated the correction of multiple typos found in existing literature (outlined in the publication).
+        Co-designed illustrative examples showcasing concrete applications of the tools developed during the thesis preparation.
         Additionally, he wrote the first draft and edited all subsequent versions of the manuscript.
     }
 \end{publicationpage}
@@ -936,17 +942,17 @@ The example above highlights our motivations for the development of the \code{py
 
         Intrinsically Disordered Proteins (IDPs) constitute a large class of bio-relevant elastic macromolecules.
         They typically consist of approximately rigid domains connected with flexible linkers.
-        This type of molecule comprises up to a third of proteins in eukaryotes yet remains understudied because it cannot be easily analysed using crystalographic techniques due to their ever changing confromations.
-        Determining relative imporance of diferent physical processes determining conformations of the IDPs and role of flexible linkers in interactions between their domains remains an open problem.
+        This type of molecule comprises up to a third of proteins in eukaryotes, yet remains understudied because it cannot be easily analysed using crystalographic techniques due to their ever changing confromations.
+        Determining the relative imporance of diferent physical processes determining conformations of the IDPs and role of flexible linkers in interactions between their domains remains an open problem.
 
         %2. Literature overview
-        To the best knowledge of the authors, this is the first publication comparing a first-principles approach (in contrast to many phenomenological attempts such as \cite{Tomasso_2016,Forman-Kay_2022}) to prediction of hydrodynamic size of IDPs with experimental data.
-        Earlier approaches to the prediction of the protein hydrodynamic radius (for example \cite{Fleming_2018}) generally focus on techniques which approximate the protein as a rigid body.
+        To the best knowledge of the authors, this is the first publication comparing a first-principles approach (in contrast to many phenomenological attempts such as Ref.~\cite{Tomasso_2016,Forman-Kay_2022}) to prediction of hydrodynamic size of IDPs with experimental data.
+        Earlier approaches to the prediction of the protein hydrodynamic radius (for example Ref.~\cite{Fleming_2018}) generally focus on techniques which approximate the protein as a rigid body.
 
         %3. What techique was used
         From a modelling perspective, intrinsically disordered proteins differ significantly from DNA.
         They consist of globular fragments connected with linkers, where the former are essentially rigid, and the latter are almost ideally flexible.
-        Such proteins are ideal subjects for the application of the minimum dissipation approximation, specifically designed for the fast computation of diffusion coefficients for molecules exhibiting substantial conformational variability and parts of varying sizes.
+        Such proteins are ideal subjects for the application of the Minimum Dissipation Approximation, specifically designed for the fast computation of diffusion coefficients for molecules exhibiting substantial conformational variability and parts of varying sizes.
 
         This study emerged from the collaborative efforts of two distinct groups.
         The first group, specialising in theoretical modelling, included PhD candidate, Bogdan Cichocki, Maciej Lisicki and Piotr Szymczak from the Warsaw University Physics Department.
@@ -958,7 +964,7 @@ The example above highlights our motivations for the development of the \code{py
         The resulting code was packaged into an easy to use python library and command line tool called \code{glm_mda_diffusion} ready to install via \code{pip} and available directly on GitHub.
 
         %5. PhD candidate
-        In this study the PhD candidate: investigated the Flexible Meccano conformer generation scheme, implemented the python port \code{pygrpy} of the generalised Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}), implemented the globule-linker conformer generation scheme, performed the numerical calculations and statistical analysis to assess deviations between theory and experiment.
+        In this study the PhD candidate: co-conceptualized the modelling approach, investigated the available conformer generation schemes, implemented the Python port \code{pygrpy} of the generalised Rotne-Prager mobility tensors (originally implemented in Fortran\cite{Zuk_2018}), implemented the globule-linker conformer generation scheme, performed numerical calculations and statistical analysis to assess deviations between theory and experiment.
         Additionally, they wrote the first draft and edited all subsequent versions of the manuscript.
     }
 \end{publicationpage}
@@ -993,8 +999,8 @@ We examine this limit in greater detail to better inform the treatment and simul
         %1. Topic relevance
 
         Feely jointed chains form a basis of many soft matter models and determinantion of their statistical properties were amongs the earlies victories of the field with predicitons of end-to-end distances of Rouse and Zimm.
-        Moreover freely jointed chain is a fundamental component of globule-linker conformer generation scheme which used together with the Minimum Dissipation Approximation (MDA), yielded good predictions for the IDPs' hydordynamic radii.
-        On the other hand MDA assumes loose binding with short time diffusion along the bonds contributing to the short time diffusion coefficient.
+        Moreover, a freely jointed chain is a fundamental component of globule-linker conformer generation scheme which used together with the Minimum Dissipation Approximation (MDA), yielded predictions for the hydordynamic radii of the IDPs.
+        On the other hand, MDA assumes loose binding with short time diffusion along the bonds contributing to the short time diffusion coefficient.
         So far, we are able to compute hydrodynamic radii only in two extreme cases: very loosely bound components (MDA) or completely rigid conglomerates (GRPY), with the intermediate regime not treated by either.
         A first step towards designing an extension of the MDA method to molecules with some but rigid constraints but capable of reorientation is to understand the equilibrium distributions in such cases.
 
