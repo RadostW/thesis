@@ -55,7 +55,8 @@
 % keep floats inside sections
 \RequirePackage[section]{placeins}
 
-\RequirePackage[maxbibnames=10]{biblatex}
+\RequirePackage[maxbibnames=10,sorting=none]{biblatex}
+
 % intext cites should print all authors
 \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
 
@@ -65,6 +66,13 @@
     \markboth{#1}{#1}}
 
 \RequirePackage[colorlinks,citecolor=blue,urlcolor=blue,linkcolor=blue]{hyperref}
+
+\newcommand{\sortcitefirst}[1]{%
+    \begingroup
+    \edef\temp{\noexpand\vphantom{\noexpand\cite{#1}}}%
+    \temp
+    \endgroup
+}
 
 % No numbers before chapter names
 \titleformat{\chapter}[display]
