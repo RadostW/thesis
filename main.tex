@@ -400,6 +400,17 @@ We define $R_h$ as the size of a microscopic solid sphere with the same diffusio
 Since $R_h$ is derived from the apparent diffusion coefficient $D$ it is influenced by surface effects such as hydration layers.
 On the other hand, in simple cases, $R_h$ can be treated as a property of the molecule alone, disregarding colloid-solvent cohesion, and thus computed in a more convenient way.
 
+The diffusion coefficient can be in principle estimated directly from the sample trajectories generated from the SDEs knowing that (in 3 dimentions) the mean square of the displacement of a point on a molecule $\bm{R}(t) - \bm{R}(0)$ (for example one of its atoms) satisfies asymptotic relationship
+\begin{equation}
+    \left< \lVert \bm{R}(t) - \bm{R}(0)\rVert^2 \right> \sim 6 D t, \quad \quad t \to \infty.
+\end{equation}
+
+Many software implementations try to estimate $D$ from short trajectories using instantaneous diffusion coefficient $D_{s}$ only defined by the limit
+\begin{equation}
+    \left< \lVert \bm{R}(t) - \bm{R}(0)\rVert^2 \right> \sim 6 D_{s} t, \quad \quad t \to 0.
+\end{equation}
+Considerations of the memory function show that $D_{s} > D$ for any tracking point\cite{Cichocki_2019} thus picking a traking point with minimal $D_{s}$ reduces estimation error (in some cases to zero).
+
 For a bead model of a rigid macromolecule, $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule \cite{Zuk_2018}.
 If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient \cite{Cichocki_2015}.
 Note that the diffusion centre does not necessarily coincide with the centre of mass of the molecule.
@@ -411,9 +422,22 @@ The conglomerate friction matrix is then inverted to obtain conglomerate mobilit
 An alternative method of computation of $R_h$ is based on a heuristic observation that the trace of the Oseen tensor satisfies the Laplace equation and Monte Carlo methods of solution of Laplace's equation are then applied to solve a heat equation with constant temperature difference between the surface of the molecule and the ambient fluid.
 Heat flux is then used to estimate the effective size of such a molecule, as described by the authors of the Zeno package \cite{Juba_2017}, which we used in \textcite{Waszkiewicz_2023_dna}.
 
-For an elastic macromolecule, there are more bounded degrees of freedom and not just the rotation, but also deformation can affect instantaneous diffusion coefficient and a judicious choice of tracking point can remove much of the spurious overestimation.
+For an elastic macromolecule, there are more bounded degrees of freedom and not just the rotation, but also deformation can affect instantaneous diffusion coefficient and a judicious choice of tracking point can remove much of the spurious overestimation which comes from approximation of long-time diffusion coefficient $D$ with instantaneous diffusion coefficient $D_{s}$.
 
-TODO - figure from pychastic TODO - equations 1.1 an 1.2 from Cichocki_2019 
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{llll}
+        a)                                                                         &
+        \includegraphics[height=0.3\linewidth,valign=t]{figures/sample_shapes.png} &
+        b)                                                                         &
+        \includegraphics[height=0.3\linewidth,valign=t]{figures/mean_square_displacement.eps}
+    \end{tabular}
+
+    \caption{a) Representative configurations of an elastic molecule taken from Brownian Dynamics simulation.
+        b) Mean square displacement of three different tracked locations: the small bead at the end of the chain (blue), the large bead at the other end (orange) and the weighted average of all four beads compared with similar simulation from \textcite{Cichocki_2019} (dashed line).
+        After a long enough time slope of the mean square displacement is the same regardless of the point tracked.
+        Graphics CC BY 4.0\cite{Waszkiewicz_2023_pychastic} } \label{fig:dl_and_ds}
+\end{figure}
 
 An intuitive first guess is to track 'the middle' or geometric average of molecules constituent parts, whereas slightly more refined approach is to use centre of mass -- this is clearly not an optimal strategy as shown by the exact result for the rigid molecule.
 Location, or more specifically, the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from, hydrodynamically irrelevant, mass.
@@ -441,9 +465,11 @@ There are two potential difficulties with computing this measure: determining th
 We discuss both of them in greater detail in \textcite{Waszkiewicz_2024_trimer}.
 Both of these problems are more pronounced when very stiff springs are used as models of bonds leading to superficially paradoxical results such as the 'trimer paradox' discussed therein.
 
-TODO: Write bridge - "we will use the methods from previous chapters becasue our molecules are elastic" 
+The methods discussed above have broad applicability, but now we turn our attention to specific examples of molecules studied in this thesis to highlight their distinct physical properties.
+The stiffness of various molecules varies significantly, spanning many orders of magnitude, which in turn motivates the use of different modeling approaches in different cases.
+We will outline the methodology leading to these diverse approaches in the following sections.
 
-\section{Elastic macromolecules} 
+\section{Elastic macromolecules}
 
 Soft matter as a discipline of physics evolved out of 'colloid suspensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity, with universal being interpreted as insensitive to bio-chemical details of the molecules.
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
