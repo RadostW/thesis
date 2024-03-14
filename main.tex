@@ -119,7 +119,8 @@ In quiescent fluid, it can be estimated from the velocity of a colloidal particl
     \label{eqn:reynolds-based-estimate}
 \end{equation}
 
-Taking $a = 100$ \AA{} for a particle of mass $M = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k_{B} T / M} \approx 7 \mathrm{m/s}$, where $k_B$ is the Boltzman constant) at room temperature $T$ we get $\Reynolds \sim 0.7$.
+Taking $a = 100$ \AA{} and $V_p \approx 1 \mathrm{\mu m / s}$  we get $\Reynolds \sim 10^{-7}$.
+%for a particle of mass $M = 100 \mathrm{k Da}$ and $V_p$ as determined from equipartition of energy ($V_p = \sqrt{2 k_{B} T / M} \approx 7 \mathrm{m/s}$, where $k_B$ is the Boltzman constant) at room temperature $T$ 
 Thus, we can disregard the nonlinear terms and arrive at the time-dependent Stokes equation
 \begin{equation}
     \rho \frac{\pd \bm{u}}{\pd t} = - \bm{\nabla} p + \eta \Delta \bm{u} + \bm{f}.
@@ -203,13 +204,13 @@ Said tensor is given by
 \end{equation}
 
 For multiple spherical colloids suspended in a quiescent fluid, the mobility matrices depend on the relative positions of the spheres.
-In the lowest order approximation, it turns out that only pairwise displacements are required to compute them.
+In the lowest order approximation, it turns out that only pairwise displacements $\bm{R}_{ij} = \bm{R}_i - \bm{R}_j$ are required to compute them.
 It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
 As a result, this approach is not just inaccurate but completely fruitless in the case of Brownian Dynamics where square roots of mobility matrices are required at each simulation step.
 Most methods for computing square roots (such as the Cholesky decomposition) are singular for singular matrices.
 thus even a very small error in the components of the mobility tensor can lead to arbitrarily large erros of the square root unless positive definiteness can be guaranteed.
 
-Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor.
+Introducing $R_{ij} = |\bm{R}_{ij}|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor.
 \begin{equation}
     \bm{V_i} =
     -\mu_0^t \bm{F}_i
@@ -221,7 +222,7 @@ Introducing $R_{ij} = |\bm{R}_{ij}| = |\bm{R}_i - \bm{R}_j|$ we can determine th
 
 A direct use of equation \eqref{eqn:faxen-theorem} is not very practical since it requires solving for surface traction distribution.
 If we only take into account the average surface traction on each sphere  by $\bm{f}_j^{(s)}(\bm{r'}) = -\bm{F}_j / (4\pi a^2)$ taking one obtains relationship of the form \eqref{eqn:mobility-matrix-definition}.
-Next, one can approximate the integrand by Taylor expanding it around centres of spheres to second order ($\mathcal{O}((a/R_i)^3)$ and from symmetry $\mathcal{O}((a/R_i)^4)$) we get lowest order in $a$ approximation of the mobility tensors 
+Next, one can approximate the integrand by Taylor expanding it around centres of spheres to second order (with remainder term $\mathcal{O}((a/R_i)^4)$ because the integrals of all third order terms vanish) we get lowest order in $a$ approximation of the mobility tensors 
 
 \begin{eqnarray}
     \bm{V}_i \approx -\mu_0^t \bm{F}_i  - \sum_{j\neq i}^N (1 + \frac{a^2}{6} \Delta_i) (1 + \frac{a^2}{6} \Delta_j) \mm{T}^{0} (\bm{R}_i - \bm{R}_j) \cdot \bm{F_j} \\
@@ -239,7 +240,7 @@ Evaluating the Laplacians and rearranging the explicit formulae for mobility ten
 
 The $\mm{\mu}_{ij}^{tt,RP}$ approximation is the well known Rotne-Prager approximation \cite{Nagele_2013,Dhont_2008,Kim_2013}.
 It turns out that this approximation is always positive definite thus a great candiate for Brownian dynamics applications.
-Moreover, it turns out that tensor divergence of $\mm{\mu}^{tt,RP}$ is equal to zero (which is not true for the exact solution $\mm{\mu}^{tt}$) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner.
+Moreover, it turns out that tensor divergence of $\mm{\mu}^{tt,RP}$ is equal to zero (which is not true for the exact solution $\mm{\mu}^{tt}$) elliminating another term problematic for Brownian dynamics simulations in a self-consistent manner\cite{Ermak_1978}.
 Completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
 That and further improvements (such as differentiable continuation for overlaps) are discussed by \textcite{Zuk_2018}.
 
@@ -411,7 +412,7 @@ Many software implementations try to estimate $D$ from short trajectories using 
 \end{equation}
 Considerations of the memory function show that $D_{s} > D$ for any tracking point\cite{Cichocki_2019} thus picking a traking point with minimal $D_{s}$ reduces estimation error (in some cases to zero).
 
-For a bead model of a rigid macromolecule, $R_h$ can be computed from the trace of the grand translational mobility matrix computed at the diffusion centre of the molecule \cite{Zuk_2018}.
+For a rigid macromolecule, $R_h$ can be computed from the trace of the mobility matrix by transforming it to track the diffusion centre which minimizes $D_{s}$ \cite{Zuk_2018}.
 If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient \cite{Cichocki_2015}.
 Note that the diffusion centre does not necessarily coincide with the centre of mass of the molecule.
 
