@@ -17,7 +17,6 @@
 
 % Display names of python packages
 \newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-\newcommand{\ml}[1]{\textcolor{magenta}{#1}}
 
 % Gray out sections
 \newcommand{\grayout}[1]{{\leavevmode\color{gray}#1}}
@@ -34,53 +33,57 @@
 \addbibresource{sources.bib}
 
 \begin{document}
-\sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer, } \maketitle
+\sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer} \maketitle
 
 \section*{Summary}
 
 Recent, increasingly accurate measurements of the properties of bio-relevant molecules challenge our understanding of macromolecules as having well-defined, fixed shapes that determine their function.
-The doctoral thesis presents a theoretical description of the diffusion of elastic macromolecules.
-We demonstrate techniques for calculating the hydrodynamic radius ($R_h$) of macromolecules across a wide range of their stiffness.
-This thesis is founded on two experimental-theoretical collaborations: the first with the group led by Prof.
-Lynn Zechiedrich, focusing on DNA loops, and the second with the group led by Prof.
-Anna Niedźwiecka, studying intrinsically disordered proteins (IDPs).
-The main results of the thesis are presented as a collection of thematically linked series of manuscripts, the first four of which are already published, while the last two are currently under review.
+The equilibrium distribution of their conformations is described by the Boltzmann distribution, which combines two terms: the influence of the temperature of the solvent and the potential energy of a given configuration which in turn, captures the elastic properties of the molecules.
+The behavior of elastic macromolecules is thus shaped by the competition of these two physical phenomena -- whenever the valleys of the potential energy landscape are shallow in comparison to a typical thermal fluctuation, a wide variety of conformations are present; conversely, when they are deep, only small deviations from the energy-minimizing configurations can be observed.
 
-The first publication, titled \emph{Stability of Sedimenting Flexible Loops}, co-authored by Piotr Szymczak and Maciej Lisicki, provides a linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modeled with the Euler-Bernoulli equation.
-We were able to establish a semi-analytic stability criterion and re-derive the dimensionless quantity governing the buckling instability for this and similar problems.
+The doctoral thesis presents a theoretical description of conformational variability of elastic macromolecules and its effect on diffusion.
+The first part of the thesis provides an overview of theoretical fundamentals required for building coarse-grained models, which form the core of this work.
+It also delves into the theoretical underpinnings of the experimental methods used to validate simplifying assumptions made in the former.
 
-The second publication, titled \emph{Hydrodynamic Effects in the Capture of Rod-like Molecules by a Nanopore}, co-authored by Maciej Lisicki, provides an analysis of the influence of wall interaction and hydrodynamic anisotropy in the process of nanopore capture.
-A theoretical consideration of a rod-like molecule with uniformly distributed charge provides simple scaling-based criteria for determining when and where inclusion of the wall corrections is required.
+The second part of the thesis comprises a series of thematically linked publications and preprints in which we demonstrate methods for dealing with, and taking advantage of, both extremes of the elasticity spectrum.
 
-The third publication, titled \emph{Pychastic: Precise Brownian Dynamics using Taylor-Ito Integrators in Python}, co-authored by Maciej Bartczak, Kamil Kolasa, and Maciej Lisicki, is a result of work on the implementation of efficient stochastic differential equations solvers capable of convenient treatment of Brownian Dynamics (BD) problems.
-By expressing BD equations as Itō integrals, we can leverage classical methods of truncated Taylor-Itō integrators.
-As part of the documentation of the \code{pychastic} package, we show how to deal with common BD obstacles: calculations of the divergence of the mobility tensor in the diffusion equation and discontinuous trajectories encountered when working with dynamics on $S^2$ and $SO(3)$.
-With a vectorization-oriented implementation, we have achieved performance comparable to earlier implementations in lower-level programming languages.
+Starting from molecules with very large persistence length compared to their size, we demonstrate how to model the approach of a very short DNA segment towards a nanopore and provide an analysis of the influence of wall interaction and hydrodynamic anisotropy in the nanopore capture process.
+We establish theoretical criteria for determining when and where inclusion of wall corrections is necessary by considering a rod-like molecule with uniformly distributed charge.
+Secondly, we investigate the impact of negative supercoiling and curvature on the hydrodynamic properties of 336 bp and 672 bp DNA minicircles.
+Utilizing linear elasticity theory and hydrodynamic calculations, we predict DNA shapes and diffusion coefficients.
+Our results show favorable comparison with experimental data of diffusion and sedimentation coefficients obtained using analytical ultracentrifugation.
 
-The fourth publication, titled \emph{DNA Supercoiling-induced Shapes Alter Minicircle Hydrodynamic Properties}, co-authored by Maduni Ranasinghe, Jonathan M.
-Fogg, Daniel J.
-Catanese Jr, Maria L.
-Ekiel-Jeżewska, Maciej Lisicki, Borries Demeler, Lynn Zechiedrich, and Piotr Szymczak, is a result of theoretical-experimental collaboration with the team based at Baylor College of Medicine (responsible for biosynthesis) and the team based at the University of Lethbridge (responsible for analytical ultracentrifugation experiments).
-In this publication, we have determined the impact of negative supercoiling and curvature on the hydrodynamic properties of DNA by subjecting 336 bp and 672 bp DNA minicircles to analytical ultracentrifugation (AUC).
-We then utilized linear elasticity theory and hydrodynamic calculations to predict DNA shapes and diffusion coefficients.
+For intermediate values of persistence length, we determine the range of lengths and g-forces under which sedimentation of a flexible, looped filament remains stable to buckling.
+Our analysis, based on linear elasticity theory combined with resistive force theory, yields a stability criterion reliant on a single dimensionless parameter.
 
-The fifth manuscript, titled \emph{Minimum Dissipation Approximation: A Fast Algorithm for the Prediction of Diffusive Properties of Intrinsically Disordered Proteins}, co-authored by Agnieszka Michaś, Michał K.
-Białobrzewski, Barbara Klepka, Maja Cieplak-Rotowska, Zuzanna Staszałek, Bogdan Cichocki, Maciej Lisicki, Piotr Szymczak, and Anna Niedźwiecka, is a result of experimental-theoretical collaboration with the team based at the Institute of Physics of the Polish Academy of Sciences (responsible for biosynthesis and fluorescence correlation spectroscopy).
-In our study, we demonstrate a fast numerical method combining simple conformational sampling and approximate hydrodynamic interactions to estimate the diffusion coefficients of intrinsically disordered proteins (IDPs), even in the presence of structured domains, with a precision surpassing the classical Kirkwood approximation.
-With a new collection of diffusion coefficient measurements, we can quantitatively compare our predictions with multiple models present in the literature (such as power-laws and power-laws with sequence-dependent corrections).
+In a more general case where both thermal fluctuations and elastic forces are significant, we propose a numerical approach.
+This approach is based on a stochastic differential equations integrator we developed, combined with hydrodynamic interactions based on the Rotne-Prager approximation.
+Additionally, we present a suite of Python packages designed to make small Brownian Dynamics simulations both fast to develop and fast to simulate, thanks to hardware acceleration.
 
-The sixth manuscript, titled \emph{The Trimer Paradox Revisited}, co-authored by Maciej Lisicki, deals with the problem of very stiff constraints and limiting bond-angle distributions arising from those.
-It shows that even though the solution of the paradox was elucidated as early as 1984 by van Kampen, explicit (and correct) treatment of this limit was missing from well-known books such as those by Frenkel.
-By a more careful treatment of singular distributions, we show that a combination of metric properties of the constraining manifold and the Hessian of the constraining field are required for the correct determination of bond angles, and that 'uniform on a sphere' distributions for harmonic constraining potentials are not universal, with potentially large deviations for small cyclic molecules.
-These results establish theoretical foundations for the globule-linker model and should guide further work on the minimum dissipation approximation.
+We deomnstrate that for the intrinsically disordered proteins (IDPs), which represent the opposite extreme of the elasticity spectrum as compared to very stiff DNA, excluded volume interactions are the key factor determining the equilibirum conformational ensemble.
+Introducing the Globule-Linker model of conformations and we combine it with the Minimum Dissipation Approximation to predict their hydrodynamic size.
+Using the comparison of the coarse grained approach with the largest set of experimental valeus to date, we show that our first principles approach outperforms phenomenological fits available in the literature.
 
-The aim of the presented work was twofold: to address the immediate needs of the experimental groups we have been collaborating with, but also to establish robust 'null hypothesis' models, which are easy enough to use and incorporate all of the fundamental interactions required for diffusion modeling but no more interactions.
-As such, deviations from these models can be used as quantitative indicators of a significant contribution of new physical phenomena (for example, electrostatic interactions or the formation of transient bridges between distant parts of the molecule).
+Finally, we deal with a theoretical problem of equilibrium distributions of molecules with both very stiff degrees of freedom and comparatively free ones (such as bond length and inter-bond angles respectively).
+We identify important details of the constraining potentials overlooked in the earlier works and demonstrate a method for their computation, both in general and through specific examples.
 \clearpage
 
 \section*{Streszczenie}
 \input{streszczenie.tex}
 \clearpage
+
+\section*{Manuscripts comprising this thesis}
+
+\begin{itemize}
+    \item \fullcite{Waszkiewicz_2021_hydrodynamic}
+    \item \fullcite{Waszkiewicz_2021_stability}
+    \item \fullcite{Waszkiewicz_2023_dna}
+    \item \fullcite{Waszkiewicz_2023_pychastic}
+    \item \fullcite{Waszkiewicz_2024_mda}
+    \item \fullcite{Waszkiewicz_2024_trimer}
+\end{itemize}
+
+\vspace*{\fill}
 
 \section*{Funding}
 Research on the topic of the Thesis was supported by the grant \emph{Dynamic deformations of elastic filaments in viscous flows}, financed by the National Centre of Science in Poland under the grant agreement to Maciej Lisicki no.
@@ -788,6 +791,9 @@ With the help of tabulated values of scattering intensities of each amino-acid o
 
 \chapter{Software packages}
 
+Most of the source code utilized in the preparation of this thesis has been made available in public repositories on GitHub.
+Furthermore, in the instances detailed below, considerable effort was invested in structuring the software into Python packages with structured documentation to facilitate ease of use.
+
 \begin{table}[htbp]
     \centering
     \begin{tabular}{llll}
@@ -1028,7 +1034,7 @@ Comparing stiff spring limit with a distribution of maximal entropy for even a v
 We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
 \clearpage
 
-\begin{publicationpage}{Waszkiewicz_2024_trimer}{Trimer paradox revisited}
+\begin{publicationpage}{Waszkiewicz_2024_trimer}{The trimer paradox: the effect of stiff constraints on equilibrium distributions in overdamped dynamics}
     \commentary{
         %1. Topic relevance
 
@@ -1054,7 +1060,7 @@ We examine this limit in greater detail to better inform the treatment and simul
         By considering a cyclic tetramer, we have shown that the shape-factor corrections can be arbitrarily large even for molecules with identical harmonic springs.
 
         %5. PhD candidate
-        In this study the PhD candidate: proposed the research question of the manuscrit, performed the calculation of the limiting distribution, performed the numerical simulations used in illustrations, wrote the first draft and edited all subsequent versions of the manuscript.
+        In this study the PhD candidate: proposed the research question of the manuscript, performed the calculation of the limiting distribution, performed the numerical simulations used in illustrations, wrote the first draft and edited all subsequent versions of the manuscript.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2024_trimer}
