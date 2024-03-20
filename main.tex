@@ -33,7 +33,8 @@
 \addbibresource{sources.bib}
 
 \begin{document}
-\sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer} \maketitle
+\maketitle
+\sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer}
 
 \section*{Summary}
 
@@ -1067,18 +1068,24 @@ We examine this limit in greater detail to better inform the treatment and simul
 
 \chapter{Conclusions}
 
-The objectives of the present thesis were twofold -- to find theoretical approaches capable of modelling experimentally relevant macromolecules and to provide a step towards a single, modular system capable of accommodating different coarse graining approximations and experimental techniques.
+The objectives of this thesis were twofold: to identify theoretical approaches capable of modeling experimentally relevant macromolecules and to develop a modular system capable of accommodating various coarse-graining approximations and experimental techniques.
+The results demonstrate the feasibility of such a unified approach and its ability to predict macromolecule diffusion coefficients with precision.
+Throughout the preparation of this PhD thesis, we examined numerous macromolecular scenarios encompassing a wide range of elasticities, from near-rigid DNA fragments and minicircles, through loops subject to external force and molecules of intermediate elasticities in heat bath, to highly elastic linkers of Intrinsically Disordered Proteins (IDPs), ending in a general treatment of molecules combining both extremes in the study of the stiff springs limit.
 
-The results of this thesis show that such unified approach is possible and that it predicts diffusion coefficients of macromolecules with good precision.
-The main achievements of this thesis can be summarised as follows:
+The study yielded several results, including:
 \begin{enumerate}
-    \item We successfully predicted hydrodynamic radii of DNA loops at different values of linking number.
-    \item We successfully predicted hydrodynamic radii of many intrinsically disordered proteins from the largest to-date benchmark set.
-    \item We provided easy to use, well documented and publicly available Python implementations to all theoretically proposed methods (without compromising the prediction speed).
+    \item a scaling-based analysis of the approach of rod-like molecules to a nanopore, incorporating hydrodynamic interactions with the wall and Brownian reorientations, \item linear stability analysis and numerical investigation of the buckling instability induced by hydrodynamic drag during the sedimentation of flexible loops, \item a coarse-grained modeling approach for computing DNA minicircle conformations by minimizing elastic energies under different linking number values, \item computation of hydrodynamic radii, diffusion coefficients and sedimentation coefficients for the computed models of minicricle topoisomers, \item implementation of a Python package integrating stochastic differential equations of Brownian Dynamics, \item development of the Globule Linker Model for expedited sampling of IDP conformations, combined with the Minimum Dissipation Approximation for computing their hydrodynamic size, \item determination of the limit of the equilibirum distributions for a general elastic macromolecule with stiff and soft degrees of freedom.
 \end{enumerate}
 
-Thus the presented method can be used as a numerically feasible null-hypothesis model in future investigations by multiple experimental groups with large deviations from its predictions being an indicator of new and exciting physical phenomena.
-Additionally, we hope that the soft matter physics community will be able to use the software prepared as part of the presented thesis in multiple ways: either in its current form for predicting diffusion coefficients of similar molecules or, by taking advantage of its modular design, extending its current capabilities and using its parts in isolation.
+The key achievements of this thesis can be summarised as follows:
+\begin{itemize}
+    \item Successful prediction of hydrodynamic radii for DNA loops at different linking number values.
+    \item Successful prediction of hydrodynamic radii for numerous intrinsically disordered proteins from the largest benchmark set to date.
+    \item Provision of user-friendly, well-documented, and publicly available Python implementations for all proposed methods (without compromising prediction speed).
+\end{itemize}
+
+Consequently, the presented method can serve as a numerically feasible null-hypothesis model in future investigations by various experimental groups, with significant deviations from its predictions indicating potential new physical phenomena.
+Moreover, we anticipate that the soft matter physics community will leverage the software developed in this thesis in various ways, either as-is for predicting diffusion coefficients of similar molecules or by extending its capabilities through its modular design and utilizing its components independently.
 
 \appendix
 
