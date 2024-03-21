@@ -178,7 +178,7 @@ We can leverage the very simple solution for flow around a sphere and construct 
 In this manner, we can model many bodies of interest in a modular fashion by approximating them as a collection of small spheres, connected either rigidly or through appropriate potentials.
 This construction is facilitated by the method of mobility matrices, which we describe below.
 
-Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocities $\bm{V}_i$ and angular velocities $\bm{Omega}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
+Consider $N$ spherical particles each of radius $a$ located at $\bm{R}_i$ for $i \in (1 \dots N)$ moving with velocities $\bm{V}_i$ and angular velocities $\bm{\Omega}_i$ under the influcence of external forces $\bm{F}_i$ and torques $\bm{T}_i$.
 We seek the matrix connecting these velocties to these forces.
 For convenience this section uses supervector notation, here following convention of \cite{Nagele_2013}.
 Let us denote a concatenated vector of particle velocities as $\bm{V} = (\bm{V}_1,\bm{V}_2,\dots,\bm{V}_N)^{T}$, angular velocities and $\bm{\Omega} = (\bm{\Omega}_1,\bm{\Omega}_2,\dots,\bm{\Omega}_N)^{T}$ and analogously for forces $\bm{F}_i$ and torques $\bm{T}_i$ 
@@ -217,7 +217,7 @@ In the lowest order approximation, it turns out that only pairwise displacements
 It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
 As a result, this approach is not just inaccurate but completely fruitless in the case of Brownian Dynamics where square roots of mobility matrices are required at each simulation step.
 Most methods for computing square roots (such as the Cholesky decomposition) are singular for singular matrices.
-thus even a very small error in the components of the mobility tensor can lead to arbitrarily large erros of the square root unless positive definiteness can be guaranteed.
+Thus even a very small error in the components of the mobility tensor can lead to arbitrarily large erros of the square root unless positive definiteness can be guaranteed.
 
 Introducing $R_{ij} = |\bm{R}_{ij}|$ we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor.
 \begin{equation}
@@ -256,7 +256,7 @@ That and further improvements (such as differentiable continuation for overlaps)
 \section{Mathematical treatment of Brownian motion}
 \label{sec:SDE}
 
-Although the fundamentals of kinetic theory of gases had been established since the 1870s and Navier-Stokes equations since the 1840s, the formulation of the earliest fluctuation-dissipation-type equation, now known as the Stokes-Einstein relationship ($D = 1 / (6 \pi \eta a)$ for a spherical particle), was precipitated by the contributions of Einstein \cite{Einstein_1905} and Smoluchowski \cite{Smoluchowski_1906}.
+Although the fundamentals of kinetic theory of gases had been established since the 1870s and Navier-Stokes equations since the 1840s, the formulation of the earliest fluctuation-dissipation-type equation, now known as the Stokes-Einstein relationship ($D = 1 / (6 \pi \eta a)$ for a spherical particle), first appeared in the contributions of Einstein \cite{Einstein_1905} and Smoluchowski \cite{Smoluchowski_1906}.
 Their theoretical insights were experimentally verified by Perrin \cite{Perrin_1909}, culminating in his Nobel Prize in Physics in 1926.
 The conceptual challenge of merging two formerly distinct branches of physics was further complicated by the necessity to develop new mathematical tools capable of handling random functions describing the position and velocity of Brownian particles.
 The physical heuristics devised to capture the probabilistic nature of temperature were later formalized into what is now known as stochastic calculus.
@@ -266,7 +266,7 @@ However, the misuse of their results by the financial industry, coupled with ina
 We outline the central complication of the stochastic calculus (second order terms in the chain rule equivalent) using a physically motivated example.
 A more succinct description of this domain can also be found in \textcite{Waszkiewicz_2023_pychastic}.
 For simplicity, we will again focus on just a single colloidal sphere.
-In case of isotropic diffusion in a quiescent fluid the problem is separable with each cartesian direction being independent, in this simple case we can just consider scalar velocty and displacement.
+In the case of isotropic diffusion in a quiescent fluid the problem is separable with each cartesian direction being independent, in this simple case we can just consider scalar velocty and displacement.
 In more complex cases (single sphere near a wall, or more than one sphere, or any other shape) more care is needed because displecements in different directions are no longer independent and often also dependent on angular displacements which complicates the problem significantly.
 Following the notation of \textcite{Ottinger_2012}, we will denote time dependence in subscripts such that the (time dependent) velocity of such sphere is $V_t$.
 Historically $V_t$ was modelled by the Langevin equation
@@ -275,7 +275,7 @@ Historically $V_t$ was modelled by the Langevin equation
 \end{equation}
 with $F^B_t$ a time dependent force arising from the bombardment of the colloid by the water molecules.
 
-Solving equation \eqref{eqn:langevin-velocity} naively, we obtain $V_t$ as a convolution of $F_t^B$ with an appropriate Green's function.
+Langevin's heuristic solution of equation \eqref{eqn:langevin-velocity} ignored the unsual stochastic properties of $F^{B}_t$, to obtain $V_t$ as a convolution of $F_t^B$ with an appropriate Green's function.
 Such a convolution is a linear operator acting on (what we hope is) a Gaussian process and thus we should be able to compute variance of the velocity $\langle V_t^2 \rangle$, with $\langle \cdot \rangle$ denoting expected value by means of a double integral
 \begin{equation}
     \langle V_t^2 \rangle = \frac{1}{M^2} \int_0^t \dd t' \int_0^t \dd t'' \exp\left( - \frac{\zeta}{M} (2t - t' - t'') \right) \langle F_{t'}^B F_{t''}^B \rangle.
@@ -421,7 +421,7 @@ Many software implementations try to estimate $D$ from short trajectories using 
 \end{equation}
 Considerations of the memory function show that $D_{s} > D$ for any tracking point\cite{Cichocki_2019} thus picking a traking point with minimal $D_{s}$ reduces estimation error (in some cases to zero).
 
-For a rigid macromolecule, $R_h$ can be computed from the trace of the mobility matrix by transforming it to track the diffusion centre which minimizes $D_{s}$ \cite{Zuk_2018}.
+For a rigid macromolecule, $R_h$ can be computed from the trace of the mobility matrix by transforming it to track the diffusion centre -- a point which minimizes $D_{s}$ \cite{Zuk_2018}.
 If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient \cite{Cichocki_2015}.
 Note that the diffusion centre does not necessarily coincide with the centre of mass of the molecule.
 
@@ -443,9 +443,9 @@ For an elastic macromolecule, there are more bounded degrees of freedom and not 
         \includegraphics[height=0.3\linewidth,valign=t]{figures/mean_square_displacement.eps}
     \end{tabular}
 
-    \caption{a) Representative configurations of an elastic molecule taken from Brownian Dynamics simulation.
+    \caption{a) Representative configurations of an elastic molecule taken from a Brownian Dynamics simulation.
         b) Mean square displacement of three different tracked locations: the small bead at the end of the chain (blue), the large bead at the other end (orange) and the weighted average of all four beads compared with similar simulation from \textcite{Cichocki_2019} (dashed line).
-        After a long enough time slope of the mean square displacement is the same regardless of the point tracked.
+        After a long enough time the slope of the mean square displacement is the same regardless of the point tracked.
         Graphics CC BY 4.0\cite{Waszkiewicz_2023_pychastic} } \label{fig:dl_and_ds}
 \end{figure}
 
@@ -520,11 +520,11 @@ The first type of molecules investigated in this doctoral thesis are DNA minicir
 Consequently, their conformation is primarily determined by the minimization of elastic forces and is relatively stable.
 
 The second type of molecule investigated in this thesis is intrinsically disordered proteins (IDPs).
-Their persistence length is very small and comparable to the building block size (the $C_\alpha$ distance between consecutive amino acids along the chain).
+Their persistence length is two orders of magnitude smaller and comparable to the building block size (the $C_\alpha$ distance between consecutive amino acids along the chain).
 This characteristic leads to a large conformational variability in an equilibrium ensemble, making both measurement and modeling challenging.
 
 Much of the theoretical enthusiasm in developing complex models of IDPs, with a multitude of interactions, is hampered by an insufficient quantity or quality of experimental calibration data necessary for the determination of molecular "material constants".
-In polymer science domains where data is plentiful, such as the area of globular proteins that can be readily measured by techniques like x-ray crystallography, significant numerical progress has been made using machine learning techniques, leading to celebrated examples like AlphaFold \cite{Jumper_2021}, which has achieved even popular science recognizability.
+In polymer science domains where data is plentiful, such as the area of globular proteins that can be readily measured by techniques like X-ray crystallography, significant numerical progress has been made using machine learning techniques, leading to celebrated examples like AlphaFold \cite{Jumper_2021}, which has achieved even popular science recognizability.
 
 Progress in the domain of IDPs is much more modest, even though they constitute a large proportion of proteins \cite{Ward_2004} and play an important role in multiple bio-relevant processes, such as the functioning of the COVID-19 virus \cite{Rozycki_2022} (to name just one example particularly resonant in 2024).
 In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data -- compare over 200 thousand conformations available in the Protein Data Bank \cite{rcsb_org} with not even 50 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works \cite{Waszkiewicz_2024_mda} or 118 proteins in the Small Angle Scattering Database \cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database \cite{proteinensemble_org}.
@@ -559,10 +559,10 @@ These units are integrated with a separate hydrodynamic model to predict diffusi
 
 Addressing the problem directly, even within a coarse-grained perspective, still presents numerical challenges.
 Furthermore, the identification of a minimal model capable of reproducing experimentally observed variations in diffusion coefficients holds intrinsic value, offering a direct interpretation of observed variability through a restricted set of molecular mechanisms.
-In this context, two different minimal models, termed the "cold limit" and "hot limit," (inspired by the naming conventions such as \cite{Murphy_2018,Bleibel_2014}) were employed to simulate the conformations of two classes of molecules: DNA minicircles and Intrinsically Disordered Proteins (IDPs).
+In this context, two different minimal models, termed the ``cold limit'' and ``hot limit,'' (inspired by the naming conventions such as \cite{Murphy_2018,Bleibel_2014}) were employed to simulate the conformations of two classes of molecules: DNA minicircles and Intrinsically Disordered Proteins (IDPs).
 
 A comparison of persistence length to the minicircle length and a visual examination of CryoEM figures from \textcite{Irobalieva_2015} alongside equilibrium configurations of twisted beams as described by \textcite{Coleman_2000} suggested that thermal fluctuations might exert only a minor influence on the overall behavior of these molecules.
-Consequently, the problem was modeled in the "cold limit" (cf.
+Consequently, the problem was modeled in the ``cold limit'' (cf.
 Table~\ref{tab:tickmarks}), where thermal fluctuations were neglected, and only equilibrium configurations were computed, akin to operating at negligible absolute temperature.
 Subsequently, these configurations were treated as rigid bodies when determining the hydrodynamic radius, as detailed in \textcite{Waszkiewicz_2023_dna}.
 The influence of thermal fluctuations was further investigated using the \code{pychastic} package post-publication.
@@ -663,9 +663,9 @@ Analytical Ultracentrifugation (AUC) is one of the oldest techniques in the doma
 In AUC a colloidal suspension is put inside a rapidly rotating centrifuge to increase the sedimentation rate of the molecules (current centrifuges spin with G-forces as large as 10'000G).
 Inside the centrifuge rotor a small window allows for optical measurements of either absorption or transmission (in recent models involving multiple wavelengths) which change as a result of concentration variation.
 
-Changes of concentration inside the container are governed by the Lamm equation containing the divergence of two currents
+Changes of concentration inside the container are governed by the Lamm equation containing the divergence of two currents: diffusive -- proportional to concentration gradient and sedimentation -- proportional to local outward acceleraiton
 \begin{equation}
-    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( \underbrace{D \nabla \phi}_\text{diffusion} + \underbrace{s \omega^2 \bm{R} \phi}_\text{sedimentation} \right).
+    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( D \nabla \phi + s \omega^2 \bm{R} \phi \right).
     \label{eqn:lamm-equation}
 \end{equation}
 
@@ -792,7 +792,7 @@ For a vector $\bm{v} = \bm{s}_i - \bm{s}_j$ this simply implies $\bm{v}$ distrib
 \end{eqnarray}
 
 Thus, the prediction of the scattering intensity of in a SAXS measurement of a colloidal suspension reduces to the computation of the distance matrix $R_{ij}$ between scattering sites, given the values of scattering intensities $\rho_i(q)$.
-In case of elastic macromolecules, the scattering signal is simply averaged over an ensemble of possible molecular conformations.
+In the case of elastic macromolecules, the scattering signal is simply averaged over an ensemble of possible molecular conformations.
 With the help of tabulated values of scattering intensities of each amino-acid obtained by \textcite{Tong_2016}, a python package \code{saxs_single_bead} was developed.
 
 \chapter{Software packages}
