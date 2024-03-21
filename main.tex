@@ -67,6 +67,11 @@ Using the comparison of the coarse grained approach with the largest set of expe
 
 Finally, we deal with a theoretical problem of equilibrium distributions of molecules with both very stiff degrees of freedom and comparatively free ones (such as bond length and inter-bond angles respectively).
 We identify important details of the constraining potentials overlooked in the earlier works and demonstrate a method for their computation, both in general and through specific examples.
+
+Our results, spanning a spectrum of possible elastohydrodynamic regimes, demonstrate the rich diversity of phenomena arising from the competition of structural rigidity and viscous stresses.
+In order to facilitate the analysis of such systems, we have created a number of open source numerical tools, which have been published with documentation.
+The applicability of these tools was tested directly in relatively stiff biopolymer -- the DNA -- and soft strucures of IDPs.
+Additionally, they provide an insight into the intermediate stiffness regimes, where thermal fluctuations compete with intramolecular interactions, and can be used for a better understanding of microscale elastohydrodynamic phenomena.
 \clearpage
 
 \section*{Streszczenie}
@@ -1071,7 +1076,6 @@ We examine this limit in greater detail to better inform the treatment and simul
 The objectives of this thesis were twofold: to identify theoretical approaches capable of modeling experimentally relevant macromolecules and to develop a modular system capable of accommodating various coarse-graining approximations and experimental techniques.
 The results demonstrate the feasibility of such a unified approach and its ability to predict macromolecule diffusion coefficients with precision.
 Throughout the preparation of this PhD thesis, we examined numerous macromolecular scenarios encompassing a wide range of elasticities, from near-rigid DNA fragments and minicircles, through loops subject to external force and molecules of intermediate elasticities in heat bath, to highly elastic linkers of Intrinsically Disordered Proteins (IDPs), ending in a general treatment of molecules combining both extremes in the study of the stiff springs limit.
-
 The study yielded several results, including:
 \begin{enumerate}
     \item a scaling-based analysis of the approach of rod-like molecules to a nanopore, incorporating hydrodynamic interactions with the wall and Brownian reorientations, \item linear stability analysis and numerical investigation of the buckling instability induced by hydrodynamic drag during the sedimentation of flexible loops, \item a coarse-grained modeling approach for computing DNA minicircle conformations by minimizing elastic energies under different linking number values, \item computation of hydrodynamic radii, diffusion coefficients and sedimentation coefficients for the computed models of minicricle topoisomers, \item implementation of a Python package integrating stochastic differential equations of Brownian Dynamics, \item development of the Globule Linker Model for expedited sampling of IDP conformations, combined with the Minimum Dissipation Approximation for computing their hydrodynamic size, \item determination of the limit of the equilibirum distributions for a general elastic macromolecule with stiff and soft degrees of freedom.
