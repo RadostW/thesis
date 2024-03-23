@@ -6,9 +6,12 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 \usepackage{indentfirst}
-\usepackage{apptools}
+\usepackage{apptools} % appendix
 \usepackage{enumitem}
 
+% Biblography style
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat[article]{number}{}
 
 % Mathematical symbol abbreviations
 \newcommand{\pd}{\partial}
@@ -38,7 +41,6 @@
 \sortcitefirst{Waszkiewicz_2021_hydrodynamic, Waszkiewicz_2021_stability, Waszkiewicz_2023_dna, Waszkiewicz_2023_pychastic, Waszkiewicz_2024_mda, Waszkiewicz_2024_trimer}
 
 \section*{Summary}
-
 Recent, increasingly accurate measurements of the properties of bio-relevant molecules challenge our understanding of macromolecules as having well-defined, fixed shapes that determine their function.
 The equilibrium distribution of their conformations is described by the Boltzmann distribution, which combines two terms: the influence of the temperature of the solvent and the potential energy of a given configuration, which in turn captures the elastic properties of the molecules.
 The behavior of elastic macromolecules is thus shaped by the competition of these two physical phenomena---whenever the valleys of the potential energy landscape are shallow in comparison to a typical thermal fluctuation, a wide variety of conformations are present; conversely, when they are deep, only small deviations from the energy-minimizing configurations can be observed.
@@ -52,9 +54,7 @@ Starting from molecules with very large persistence length compared to their siz
 By considering a rod-like molecule with uniformly distributed charge, we establish theoretical criteria for determining when and where the inclusion of wall corrections is necessary.
 Secondly, we investigate the impact of negative supercoiling and curvature on the hydrodynamic properties of 336 bp and 672 bp DNA minicircles.
 Utilizing linear elasticity theory and hydrodynamic calculations, we predict DNA shapes and diffusion coefficients.
-Our results show a favorable comparison with experimental data on diffusion and sedimentation coefficients obtained using analytical ultracentrifugation.
-
-For intermediate values of persistence length, we determine the range of lengths and g-forces under which sedimentation of a flexible, looped filament remains stable to buckling.
+Our results show a favorable comparison with experimental data on diffusion and sedimentation coefficients obtained using analytical ultracentrifugation. For intermediate values of persistence length, we determine the range of lengths and g-forces under which sedimentation of a flexible, looped filament remains stable to buckling.
 Our analysis, based on linear elasticity theory combined with resistive force theory, yields a stability criterion reliant on a single dimensionless parameter.
 
 In a more general case where both thermal fluctuations and elastic forces are significant, we propose a numerical approach.
@@ -62,15 +62,14 @@ This approach is based on a stochastic differential equations integrator we deve
 Additionally, we present a suite of Python packages designed to make small Brownian Dynamics simulations both fast to develop and fast to simulate, thanks to hardware acceleration.
 
 We demonstrate that for intrinsically disordered proteins (IDPs), which represent the opposite extreme of the elasticity spectrum as compared to very stiff DNA, excluded volume interactions are the key factor determining the equilibrium conformational ensemble.
-We introduce the Globule-Linker model for generating conformations and combine it with the Minimum Dissipation Approximation to predict their hydrodynamic size.
-Using the comparison of the coarse-grained approach with the largest set of experimental values collected to date, we show that our first-principles approach outperforms phenomenological fits available in the literature.
+We introduce the Globule-Linker model for generating conformations and combine it with the Minimum Dissipation Approximation to predict their hydrodynamic size. Using the comparison of the coarse-grained approach with the largest set of experimental values collected to date, we show that our first-principles approach outperforms phenomenological fits available in the literature.
 
-Finally, we deal with a theoretical problem of equilibrium distributions of molecules with both very stiff degrees of freedom and comparatively free ones (such as bond length and inter-bond angles, respectively, in molecular models).
+Finally, we deal with the theoretical problem of equilibrium distributions of molecules with both very stiff degrees of freedom and comparatively free ones (such as the bond length and inter-bond angles, respectively, in molecular models).
 We identify the important details of the constraining potentials overlooked in earlier works and demonstrate a method of their computation, both in general and through specific examples.
 
-Our results, which span a spectrum of possible elastohydrodynamic regimes, demonstrate the rich diversity of phenomena that arise from the competition of structural rigidity and viscous stresses.
+Our results, which span a spectrum of possible elastohydrodynamic regimes, demonstrate the rich diversity of phenomena that arise from the competition of structural rigidity, viscous stresses and thermal fluctuations.
 In order to facilitate the analysis of such systems, we have created a number of open-source numerical tools, which have been published with documentation.
-The applicability of these tools was tested directly in relatively stiff biopolymers -- the circular DNA -- and soft strucures of IDPs.
+The applicability of these tools was tested directly in relatively stiff biopolymers---the circular DNA---and soft structures of IDPs.
 Additionally, they provide an insight into the intermediate stiffness regimes, where thermal fluctuations compete with intramolecular interactions, and can be used for a better understanding of microscale elastohydrodynamic phenomena.
 \clearpage
 
@@ -818,7 +817,7 @@ The aim of the presented work was twofold: to address the immediate needs of the
     \commentary{
         %1. Topic relevance
 
-        Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
+        Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling. 
         It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
         Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
         In a relevant experimental setup for DNA analysis, the efficiency of sequencing hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
@@ -826,16 +825,16 @@ The aim of the presented work was twofold: to address the immediate needs of the
         %2. Literature overview
         The complex process of translocation is now understood in great detail and has been studied extensively to assess the importance of multiple contributing factors.
         However, the process of approach and capture by a nanopore still poses a challenge.
-        Existing models of capture mostly overlook hydrodynamic interactions which might play an important role when the DNA fragment is sufficiently close to the nanopore.
+        Existing capture models mostly neglect hydrodynamic interactions, which might play an important role when the DNA fragment is sufficiently close to the nanopore.
         This work aimed to fill this gap by discerning and examining the time scales associated with different modes of motion -- rotational and translational -- induced by different types of forces present in the system: Brownian fluctuations, electrostatic attraction to the pore, and hindering effects of hydrodynamic interaction with the wall.
         By the analysis of different regimes, we successfully identified the pore distance at which wall interaction terms exert a dominant influence and therefore should be accounted for in quantitative models.
 
         %3. What techique was used
-        To perform the analysis, we constructed a simple coarse-grained model of an anisotropic, rod-shaped particle, representing the elongated nature of a DNA filament of length short compared to its persistence length.
-        In such a case the molecules can be treated as a stiff rigid body, for which an approximate form of the mobility tensor in the presence of a wall has been proposed \cite{Lisicki_2016}.
+        To perform the analysis, we constructed a simple coarse-grained model of an anisotropic, rod-shaped particle, representing the elongated nature of a DNA filament of a length short compared to its persistence length.
+        In this case, a molecule can be treated as a rigid body, for which an approximate form of the mobility tensor in the presence of a wall has been proposed~\cite{Lisicki_2016}.
         In this work, we performed scaling analysis to identify the regimes where different types of forces are dominant.
         %4. What was the outcome        
-        We then calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall.
+        We calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall. We then formulated criteria as to where the inclusion of hydrodynamic interactions with the bounding surface could prove beneficial for quantitative modelling of the capture process.
 
         %5. PhD candidate
         In this study, the PhD candidate: co-developed the scaling analysis and the theoretical description, implemented the near-wall corrections to the mobility tensors and generated all numerical results and visualisations presented, participated in the analysis of results, prepared all figures, wrote the first draft and edited all subsequent versions.
@@ -861,12 +860,10 @@ The aim of the presented work was twofold: to address the immediate needs of the
 
         %4. What was the outcome        
         We calculated the evolution of the conformation of a sedimenting loop using a custom numerical integrator based on a truncated Fourier series.
-        These results were compared with a linear stability analysis of the initial circular configuration, thus providin a near-analytical stability boundary.
-        We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
+        These results were compared with a linear stability analysis of the initial circular configuration, thus providing a near-analytical stability boundary. We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
 
         %5. PhD candidate
-        In this study, the PhD candidate: co-developed the theoretical description, conducted a stability analysis of the PDE and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
-        Additionally they are a corresponding author.
+        In this study, the PhD candidate: co-developed the theoretical description, conducted a stability analysis of the shape evolution equation of the fibre and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions. Additionally they are a corresponding author.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
@@ -906,9 +903,9 @@ The aim of the presented work was twofold: to address the immediate needs of the
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2023_dna}
 
-\subsection{Comment: Thermal Effects on the Shapes of DNA Minicircles}
+\subsection{Thermal Effects on the Shapes of DNA Minicircles}
 
-The model presented in this publication~\cite{Waszkiewicz_2023_dna} has a limited assessment of the influence of thermal fluctuations on the shape and hydrodynamics of DNA loops. This was caused by lack of readily available tools for Brownian Dynamics simulation under non-local force fields -- such as the energy functional depending on writhe, which is a generically non-local quantity.
+The model presented in this publication~\cite{Waszkiewicz_2023_dna} has a limited assessment of the influence of thermal fluctuations on the shape and hydrodynamics of DNA loops. This was caused by lack of readily available tools for Brownian Dynamics simulation under non-local force fields---such as the energy functional depending on writhe, which is a generically non-local quantity.
 
 Using the later developed \code{pychastic} package or Ref.~\cite{Waszkiewicz_2023_pychastic}, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the Minimum Dissipation method derived by \textcite{Cichocki_2019}.
 
@@ -929,8 +926,7 @@ We thus get a further insight into the intermediate region of linking numbers ($
     \label{fig:thermalized_loops}
 \end{figure}
 
-It turns out that the effect of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible.
-Moreover, the range of values of $Lk$ for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small--less than 0.2 turns.
+It turns out that the effect of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible, as shown in Fig.~\ref{fig:thermalized_loops}. Moreover, the range of values of $Lk$ for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small---less than 0.2 turns.
 %When considering the difference in total elastic energy between the flat circular configuration and the configuration with a self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{8\pi^2 \cdot}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the width of the transition region to be approximately $0.03$.
 %TODO: redo this calculation and check
 This contrasts starkly with CryoEM data of  \textcite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.

@@ -1,32 +1,24 @@
 Nowe, coraz dokładniejsze pomiary właściwości istotnych biologicznie cząsteczek podważają nasze rozumienie makromolekuł jako cząsteczek o dobrze określonych, stałych kształtach określających ich funkcję.
-Rozkład równowagowy ich konformacji opisuje rozkład Boltzmanna, który łączy w sobie następujące dwa człony: wpływ temperatury rozpuszczalnika oraz energię potencjalną danej konfiguracji, która z kolei opisuje właściwości elastyczne danej cząsteczki.
-Zachowanie elastycznych makromolekuł jest zatem kształtowane przez konkurencję tych dwóch zjawisk fizycznych -- gdy studnie potencjału są płytkie w porównaniu z typowymi fluktuacjami termicznymi, występuje szeroka gama konformacji; i odwrotnie, gdy są głębokie, można zaobserwować jedynie niewielkie odchylenia od konfiguracji minimalizujących energię.
+Rozkład równowagowy ich konformacji opisuje rozkład Boltzmanna, który łączy dwa efekty: wpływ temperatury rozpuszczalnika oraz energię potencjalną danej konfiguracji, która z kolei opisuje właściwości elastyczne cząsteczki.
+Zachowanie elastycznych makromolekuł jest zatem określone przez współzawodnictwo dwóch zjawisk fizycznych: gdy studnie potencjału są płytkie w porównaniu z typowymi fluktuacjami termicznymi, występuje szeroka gama konformacji; z drugiej strony, gdy są one głębokie, można zaobserwować jedynie niewielkie odchylenia od konfiguracji minimalizujących energię makromolekuły.
 
 W niniejszej rozprawie doktorskiej przedstawiono teoretyczny opis zmienności konformacyjnej elastycznych makromolekuł i jej wpływu na ich dyfuzję.
-Pierwsza część rozprawy zawiera przegląd podstaw teoretycznych wymaganych do budowy modeli gruboziarnistych, które stanowią istotę rozprawy oraz teoretyczne podstawy metod eksperymentalnych stosowanych do weryfikacji założeń upraszczających owych modeli.
-Druga część rozprawy składa się z szeregu powiązanych tematycznie publikacji i preprintów, w których prezentujemy metody modelowania molekuł w szerokim spektrum sprężystości.
+Pierwsza część rozprawy zawiera przegląd podstaw teoretycznych wymaganych do budowy modeli gruboziarnistych, które stanowią istotę rozprawy oraz teoretyczne podstawy metod eksperymentalnych stosowanych do weryfikacji upraszczających założeń, wykorzystanych do konstrukcji modeli.
+Druga część rozprawy składa się z szeregu powiązanych tematycznie publikacji i preprintów, w których prezentujemy metody modelowania makromolekuł w szerokim zakresie ich sprężystości.
 
-Zaczynając od cząsteczek o dalekim zasięgu korelacji elastycznych (ang. persistence length) w porównaniu z ich rozmiarem, pokazujemy jak modelować zbliżanie bardzo krótkiego segmentu DNA do nanoporu i analizujemy wpływ ścian i anizotropii hydrodynamicznej w procesie wychwytywania cząstek przez nanopory.
-Ustalamy teoretyczne kryteria tego, w jakich przypadkach konieczne jest uwzględnienie oddziaływania cząsteczek ze ściankami, przybliżając molekuły przez pręt z równomiernie rozłożonym ładunkiem elektrycznym.
-Ponadto, badamy wpływ ujemnego trzeciorzędowego skręcenia (ang. supercoiling) i krzywizny DNA na właściwości hydrodynamiczne mini-pętli DNA o długości 336 bp i 672 bp.
-Wykorzystując liniową teorię elastyczności i modelowanie hydrodynamiczne, przewidujemy kształty DNA i ich współczynniki dyfuzji.
-Dane eksperymentalne współczynników dyfuzji i sedymentacji uzyskane za pomocą ultrawirowania analitycznego pokazują dobrą zgodność z naszymi przewidywaniami teoretycznymi.
+Zaczynając od cząsteczek o dalekim zasięgu korelacji elastycznych (tzn. o dużej długości persystencji, ang. persistence length) w porównaniu z ich rozmiarem, pokazujemy jak modelować zbliżanie się krótkiego fragmentu DNA do nanoporu. Analizujemy przy tym wpływ ścianek i anizotropii hydrodynamicznej makrocząstki w procesie wychwytywania cząstek przez nanopory.
+Określamy teoretyczne kryteria dla przypadków, w jakich konieczne jest uwzględnienie oddziaływania hydrodynamicznego cząsteczek ze ściankami, modelując kształt cząstki jako pręt z równomiernie rozłożonym ładunkiem elektrycznym.
+W kolejnych pracach badamy wpływ ujemnego trzeciorzędowego skręcenia (ang. supercoiling) i krzywizny DNA na właściwości hydrodynamiczne minipętli DNA o długości 336 i 672 par zasad.
+Wykorzystując liniową teorię elastyczności i modele hydrodynamiczne, przewidujemy kształty DNA i ich współczynniki dyfuzji w roztworze w zależności od stopnia skręcenia. 
+Pomiary eksperymentalne współczynników dyfuzji i sedymentacji uzyskane za pomocą ultrawirowania analitycznego wykazują dobrą zgodność z naszymi przewidywaniami teoretycznymi. Dla pośrednich wartości zasięgu korelacji elastycznych wyznaczamy zakres długości i skalę sił zewnętrznych, przy którym sedymentacja elastycznej, cienkiej pętli pozostaje stabilna na wyboczenia.
+Nasza analiza, oparta na liniowej teorii elastyczności połączonej z teorią lokalnego oporu hydrodynamicznego, wyznacza kryterium stabilności zależne od pojedynczego bezwymiarowego parametru. W bardziej ogólnym przypadku, gdy istotne są zarówno fluktuacje termiczne, jak i siły sprężyste, prezentujemy podejście numeryczne. Opiera się ono na algorytmie całkowania stochastycznych równań różniczkowych, połączonym z modelem oddziaływań hydrodynamicznych opartym na przybliżeniu Rotne-Pragera. Powyższe metody zostały udostępnione jako zbiór paczek w Pythonie zaprojektowanych w celu szybkiego programowania i wykonywania prostych symulacji dynamiki Brownowskiej.
 
-Dla pośrednich wartości zasięgu korelacji elastycznych wyznaczamy taki zakres długości i sił zewnętrznych, przy którym sedymentacja elastycznej, cienkiej pętli pozostaje stabilna na wyboczenia.
-Nasza analiza, oparta na liniowej teorii elastyczności połączonej z lokalnym oporem hydrodynamicznym, wyznacza kryterium stabilności zależne od pojedynczego bezwymiarowego parametru.
+W przypadku białek nieustrukturyzowanych (ang. intrinsically disordered proteins, IDP), które reprezentują przeciwny biegun spektrum elastyczności w porównaniu z bardzo sztywnym DNA i mogą być rozpatrywane jako bardzo wiotkie, determinantą ich konformacji w rozkładach równowagowych jest wykluczona objętość. 
+Do modelowania białek IDP, proponujemy model konformacji GLM (ang. globule-linker model), który w połączeniu z hydrodynamicznym przybliżeniem minimalnej dyssypacji pozwala obliczyć wielkość hydrodynamiczną takich białek.
+Porównując nasze gruboziarniste podejście teoretyczne z największym jak dotąd zmierzonym zbiorem danych eksperymentalnych pokazujemy, że nasze podejście jest skuteczniejsze niż dopasowania fenomenologiczne dostępne w literaturze. W ostatnim artykule rozważamy teoretyczny problem rozkładów równowagowych cząsteczek o wielu stopniach swobody, z których część jest silnie związana (jak na przykład długości wiązań chemicznych).
+Pokazujemy, że istotne detale potencjałów realizujących więzy zostały przeoczone we wcześniejszych pracach oraz proponujemy właściwą, ścisłą matematycznie metodę ich uwzględnienia.
 
-W bardziej ogólnym przypadku, gdy istotne są zarówno fluktuacje termiczne, jak i siły sprężyste, prezentujemy podejście numeryczne.
-Nasze podejście opiera się na algorytmie całkowania stochastycznych równań różniczkowych połączonym z oddziaływaniami hydrodynamicznymi opartymi na przybliżeniu Rotne-Pragera.
-Powyższe metody zostały udostępnione jako zbiór paczek w Pythonie zaprojektowanych w celu szybkiego programowania i przeliczania małych symulacji dynamiki Browna.
-
-W przypadku białek nieustrukturyzowanych (ang. IDP), które reprezentują przeciwną skrajność elastyczności w porównaniu z bardzo sztywnym DNA, objętość wykluczona jest determinantą dystrybucji w rozkładach równowagowych.
-Przedstawiamy model konformacji Globule-Linker, który w połączeniu z Przybliżeniem Minimalnej Dyssypacji pozwala obliczyć wielkość hydrodynamiczną takich białek.
-Porównując podejście gruboziarniste z największym jak dotąd zmierzonym zbiorem danych eksperymentalnych, pokazujemy, że nasze podejście umocowane w prawach fizycznych jest skuteczniejsze niż dopasowania fenomenologiczne dostępne w literaturze.
-
-W ostatnim artykule rozważamy teoretyczny problem rozkładów równowagowych cząsteczek o wielu stopniach swobody z których część jest silnie związana (jak na przykład długości wiązań chemicznych).
-Pokazujemy, że istotne detale potencjałów realizujących więzy zostały przeoczone we wcześniejszych pracach oraz proponujemy właściwą metodę ich uwzględnienia.
-
-Nasze wyniki, obejmujące szeroki zakres korelacji elastycznych, pokazują różnorodność zjawisk wynikających z współwystępowania elastyczności i fluktuacji termicznych.
+Nasze wyniki, obejmujące szeroki zakres korelacji elastycznych, pokazują różnorodność zjawisk wynikających z współwystępowania elastyczności, sił lepkich i fluktuacji termicznych.
 Aby ułatwić analizę takich układów, stworzyliśmy zbiór otwartych narzędzi numerycznych, które zostały opublikowane wraz z dokumentacją.
-Możliwość zastosowania powyższych narzędzi przetestowano bezpośrednio w stosunkowo sztywnym biopolimerze (DNA) i w miękkich strukturach (IDP).
-Przedstawione narzędzia zapewniają wgląd w pośrednie reżimy sztywności, w których fluktuacje termiczne konkurują z interakcjami wewnątrzcząsteczkowymi i mogą posłużyć do lepszego zrozumienia zjawisk elastohydrodynamicznych w mikroskali.
+Możliwość zastosowania powyższych narzędzi przetestowaliśmy bezpośrednio w stosunkowo sztywnym biopolimerze (minikółka z DNA) i w miękkich strukturach białek nieuporządkowanych (IDP).
+Przedstawione narzędzia dają wgląd w pośrednie reżimy sztywności, w których fluktuacje termiczne konkurują z oddziaływaniami wewnątrzcząsteczkowymi. Liczymy, że proponowane modele mogą posłużyć do lepszego zrozumienia zjawisk elastohydrodynamicznych w mikroskali.
