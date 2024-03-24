@@ -54,7 +54,8 @@ Starting from molecules with very large persistence length compared to their siz
 By considering a rod-like molecule with uniformly distributed charge, we establish theoretical criteria for determining when and where the inclusion of wall corrections is necessary.
 Secondly, we investigate the impact of negative supercoiling and curvature on the hydrodynamic properties of 336 bp and 672 bp DNA minicircles.
 Utilizing linear elasticity theory and hydrodynamic calculations, we predict DNA shapes and diffusion coefficients.
-Our results show a favorable comparison with experimental data on diffusion and sedimentation coefficients obtained using analytical ultracentrifugation. For intermediate values of persistence length, we determine the range of lengths and g-forces under which sedimentation of a flexible, looped filament remains stable to buckling.
+Our results show a favorable comparison with experimental data on diffusion and sedimentation coefficients obtained using analytical ultracentrifugation.
+For intermediate values of persistence length, we determine the range of lengths and g-forces under which sedimentation of a flexible, looped filament remains stable to buckling.
 Our analysis, based on linear elasticity theory combined with resistive force theory, yields a stability criterion reliant on a single dimensionless parameter.
 
 In a more general case where both thermal fluctuations and elastic forces are significant, we propose a numerical approach.
@@ -62,7 +63,8 @@ This approach is based on a stochastic differential equations integrator we deve
 Additionally, we present a suite of Python packages designed to make small Brownian Dynamics simulations both fast to develop and fast to simulate, thanks to hardware acceleration.
 
 We demonstrate that for intrinsically disordered proteins (IDPs), which represent the opposite extreme of the elasticity spectrum as compared to very stiff DNA, excluded volume interactions are the key factor determining the equilibrium conformational ensemble.
-We introduce the Globule-Linker model for generating conformations and combine it with the Minimum Dissipation Approximation to predict their hydrodynamic size. Using the comparison of the coarse-grained approach with the largest set of experimental values collected to date, we show that our first-principles approach outperforms phenomenological fits available in the literature.
+We introduce the Globule-Linker model for generating conformations and combine it with the Minimum Dissipation Approximation to predict their hydrodynamic size.
+Using the comparison of the coarse-grained approach with the largest set of experimental values collected to date, we show that our first-principles approach outperforms phenomenological fits available in the literature.
 
 Finally, we deal with the theoretical problem of equilibrium distributions of molecules with both very stiff degrees of freedom and comparatively free ones (such as the bond length and inter-bond angles, respectively, in molecular models).
 We identify the important details of the constraining potentials overlooked in earlier works and demonstrate a method of their computation, both in general and through specific examples.
@@ -211,19 +213,17 @@ Said tensor is given by
     \mm{T}^{0}(\bm{r}) = \frac{1}{8\pi\eta |\bm{r}|} \left( \mm{1} + \bm{\hat{r}}\bm{\hat{r}}\right).
 \end{equation}
 
-For multiple spherical colloids suspended in a quiescent fluid, the mobility matrices depend on the relative positions of the spheres. In the lowest order approximation, it turns out that only pairwise displacements $\bm{R}_{ij} = \bm{R}_i - \bm{R}_j$ are required to compute them.
+For multiple spherical colloids suspended in a quiescent fluid, the mobility matrices depend on the relative positions of the spheres.
+In the lowest order approximation, it turns out that only pairwise displacements $\bm{R}_{ij} = \bm{R}_i - \bm{R}_j$ are required to compute them.
 It may be tempting to simply evaluate the Oseen tensor at the centers of the spheres and use this as a mobility matrix; unfortunately, this approach can lead to a matrix that is not positive definite, which physically corresponds to negative dissipation of energy under some forcing.
 As a result, this approach is not just inaccurate but completely fruitless in the case of Brownian Dynamics where square roots of mobility matrices are required at each simulation step~\cite{Nagele_2013,Ermak_1978}.
 Most methods for computing square roots (such as the Cholesky decomposition) are singular for singular matrices.
 Thus, even a very small error in the components of the mobility tensor can lead to arbitrarily large errors of the square root, unless positive definiteness can be guaranteed.
 
-Perhaps the simplest positive-definite approximation can be constructed in the following manner. Introducing $R_{ij} = |\bm{R}_{ij}|$, we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor
+Perhaps the simplest positive-definite approximation can be constructed in the following manner.
+Introducing $R_{ij} = |\bm{R}_{ij}|$, we can determine the velocity of $i^{th}$ sphere exactly from the surface tractions integral by combining Faxen's law \cite{Faxen_1922} with the Oseen tensor
 \begin{equation}
-    \bm{V_i} =
-    -\mu_0^t \bm{F}_i
-    + \sum_{j\neq i}^N
-    \left(1 + \frac{a^2}{6} \Delta_i\right)
-    \int_{S_j} \dd S' \mm{T}^0(\bm{R}_i-\bm{r'})\cdot \bm{f}^{(s)}(\bm{r'}).
+    \bm{V_i} = -\mu_0^t \bm{F}_i + \sum_{j\neq i}^N \left(1 + \frac{a^2}{6} \Delta_i\right) \int_{S_j} \dd S' \mm{T}^0(\bm{R}_i-\bm{r'})\cdot \bm{f}^{(s)}(\bm{r'}).
     \label{eqn:faxen-theorem}
 \end{equation}
 
@@ -247,16 +247,18 @@ Evaluating the Laplacians and rearranging the explicit formulae for mobility ten
 The $\mm{\mu}_{ij}^{tt,RP}$ approximation is the well-known Rotne-Prager approximation \cite{Nagele_2013,Dhont_2008,Kim_2013}.
 It turns out that this approximation is always positive definite and thus a great candidate for Brownian Dynamics applications.
 Moreover, it turns out that the tensor divergence of $\mm{\mu}^{tt,RP}$ is equal to zero (which is not true for the exact solution $\mm{\mu}^{tt}$) eliminating another term––problematic for Brownian dynamics simulations––in a self-consistent manner\cite{Ermak_1978}.
-A completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix. That and further improvements (such as differentiable continuation for overlaps and extension to collections of spheres of different sizes) are discussed by \textcite{Zuk_2018}. In this work, we implemented the Rotne-Prager expressions in Python, as the \texttt{pygrpy} package. 
+A completely analogous procedure can be applied to the $tr$ and $rr$ parts of the mobility matrix.
+That and further improvements (such as differentiable continuation for overlaps and extension to collections of spheres of different sizes) are discussed by \textcite{Zuk_2018}.
+In this work, we implemented the Rotne-Prager expressions in Python, as the \texttt{pygrpy} package.
 
 \section{Mathematical treatment of Brownian motion}
 \label{sec:SDE}
 
 Although the fundamentals of kinetic theory of gases had been established since the 1870s and Navier-Stokes equations since the 1840s, the formulation of the earliest fluctuation-dissipation-type equation, now known as the Stokes-Einstein relationship,
-\begin{equation}\label{eq:stokeseinstein}
-    D = \frac{k_B T}{6\pi\eta a}
+\begin{equation}
+    \label{eq:stokeseinstein} D = \frac{k_B T}{6\pi\eta a}
 \end{equation}
- for a spherical particle of radius $a$ in a fluid of viscosity $\eta$, first appeared in the contributions of Einstein \cite{Einstein_1905} and Smoluchowski \cite{Smoluchowski_1906}.
+for a spherical particle of radius $a$ in a fluid of viscosity $\eta$, first appeared in the contributions of Einstein \cite{Einstein_1905} and Smoluchowski \cite{Smoluchowski_1906}.
 Their theoretical insights were experimentally verified by Perrin \cite{Perrin_1909}, culminating in his Nobel Prize in Physics in 1926.
 The conceptual challenge of merging two formerly distinct branches of physics was further complicated by the necessity to develop new mathematical tools capable of handling random functions describing the position and velocity of Brownian particles.
 The physical heuristics devised to capture the probabilistic nature of temperature were later formalised into what is now known as stochastic calculus.
@@ -335,7 +337,8 @@ For such processes, the stochastic (Ito) integral is simply defined as
     \int_0^{t_{\mathrm{max}}} X_t \dd W_t = \sum_{j=1}^{n} \widetilde{X}_{j-1} (W_{t_j} - W_{t_{j-1}}).
     \label{eqn:ito-integral-step-function}
 \end{equation}
-There is a noticeable lack of symmetry in this expression -- we evaluate the integrand at the left end of each interval. As a result, $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the process $X_t$.
+There is a noticeable lack of symmetry in this expression -- we evaluate the integrand at the left end of each interval.
+As a result, $\widetilde{X}_{j-1}$ and $W_{t_j} - W_{t_{j-1}}$ are independent variables because of the non-anticipatory nature of the process $X_t$.
 This 'direction of anticipation' asymmetry plays a central role in the differences between Ito and classical calculus (and is notably absent in Stratonovich calculus).
 % $X_{j-1} \perp (W_{t_j} - W_{t_{j-1}})$
 
@@ -385,7 +388,8 @@ Better approaches to estimating the effective size are required, as outlined in 
 
 \section{The hydrodynamic radius}
 
-Experiments such as Analytical Ultracentrifugation (AUC) observe macroscopic changes in the concentration field $\phi$ which evolves due to sedimentation and diffusion. In this Section, we discuss the notion of hydrodynamic radius which emerges naturally in the interpretation of experimental data, such as AUC but also in scattering techniques (FCS, DLS, SAXS), which we discuss later.
+Experiments such as Analytical Ultracentrifugation (AUC) observe macroscopic changes in the concentration field $\phi$ which evolves due to sedimentation and diffusion.
+In this Section, we discuss the notion of hydrodynamic radius which emerges naturally in the interpretation of experimental data, such as AUC but also in scattering techniques (FCS, DLS, SAXS), which we discuss later.
 
 In the simplest case of isotropic diffusion, the concentration field evolves according to Fick's equation with macroscopic diffusion coefficient $D$
 \begin{equation}
@@ -424,13 +428,15 @@ For a rigid macromolecule, $R_h$ can be computed from the trace of the mobility 
 If another reference point is chosen rotational motion contributes to the instantaneous diffusion coefficient leading to an overestimate of long term diffusion coefficient \cite{Cichocki_2015}.
 Note that the diffusion centre does not necessarily coincide with the centre of mass of the molecule.
 
-For a rigid macromolecule modelled as a conglomerate of spherical beads, we can derive hydrodynamic radius from its grand mobility matrix by considering collective translational and rotational motion of constituent beads around any given point~\cite{Ekiel-Jezewska_2009}. 
-Forces acting on individual beads can be computed by first deriving the grand friction matrix from grand mobility matrix, then imposing rigid body motion and then computing the total force and torque required for such motion, thus obtaining the conglomerate friction matrix. The conglomerate friction matrix is then inverted to obtain the conglomerate mobility matrix, which is then used to find the diffusion centre and, finally,  conglomerate mobility matrix centred at that point as described in detail in \textcite{Cichocki_2019}.
+For a rigid macromolecule modelled as a conglomerate of spherical beads, we can derive the hydrodynamic radius from its grand mobility matrix by considering the collective translational and rotational motion of constituent beads around any given point~\cite{Ekiel-Jezewska_2009}.
+Forces acting on individual beads can be computed by first deriving the grand friction matrix from grand mobility matrix, then imposing rigid body motion and then computing the total force and torque required for such motion, thus obtaining the conglomerate friction matrix.
+The conglomerate friction matrix is then inverted to obtain the conglomerate mobility matrix, which is then used to find the diffusion centre and, finally,  conglomerate mobility matrix centred at that point as described in detail in \textcite{Cichocki_2019}.
 
 An alternative method of computation of $R_h$ is based on a heuristic observation that the trace of the Oseen tensor satisfies the Laplace equation and Monte Carlo methods of solution of Laplace's equation are then applied to solve a heat equation with constant temperature difference between the surface of the molecule and the ambient fluid.
 Heat flux is then used to estimate the effective size of such a molecule, as described by the authors of the Zeno package \cite{Juba_2017}, which we used in \textcite{Waszkiewicz_2023_dna}.
 
-For an elastic macromolecule, there are more bounded degrees of freedom apart from the rotation. Deformation can also affect the instantaneous diffusion coefficient and a judicious choice of the tracking point can remove much of the spurious overestimation which comes from the approximation of long-time diffusion coefficient $D$ with the instantaneous diffusion coefficient $D_{s}$. 
+For an elastic macromolecule, there are more bounded degrees of freedom apart from the rotation.
+Deformation can also affect the instantaneous diffusion coefficient and a judicious choice of the tracking point can remove much of the spurious overestimation which comes from the approximation of long-time diffusion coefficient $D$ with the instantaneous diffusion coefficient $D_{s}$.
 
 \begin{figure}[h]
     \centering
@@ -447,7 +453,9 @@ For an elastic macromolecule, there are more bounded degrees of freedom apart fr
         Graphics CC BY 4.0\cite{Waszkiewicz_2023_pychastic} } \label{fig:dl_and_ds}
 \end{figure}
 
-We now outline the basic idea of estimation of $R_h$ proposed by \textcite{Cichocki_2019}. The crucial step is the choice of a tracking point of a particle. An intuitive first guess is to track 'the middle' or the geometric average of the constituent parts of the molecule, whereas a slightly more refined approach is to use the centre of mass -- this is clearly not an optimal strategy, as shown by the exact result for the rigid molecule.
+We now outline the basic idea of estimation of $R_h$ proposed by \textcite{Cichocki_2019}.
+The crucial step is the choice of a tracking point of a particle.
+An intuitive first guess is to track 'the middle' or the geometric average of the constituent parts of the molecule, whereas a slightly more refined approach is to use the centre of mass -- this is clearly not an optimal strategy, as shown by the exact result for the rigid molecule.
 Location, or more specifically, the weights in the weighted average, have to be derived from the hydrodynamic properties rather than from the hydrodynamically irrelevant mass.
 The need for selection of a correct tracking point is highlighted by \ref{fig:dl_and_ds}, here the short term diffusion coefficient corresponds to the initial slope of the mean square displacement.
 
@@ -455,11 +463,13 @@ Treating the translational mobility $\mm{\mu}^{tt}$ as a tensor (with indices sp
 \begin{equation}
     \mm{b}_{ij} \left(\left< \mm{\mu}^{tt} \right> \right)_{jkll} = \mm{\delta}_{ik}
 \end{equation}
-where $\left< \cdot \right>$ denotes ensemble average. Then the hydrodynamic radius is estimated by
+where $\left< \cdot \right>$ denotes ensemble average.
+Then the hydrodynamic radius is estimated by
 \begin{equation}
     R_h \approx \frac{1}{2 \pi \eta} \left( \sum_i \sum_j \mm{b}_{ij} \right)^{-1}.
 \end{equation}
-We called this approach the minimum dissipation approximation (MDA) as explained in \textcite{Waszkiewicz_2024_mda}. A detailed derivation of the MDA method can be found in \textcite{Cichocki_2019}.
+We called this approach the minimum dissipation approximation (MDA) as explained in \textcite{Waszkiewicz_2024_mda}.
+A detailed derivation of the MDA method can be found in \textcite{Cichocki_2019}.
 
 Clearly, the MDA method (and earlier, simpler and popular Kirkwood-Riseman method \cite{Kirkwood_1948}) require estimating the ensemble averaged translational-grand-mobility matrix.
 Given the Rotne-Prager approximations of Eqs.~\eqref{eqn:rotne-prager-translation}, we require only the relative positions of the constituent elements of the molecule and their effective sizes.
@@ -472,17 +482,22 @@ We discuss both of them in greater detail in \textcite{Waszkiewicz_2024_trimer}.
 Both of these problems are more pronounced in coarse-grained models when very stiff springs are used as models of bonds, leading to superficially paradoxical results such as the 'trimer paradox' discussed therein.
 
 The methods discussed above have broad applicability, but now we turn our attention to specific examples of molecules studied in this thesis to highlight their distinct physical properties.
-The stiffness of different macromolecules varies significantly, spanning many orders of magnitude, which in turn motivates the use of different modelling approaches in different cases. We will outline the methodology leading to these diverse approaches in the following sections.
+The stiffness of different macromolecules varies significantly, spanning many orders of magnitude, which in turn motivates the use of different modelling approaches in different cases.
+We will outline the methodology leading to these diverse approaches in the following sections.
 
 \section{Elastic macromolecules}
 
 Soft matter as a discipline of physics evolved out of 'colloid suspensions science' under the influence of two 'fuel sources' -- bio-relevant measurements showing immediate applicability and a chase of observations of 'universal' validity, with universal being interpreted as insensitive to bio-chemical details of the molecules.
 A good example of intersection of these two currents are models of long polymeric chains -- first elastic macromolecules to be successfully modelled.
-These include some synthetic plastics but also bio-molecules, such as the DNA or denatured proteins. 
-A phenomenological approach to estimating the properties of coarse-grained models of such polymeric chains started with representing them as chains of $N$ identical monomers, distributed randomly. A celebrated result of Rouse found the hydrodynamic radius $R_h \sim N^{1/2}$ for a Gaussian chain with $N$ elements \cite{Rouse_1953}. It was later improved by Zimm by the inclusion of excluded volume interactions \cite{Zimm_1956} to yield $R_h \sim N^\gamma$ with $\gamma=0.588$. For a more detailed overview the subject matter see \textcite[chapter 3]{Dhont_2008}.
+These include some synthetic plastics but also bio-molecules, such as the DNA or denatured proteins.
+A phenomenological approach to estimating the properties of coarse-grained models of such polymeric chains started with representing them as chains of $N$ identical monomers, distributed randomly.
+A celebrated result of Rouse found the hydrodynamic radius $R_h \sim N^{1/2}$ for a Gaussian chain with $N$ elements \cite{Rouse_1953}.
+It was later improved by Zimm by the inclusion of excluded volume interactions \cite{Zimm_1956} to yield $R_h \sim N^\gamma$ with $\gamma=0.588$.
+For a more detailed overview the subject matter see \textcite[chapter 3]{Dhont_2008}.
 These scalings are valid under the assumption of small persistence length $P = EI / (k_B T)$, which captures the ratio of elastic forces (proportional to the bending rigidity $EI$, $E$ being the Young's modulus and $I$ the area moment of inerial) to Brownian forces (proportional to fluctuation energy $k_B T$).
 
-In reality, there are more forces influencing the conformation of macromolecules. Their relative importance is easiest to compare using length scale ratios, which quantify the respective ranges of different interactions within the molecule.
+In reality, there are more forces influencing the conformation of macromolecules.
+Their relative importance is easiest to compare using length scale ratios, which quantify the respective ranges of different interactions within the molecule.
 In our case, the length scales of interest include the already mentioned persistence length, the building block size (quantifying excluded volume interactions), and the Debye length (quantifying electrostatic interactions, scaling with the inverse square root of the ionic strength $C_s$ of the buffer).
 Some values of these length scales, pertinent to the publications \cite{Waszkiewicz_2023_dna} and \cite{Waszkiewicz_2024_mda}, are outlined in Table~\ref{tab:lengthscales}.
 The need for assessing the relative values for each problem is apparent -- there is a factor of $160$ difference in stiffness of protein linkers and DNA filaments.
@@ -510,9 +525,10 @@ The need for assessing the relative values for each problem is apparent -- there
     } \label{tab:lengthscales}
 \end{table}
 
-The first type of molecules investigated in this doctoral thesis are DNA minicircles, whose persistence length is comparable to the length of the very short DNA minicircles under investigation by the group of Professor Lynn Zechiedrich at Baylor College of Medicine, described in detail in~\cite{Waszkiewicz_2023_dna}. Consequently, their conformation is primarily determined by the minimization of elastic forces and is relatively stable.
+The first type of molecules investigated in this doctoral thesis are DNA minicircles, whose persistence length is comparable to the length of the very short DNA minicircles under investigation by the group of Professor Lynn Zechiedrich at Baylor College of Medicine, described in detail in~\cite{Waszkiewicz_2023_dna}.
+Consequently, their conformation is primarily determined by the minimization of elastic forces and is relatively stable.
 
-The second type of molecule investigated in this thesis is intrinsically disordered proteins (IDPs), analysed in~\cite{Waszkiewicz_2024_mda}. 
+The second type of molecule investigated in this thesis is intrinsically disordered proteins (IDPs), analysed in~\cite{Waszkiewicz_2024_mda}.
 Their persistence length is two orders of magnitude smaller and comparable to the building block size (the $C_\alpha$ distance between consecutive amino acids along the chain).
 This characteristic leads to a large conformational variability in an equilibrium ensemble, making both measurement and modelling challenging.
 
@@ -523,7 +539,8 @@ Progress in the domain of IDPs is much more modest, even though they constitute 
 In the opinion of the author this progress is (at least in part) determined by the amount of readily available experimental data;  Compare over 200 thousand conformations available in the Protein Data Bank \cite{rcsb_org} with not even 50 high quality measurements of the diffusion coefficients of the IDPs we were able to extract from published works~\cite{Waszkiewicz_2024_mda}, 118 proteins in the Small Angle Scattering Database~\cite{sasdb_org}, or 462 proteins in the Protein Ensemble Database~\cite{proteinensemble_org}.
 
 Simultaneously, a variety of biochemical insights into both folded and disordered protein behaviour invite phenomenological models with many covariates to explain the hydrodynamic size of these molecules.
-A specific example of such insight could be the relative rigidity of polyhistidine fragments and tags. Their presence (or, more simply, the share of histidines in the totality of amino acids forming a molecule) is sometimes used as an explanatory variable in the process of phenomenological modelling~\cite{Tomasso_2016, Marsh_2010}.
+A specific example of such insight could be the relative rigidity of polyhistidine fragments and tags.
+Their presence (or, more simply, the share of histidines in the totality of amino acids forming a molecule) is sometimes used as an explanatory variable in the process of phenomenological modelling~\cite{Tomasso_2016, Marsh_2010}.
 
 As data concerning the hydrodynamic properties of IDPs is scarce, and a direct intervention in the protein sequence can be prohibitively expensive, since the synthesis of each new protein construct can take months, we encounter an issue more familiar to social scientists than physicists.
 The available information essentially forms an observational study where correlation is difficult to separate from causation\footnote{This is in contrast to a typical physics experiment, akin to a randomized controlled trial in a social setting, where the experimenter is free to choose the value of the control variable and measure the outcome.
@@ -540,8 +557,10 @@ This is not just because of their precision, as demonstrated in \textcite{Waszki
 
 \section{Diffusion coefficients in hot and cold limits}
 
-First-principles models of elastic molecules come in two flavors: atomistic and coarse-grained. Atomistic methods, as outlined by \textcite{Karplus_1990}, can be utilized, albeit with certain challenges.
-These methods either involve the explicit simulation of surrounding water molecules, demanding significant computational resources, or employ an implicit solvent scheme, both of which pose notable numerical difficulties~\cite{Frenkel_2001}. Even if simulations are theoretically feasible, generating 10-100 millisecond long trajectories for the direct computation of long-time diffusion coefficients, using this method requires great computational power.
+First-principles models of elastic molecules come in two flavors: atomistic and coarse-grained.
+Atomistic methods, as outlined by \textcite{Karplus_1990}, can be utilized, albeit with certain challenges.
+These methods either involve the explicit simulation of surrounding water molecules, demanding significant computational resources, or employ an implicit solvent scheme, both of which pose notable numerical difficulties~\cite{Frenkel_2001}.
+Even if simulations are theoretically feasible, generating 10-100 millisecond long trajectories for the direct computation of long-time diffusion coefficients, using this method requires great computational power.
 
 On the other hand, coarse-grained methods utilize larger units, typically amino acid residues for proteins, or base pairs for the DNA, as building blocks for conformation prediction schemes.
 These units are integrated with a separate hydrodynamic model to predict diffusion coefficients.
@@ -561,7 +580,8 @@ These molecules exhibit much smaller stiffness, with a persistence length as sma
 This characteristic further justifies our initial concern regarding the potential influence of buckling forces arising in sedimentation on the hydrodynamic sizes in AUC measurements.
 Fortunately, the group led by Prof.
 Anna Niedzwiecka at the Institute of Physics, Polish Academy of Sciences, who provided experimental data for our joint publication~\cite{Waszkiewicz_2024_mda}, employs fluorescence correlation spectroscopy (FCS) instead of AUC, which does not introduce large force gradients on the molecule.
-Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations. However, the excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a limit $T \to \infty$ approximation, hence the name.
+Given that the persistence length is comparable to the building block size, we decided to focus on the \emph{hot limit} of the problem, where elastic forces are disregarded relative to thermal fluctuations.
+However, the excluded volume interactions do not vanish at high temperatures; thus, this approach can be treated as a limit $T \to \infty$ approximation, hence the name.
 More precisely, bending forces arising from the distribution of Ramachandran angles were neglected, while the forces governing bond length were taken to be infinitely strong.
 This approach requires care when handling bond-angle distributions, and some apparently paradoxical results can arise, as discussed in \textcite{Waszkiewicz_2024_trimer}.
 We show there that the intuitive distribution 'uniform on a sphere' indeed arises as a limit in the case of linear filaments (notably, a different distribution arises for molecules with loops as shown therein).
@@ -581,7 +601,8 @@ We show there that the intuitive distribution 'uniform on a sphere' indeed arise
         \bottomrule
     \end{tabular}
     \caption{Three domains of interest for the study of elastic molecules.
-        Very high and very low stiffness of DNA and IDPs respectively allowed us to use simplified models. The numerical package Pychastic provided an additional tool to explore intermediate regimes where all three factors have to be incorporated.
+        Very high and very low stiffness of DNA and IDPs respectively allowed us to use simplified models.
+        The numerical package Pychastic provided an additional tool to explore intermediate regimes where all three factors have to be incorporated.
     }
     \label{tab:tickmarks}
 \end{table}
@@ -590,7 +611,8 @@ The two experimentally inspired problems, even though solvable to a satisfactory
 These error estimates can be compared either to the precision of the experimental data or to the estimates of other approximation errors in the model, such as approximations of the hydrodynamic mobility tensors.
 This can guide the effort in further improvements to the numerical method; For example, should we first work on including thermal fluctuations to the conformations or rather improve hydrodynamic mobility tensor approximations?
 
-When the mobility tensors are simply modeled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2\%~\cite{Zuk_2018}. Assessing errors introduced by approximate conformer generation, whether in the hot ($T\to\infty$) or cold ($T\to0$) limit, necessitates simulating the ensemble at finite temperatures.
+When the mobility tensors are simply modeled with the Rotne-Prager approximation (such as the tensors of the \code{pygrpy} package), the errors introduced there are of the order of 2\%~\cite{Zuk_2018}.
+Assessing errors introduced by approximate conformer generation, whether in the hot ($T\to\infty$) or cold ($T\to0$) limit, necessitates simulating the ensemble at finite temperatures.
 
 Various methods can be employed for this purpose, but a simulation grounded in physical principles holds particular appeal.
 To achieve good performance, the Brownian Dynamics method was selected.
@@ -608,7 +630,8 @@ The specific implementation of \code{pychastic} further streamlines the developm
 Instead, users can now simply define the energy, and the forces can be derived programmatically using \code{jax.grad} without compromising the speed and precision.
 This feature proved particularly advantageous in simulating shear-relaxed dynamics of DNA minicircles in \cite{Waszkiewicz_2023_dna}, where the energy depends on the non-local quantity of writhe ($Wr$).
 
-The answer to the correct development direction (in the opinion of the author) lies in future experimental data with resolutions capable of probing inaccuracies of the force-fields used or showing clear dependencies on buffer conditions such as temperature or ionic strength. Such measurements are in progress, and early results provide insights into future DNA models~\cite{Ranasinghe_2023}.
+The answer to the correct development direction (in the opinion of the author) lies in future experimental data with resolutions capable of probing inaccuracies of the force-fields used or showing clear dependencies on buffer conditions such as temperature or ionic strength.
+Such measurements are in progress, and early results provide insights into future DNA models~\cite{Ranasinghe_2023}.
 
 \section{Experimental techniques}
 
@@ -617,7 +640,8 @@ The excellent work on biosynthesis by the groups at Baylor College of Medicine (
 These two collaborations provide an overview of many experimental challenges: from the success or failure of initial biosynthesis, obtaining correct concentrations, to purification from by-products of biosynthesis and the stability of the resultant molecular constructs, to practical obstacles such as replacing discontinued lab equipment and cross-border shipping.
 
 Even in the fortunate scenario, when one obtains a good sample of the molecule to study, the measurement itself is a demanding task.
-Both AUC and FCS methods rely on time-series analysis of an optical signal. In that sense, they are both indirect methods requiring model fitting within the experimental procedure.
+Both AUC and FCS methods rely on time-series analysis of an optical signal.
+In that sense, they are both indirect methods requiring model fitting within the experimental procedure.
 This complicates the analysis of direct measurement error (uncertainty of a single measurement), with the current Monte Carlo-based AUC analysis method providing no uncertainty estimates for samples of high purity.
 However, the single-measurement error is not the only, and not even the leading, source of uncertainty in the measurements of diffusion (and sedimentation) properties of the molecules.
 Since buffer conditions, concentration, and even the time from synthesis \cite{Nag_2011} affect the final outcome, these factors must be incorporated into the error analysis to arrive at a comprehensive confidence interval for the measurements.
@@ -645,16 +669,17 @@ The following Subsections describe the theoretical underpinnings of the experime
     \label{fig:auc_diagram}
 \end{figure}
 
-Analytical Ultracentrifugation (AUC) is one of the oldest techniques in the domain of colloidal science, having been developed by T. Svedberg in 1923, who received a Nobel prize in 1926 for his contributions to colloid chemistry.
+Analytical Ultracentrifugation (AUC) is one of the oldest techniques in the domain of colloidal science, having been developed by T.
+Svedberg in 1923, who received a Nobel prize in 1926 for his contributions to colloid chemistry.
 In AUC, a colloidal suspension is put inside a rapidly rotating centrifuge to increase the sedimentation rate of the molecules: urrent centrifuges spin with G-forces as large as 10'000G.
 Inside the centrifuge rotor, a small window allows for optical measurements of either absorption or transmission (in recent models involving multiple wavelengths) which change as a result of concentration variation.
 
 Changes of concentration inside the container are governed by the Lamm equationthat describes the temporal variation of the local concentration field $\phi$ and that contains the divergence of two currents: diffusive -- proportional to concentration gradient and sedimentation -- proportional to the local outward acceleration
 \begin{equation}
-    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( D \nabla \phi + s \omega^2 \bm{R} \phi \right),
-    \label{eqn:lamm-equation}
+    \frac{\pd \phi}{\pd c} = \nabla \cdot \left( D \nabla \phi + s \omega^2 \bm{R} \phi \right), \label{eqn:lamm-equation}
 \end{equation}
-where $D$ is the diffusion coefficient, and $D$ is the sedimentation coefficient. Derivation of the values of $s$ and $D$ from experimental, time-dependent concentration profiles is done via a fitting procedure which requires efficient solution schemes for the PDE~\eqref{eqn:lamm-equation}~\cite{Demeler_2016,Cao_2005}.
+where $D$ is the diffusion coefficient, and $D$ is the sedimentation coefficient.
+Derivation of the values of $s$ and $D$ from experimental, time-dependent concentration profiles is done via a fitting procedure which requires efficient solution schemes for the PDE~\eqref{eqn:lamm-equation}~\cite{Demeler_2016,Cao_2005}.
 The finite element method combined with nonlinear least-squares techniques and Monte-Carlo based error estimation gives both values and uncertainties of the values of $s$ and $D$ that can be used to determine other molecular parameters, such as $R_h$ or molecular mass.
 
 \subsection{Fluorescence Correlation Spectroscopy}
@@ -683,7 +708,7 @@ FCS experiments perform best when at each moment the expected number of excited 
         CC-BY-NC 4.0)} \label{fig:fcs_diagram}
 \end{figure}
 
-The frequency of the fluctuations due to diffusion can be quantified (and thus used to derive the diffusion coefficient) by considering the signal autocorrelation function $G(\tau)$ given by 
+The frequency of the fluctuations due to diffusion can be quantified (and thus used to derive the diffusion coefficient) by considering the signal autocorrelation function $G(\tau)$ given by
 \begin{equation}
     G(\tau) = \left< F(t) F(t-\tau) \right>
 \end{equation}
@@ -702,14 +727,13 @@ If we now consider the Green's function $g(\bm{\rho},\tau)$ of the diffusion pro
 \begin{equation}
     g(\bm{\rho},\tau) = \frac{1}{(4\pi D \tau)^{3/2}} \exp\left( - \frac{|\rho|^2}{4 D \tau}\right)
 \end{equation}
-where $\bm{\rho}$ is the distance, and $\tau$ is the time, 
-we can express the autocorrelation function according to 
+where $\bm{\rho}$ is the distance, and $\tau$ is the time, we can express the autocorrelation function according to
 \begin{eqnarray}
-    G(\tau) & = & \int \int U(\bm{r} + \bm{\rho}) g(\bm{\rho},\tau) U(\bm{r}) \dd \bm{r} \dd \rho \\
-            & = & \frac{\pi^{3/2}}{8} \frac{a^2 b}{(1+4 D \tau / a^2)\sqrt{1+4D\tau/b^2}},
-    \label{eqn:fcs_theory}
+    G(\tau) & = & \int \int U(\bm{r} + \bm{\rho}) g(\bm{\rho},\tau) U(\bm{r}) \dd \bm{r} \dd \rho                 \\
+            & = & \frac{\pi^{3/2}}{8} \frac{a^2 b}{(1+4 D \tau / a^2)\sqrt{1+4D\tau/b^2}}, \label{eqn:fcs_theory}
 \end{eqnarray}
-which expresses thae fact that the particle has travelled the distance $\bm{rho}$ during a time interval $\tau$. Since the parameters $a$ and $b$ cannot be known a priori, one typically fits a simplified expression 
+which expresses thae fact that the particle has travelled the distance $\bm{rho}$ during a time interval $\tau$.
+Since the parameters $a$ and $b$ cannot be known a priori, one typically fits a simplified expression
 \begin{equation}
     G(\tau) = G(0) \left( \left(1+\frac{\tau}{\tau_D}\right) \left(1 + \gamma \frac{\tau}{\tau_D}\right)^{1/2} \right)^{-1} + G(\infty), \label{eqn:fcs-autocorrelation}
 \end{equation}
@@ -738,9 +762,10 @@ Within this approximation, the scattering pattern is computed as an interference
 
 We can express the complex amplitude of the scattered wave $A(\bm{q})$ as a Fourier transform of the scattering intensity distribution $\rho(\bm{r})$ as
 \begin{equation}
-    A(q) = A_0 \int \rho(\bm{r}) \exp(i \bm{q} \cdot \bm{r}) \dd \bm{r}. \label{eqn:scattering-amplitude-integral}
+    A(q) = A_0 \int \rho(\bm{r}) \exp(i \bm{q} \cdot \bm{r}) \dd \bm{r}.
+    \label{eqn:scattering-amplitude-integral}
 \end{equation}
-Since the observed intensity on the screen $I$ is proportional to the squared absolute value of the wave amplitude $I(\bm{q}) \propto |A(\bm{q})|^2$, we can express $I(\bm{q})$ as a double integral 
+Since the observed intensity on the screen $I$ is proportional to the squared absolute value of the wave amplitude $I(\bm{q}) \propto |A(\bm{q})|^2$, we can express $I(\bm{q})$ as a double integral
 \begin{eqnarray}
     |A(\bm{q})|^2 & = & A A^{*}                                                                                                            \\
                   & = & A_0^2 \int \int \rho^{*}(\bm{r}') \rho(\bm{r}'') \exp(i \bm{q} \cdot (\bm{r}'-\bm{r}'')) \dd \bm{r}' \dd \bm{r}''.
@@ -752,25 +777,41 @@ If we assume that the scattering sites are point-like, we can express the scatte
     \rho(\bm{r}) = \sum_i \rho_i \delta(\bm{r}-\bm{s}_i),
 \end{equation}
 where $\rho_i$ gives scattering intensity on site $i$.
-The integral \eqref{eqn:intensity-profile-integral} reduces then to a double sum 
+The integral \eqref{eqn:intensity-profile-integral} reduces then to a double sum
 \begin{equation}
     I(\bm{q}) = A_0^2 \sum_i \sum_j \rho_i \rho_j \exp(i \bm{q} \cdot (\bm{s}_i - \bm{s}_j)).
 \end{equation}
 Inside the colloid, the distribution of orientations of the macromolecules with respect to the lab frame is invariant under action of rotations.
-For a vector $\bm{v} = \bm{s}_i - \bm{s}_j$ this simply implies $\bm{v}$ distributed uniformly on a sphere and its projection onto the vector $\bm{q}$ being distributed uniformly on an interval according to the orange slicing theorem\footnote{the orange slicing theorem: if you slice an orange into slices of equal thickness each slice has the same share of the orange peel} giving 
+For a vector $\bm{v} = \bm{s}_i - \bm{s}_j$ this simply implies $\bm{v}$ distributed uniformly on a sphere and its projection onto the vector $\bm{q}$ being distributed uniformly on an interval according to the orange slicing theorem\footnote{the orange slicing theorem: if you slice an orange into slices of equal thickness each slice has the same share of the orange peel} giving
 \begin{eqnarray}
     \left< I(\bm{q}) \right> & = & A_0 \sum_i \sum_j \rho_i \rho_j \int \exp(i q s) \mathbb{I}(|s| < |\bm{s}_i - \bm{s}_j|) \dd s \\
                              & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\bm{s}_i - \bm{s}_j|)                  \\
-                             & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\bm{R}_{ij}|),       
+                             & = & A_0 \sum_i \sum_j \rho_i \rho_j \operatorname{sinc}(|q||\bm{R}_{ij}|),
 \end{eqnarray}
-where the sinc function is defined as $\text{sinc}\,x = \sin x / x$. Thus, the prediction of the scattering intensity in a SAXS measurement of a colloidal suspension reduces to the computation of the distance matrix $R_{ij}$ between the scattering sites, given the values of scattering intensities $\rho_i(q)$.
+where the sinc function is defined as $\text{sinc}\,x = \sin x / x$.
+Thus, the prediction of the scattering intensity in a SAXS measurement of a colloidal suspension reduces to the computation of the distance matrix $R_{ij}$ between the scattering sites, given the values of scattering intensities $\rho_i(q)$.
 In the case of elastic macromolecules, the scattering signal is simply averaged over an ensemble of possible molecular conformations.
-With the aid of tabulated values of scattering intensities of each amino acid obtained by \textcite{Tong_2016}, a Python package, \code{saxs_single_bead}, was developed. This package facilitates a simple computation of SAXS profiles in the one-bead-per-residue approximation. It serves as a complement to our ensemble generation schemes operating within this coarse-graining resolution.
+With the aid of tabulated values of scattering intensities of each amino acid obtained by \textcite{Tong_2016}, a Python package, \code{saxs_single_bead}, was developed.
+This package facilitates a simple computation of SAXS profiles in the one-bead-per-residue approximation.
+It serves as a complement to our ensemble generation schemes operating within this coarse-graining resolution.
 
 \chapter{Software packages}
 
-Most of the source code utilized in the preparation of this Thesis has been made available in public repositories on GitHub.
-Furthermore, in the instances detailed below, considerable effort was invested in structuring the software into Python packages with structured documentation to facilitate ease of use.
+Most of the source code utilized in the preparation of this thesis has been made available in public repositories on GitHub.
+Furthermore, considerable effort was invested in structuring the software into Python packages with structured documentation to facilitate ease of use, as detailed in Table \ref{tab:packages}.
+
+The package \code{pychastic}, described in detail by \cite{Waszkiewicz_2023_pychastic}, was initially conceived as a tool for generating equilibrium configurations and studying memory effects in the diffusion of macromolecules, an ongoing research project of the group.
+It is capable of simulating Stochastic Differential Equations, including the equations of Brownian Dynamics.
+Formulating the full equations of Brownian Dynamics requires the computation of mobility tensors, which can be evaluated using components of the \code{pygrpy} package.
+This package can also compute the hydrodynamic size of rigid molecules based on the same grand mobility matrices.
+
+Another package, \code{glm_mda_diffusion}, relies on \code{pygrpy} and serves as the Pythonic counterpart to the publication by \cite{Waszkiewicz_2024_mda}.
+It can compute the hydrodynamic size of Intrinsically Disordered Proteins (IDPs) using an annotated amino acid sequence from conformers generated by the \code{sarw-spheres} package.
+
+The \code{sarw-spheres} package generates self-avoiding random walks consisting of tangent spheres of variable size.
+Its recursive implementation allows for very fast sampling compared to naive sphere-by-sphere randomization.
+
+Finally, the \code{saxs-single-bead} package provides methods for computing Small-Angle X-ray Scattering (SAXS) profiles from the locations of amino acids in both rigid cases and ensembles (for example, generated using the \code{sarw-spheres} package).
 
 \begin{table}[htbp]
     \centering
@@ -795,29 +836,48 @@ Furthermore, in the instances detailed below, considerable effort was invested i
 
 \chapter{Main results of the Thesis}
 
-The main results of this Thesis are a series of six research papers, four of which already published in international academic journals. Four papers contain theoretical and numerical results related to the modelling of elastic macromolecules in various settings or the development of practical tools for modelling. The remaining two manuscripts contain results of experiments, along with theoretical models that aim to interpret and rationalise the measured quantities.
+The main results of this Thesis are a series of six research papers, four of which already published in international academic journals.
+Four papers contain theoretical and numerical results related to the modelling of elastic macromolecules in various settings or the development of practical tools for modelling.
+The remaining two manuscripts contain results of experiments, along with theoretical models that aim to interpret and rationalise the measured quantities.
 \begin{enumerate}[label={\bfseries Paper \Roman*},leftmargin=\widthof{[Paper III]}+\labelsep]
-\item The publication, titled {\it Hydrodynamic Effects in the Capture of Rod-like Molecules by a Nanopore}~\cite{Waszkiewicz_2021_hydrodynamic}, co-authored by Maciej Lisicki, provides an analysis of the influence of wall interaction and hydrodynamic anisotropy in the process of capture by a nanopore, relevant to short DNA fragments and a method of their sequencing. A theoretical consideration of a rod-like molecule with uniformly distributed charge provides simple scaling-based criteria for determining when and where inclusion of the wall corrections is required.
+    \item The publication, titled {\it Hydrodynamic Effects in the Capture of Rod-like Molecules by a Nanopore}~\cite{Waszkiewicz_2021_hydrodynamic}, co-authored by Maciej Lisicki, provides an analysis of the influence of wall interaction and hydrodynamic anisotropy in the process of capture by a nanopore, relevant to short DNA fragments and a method of their sequencing.
+          A theoretical consideration of a rod-like molecule with uniformly distributed charge provides simple scaling-based criteria for determining when and where inclusion of the wall corrections is required.
 
-\item The article, titled {\it Stability of Sedimenting Flexible Loops}~\cite{Waszkiewicz_2021_stability}, co-authored by Piotr Szymczak and Maciej Lisicki, provides a linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modeled with Euler-Bernoulli equation. We were able to establish a semi-analytic stability criterion and re-derive the dimensionless quantity governing the buckling instability for this and similar problems.
+    \item The article, titled {\it Stability of Sedimenting Flexible Loops}~\cite{Waszkiewicz_2021_stability}, co-authored by Piotr Szymczak and Maciej Lisicki, provides a linear stability analysis of elastic loops within the resistive-force theory framework coupled with elastic forces modeled with Euler-Bernoulli equation.
+          We were able to establish a semi-analytic stability criterion and re-derive the dimensionless quantity governing the buckling instability for this and similar problems.
 
-\item The publication, titled {\it DNA Supercoiling-induced Shapes Alter Minicircle Hydrodynamic Properties}~\cite{Waszkiewicz_2023_dna}, co-authored by Maduni Ranasinghe, Jonathan M. Fogg, Daniel J. Catanese Jr, Maria L. Ekiel-Jeżewska, Maciej Lisicki, Borries Demeler, Lynn Zechiedrich, and Piotr Szymczak, is a result of theoretical-experimental collaboration with the team based at Baylor College of Medicine and Rice University (JMF, DJC, and LZ; experts in biosynthesis, DNA properties, and sample preparation) and the team based at the University of Lethbridge (MR and BD; experts in AUC measurements) with a theoretical collaboration between the Institute of Fundamental Technology Research, Polish Academy of Sciences (MLEJ), and a team at the University of Warsaw (RW, PS, and ML). In this publication, we have determined the impact of negative supercoiling and curvature on the hydrodynamic properties of DNA by subjecting 336 bp and 672 bp DNA minicircles to analytical ultracentrifugation (AUC). We then utilised linear elasticity theory and hydrodynamic calculations to predict the DNA shapes and diffusion coefficients.
+    \item The publication, titled {\it DNA Supercoiling-induced Shapes Alter Minicircle Hydrodynamic Properties}~\cite{Waszkiewicz_2023_dna}, co-authored by Maduni Ranasinghe, Jonathan M.
+          Fogg, Daniel J.
+          Catanese Jr, Maria L.
+          Ekiel-Jeżewska, Maciej Lisicki, Borries Demeler, Lynn Zechiedrich, and Piotr Szymczak, is a result of theoretical-experimental collaboration with the team based at Baylor College of Medicine and Rice University (JMF, DJC, and LZ; experts in biosynthesis, DNA properties, and sample preparation) and the team based at the University of Lethbridge (MR and BD; experts in AUC measurements) with a theoretical collaboration between the Institute of Fundamental Technology Research, Polish Academy of Sciences (MLEJ), and a team at the University of Warsaw (RW, PS, and ML).
+          In this publication, we have determined the impact of negative supercoiling and curvature on the hydrodynamic properties of DNA by subjecting 336 bp and 672 bp DNA minicircles to analytical ultracentrifugation (AUC).
+          We then utilised linear elasticity theory and hydrodynamic calculations to predict the DNA shapes and diffusion coefficients.
 
-\item The publication, titled {\it Pychastic: Precise Brownian Dynamics using Taylor-Ito Integrators in Python}, co-authored by Maciej Bartczak, Kamil Kolasa, and Maciej Lisicki, is a result of work on the implementation of efficient stochastic differential equations solvers capable of convenient treatment of Brownian Dynamics (BD) problems. By expressing BD equations as Ito integrals, we can leverage the classical methods of truncated Taylor-Ito integrators. As part of the documentation of the \code{pychastic} package, we show how to deal with common BD obstacles: calculations of the divergence of the mobility tensor in the diffusion equation and discontinuous trajectories encountered when working with dynamics on $S^2$ and $SO(3)$. With a vectorization-oriented implementation, we have achieved performance comparable to earlier implementations in lower-level programming languages.
+    \item The publication, titled {\it Pychastic: Precise Brownian Dynamics using Taylor-Ito Integrators in Python}, co-authored by Maciej Bartczak, Kamil Kolasa, and Maciej Lisicki, is a result of work on the implementation of efficient stochastic differential equations solvers capable of convenient treatment of Brownian Dynamics (BD) problems.
+          By expressing BD equations as Ito integrals, we can leverage the classical methods of truncated Taylor-Ito integrators.
+          As part of the documentation of the \code{pychastic} package, we show how to deal with common BD obstacles: calculations of the divergence of the mobility tensor in the diffusion equation and discontinuous trajectories encountered when working with dynamics on $S^2$ and $SO(3)$.
+          With a vectorization-oriented implementation, we have achieved performance comparable to earlier implementations in lower-level programming languages.
 
-\item The  manuscript, titled {\it Minimum Dissipation Approximation: A Fast Algorithm for the Prediction of Diffusive Properties of Intrinsically Disordered Proteins}, co-authored by Agnieszka Michaś, Michał K. Białobrzewski, Barbara Klepka, Maja Cieplak-Rotowska, Zuzanna Staszałek, Bogdan Cichocki, Maciej Lisicki, Piotr Szymczak, and Anna Niedźwiecka, is the result of an experimental-theoretical collaboration between the team based at the Institute of Physics of the Polish Academy of Sciences (AM, MKB, BK, MCR, ZS, and AN; experts in protein biosynthesis and FCS experiments) and the theory team at the University of Warsaw (RW, BC, ML, and PS). In our study, we demonstrate a fast numerical method combining simple conformational sampling and approximate hydrodynamic interactions to estimate the diffusion coefficients of intrinsically disordered proteins (IDPs), even in the presence of structured do- mains, with a precision surpassing the classical Kirkwood-Riseman approximation. With a new collection of diffusion coefficient measurements, we can quantitatively compare our predictions with multiple models present in the literature (such as power-laws and power-laws with sequence-dependent corrections).
+    \item The  manuscript, titled {\it Minimum Dissipation Approximation: A Fast Algorithm for the Prediction of Diffusive Properties of Intrinsically Disordered Proteins}, co-authored by Agnieszka Michaś, Michał K.
+          Białobrzewski, Barbara Klepka, Maja Cieplak-Rotowska, Zuzanna Staszałek, Bogdan Cichocki, Maciej Lisicki, Piotr Szymczak, and Anna Niedźwiecka, is the result of an experimental-theoretical collaboration between the team based at the Institute of Physics of the Polish Academy of Sciences (AM, MKB, BK, MCR, ZS, and AN; experts in protein biosynthesis and FCS experiments) and the theory team at the University of Warsaw (RW, BC, ML, and PS).
+          In our study, we demonstrate a fast numerical method combining simple conformational sampling and approximate hydrodynamic interactions to estimate the diffusion coefficients of intrinsically disordered proteins (IDPs), even in the presence of structured do- mains, with a precision surpassing the classical Kirkwood-Riseman approximation.
+          With a new collection of diffusion coefficient measurements, we can quantitatively compare our predictions with multiple models present in the literature (such as power-laws and power-laws with sequence-dependent corrections).
 
-\item The manuscript, titled {\it The trimer paradox: the effect of stiff constraints on equilibrium distributions in overdamped dynamics}, co-authored by Maciej Lisicki, deals with the problem of very stiff constraints and limiting bond-angle distributions arising from those constraints in coarse-grained spring-bead models of macromolecules in the diffusive regime. It shows that even though the solution of the paradox was elucidated as early as 1984 by van Kampen, explicit (and correct) treatment of this limit was missing from well-known books such as those by Frenkel \cite{Frenkel_2002}. By a careful treatment of singular distributions, we show that a combination of metric properties of the constraining manifold and the Hessian of the constraining field are required for the correct determination of bond angles, and that ’uniform on a sphere’ distributions for harmonic constraining potentials are not universal, with potentially large deviations for small cyclic molecules. These results establish theoretical foundations for the globule-linker model and should guide further work on the minimum dissipation approximation.
-  
+    \item The manuscript, titled {\it The trimer paradox: the effect of stiff constraints on equilibrium distributions in overdamped dynamics}, co-authored by Maciej Lisicki, deals with the problem of very stiff constraints and limiting bond-angle distributions arising from those constraints in coarse-grained spring-bead models of macromolecules in the diffusive regime.
+          It shows that even though the solution of the paradox was elucidated as early as 1984 by van Kampen, explicit (and correct) treatment of this limit was missing from well-known books such as those by Frenkel \cite{Frenkel_2002}.
+          By a careful treatment of singular distributions, we show that a combination of metric properties of the constraining manifold and the Hessian of the constraining field are required for the correct determination of bond angles, and that ’uniform on a sphere’ distributions for harmonic constraining potentials are not universal, with potentially large deviations for small cyclic molecules.
+          These results establish theoretical foundations for the globule-linker model and should guide further work on the minimum dissipation approximation.
+
 \end{enumerate}
-The aim of the presented work was twofold: to address the immediate needs of the experimental groups we have been collaborating with, but also to establish robust ’null hypothesis’ models, which are easy enough to use and incorporate all of the fundamental interactions required for the modelling of diffusion, but not more. As such, deviations from these models can be used as quantitative indicators of a significant contribution of new physical phenomena (for example, electrostatic interactions or the formation of transient bridges between distant parts of the molecules).
+The aim of the presented work was twofold: to address the immediate needs of the experimental groups we have been collaborating with, but also to establish robust ’null hypothesis’ models, which are easy enough to use and incorporate all of the fundamental interactions required for the modelling of diffusion, but not more.
+As such, deviations from these models can be used as quantitative indicators of a significant contribution of new physical phenomena (for example, electrostatic interactions or the formation of transient bridges between distant parts of the molecules).
 \clearpage
 
 \begin{publicationpage}{Waszkiewicz_2021_hydrodynamic}{Hydrodynamic effects in the capture of rod-like molecules by a nanopore}
     \commentary{
         %1. Topic relevance
 
-        Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling. 
+        Translocation of biomolecules through nanopores lies at the heart of many biological processes, such as cell signalling.
         It is a significant element of modern nanotechnology and sequencing techniques which give access to the structure of DNA or RNA in small quantities.
         Thus, it enables low-cost genotyping and testing without the need to resort to PCR amplification or chemical labelling.
         In a relevant experimental setup for DNA analysis, the efficiency of sequencing hinges on two critical factors: the translation speed through the nanopore and the capture radius of the nanopore.
@@ -834,7 +894,8 @@ The aim of the presented work was twofold: to address the immediate needs of the
         In this case, a molecule can be treated as a rigid body, for which an approximate form of the mobility tensor in the presence of a wall has been proposed~\cite{Lisicki_2016}.
         In this work, we performed scaling analysis to identify the regimes where different types of forces are dominant.
         %4. What was the outcome        
-        We calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall. We then formulated criteria as to where the inclusion of hydrodynamic interactions with the bounding surface could prove beneficial for quantitative modelling of the capture process.
+        We calculated the trajectories of a model nanorod near a wall in Mathematica, incorporating the near-wall corrected mobility tensor, which takes into account both the anisotropy of the particle itself, and its coupling to the wall.
+        We then formulated criteria as to where the inclusion of hydrodynamic interactions with the bounding surface could prove beneficial for quantitative modelling of the capture process.
 
         %5. PhD candidate
         In this study, the PhD candidate: co-developed the scaling analysis and the theoretical description, implemented the near-wall corrections to the mobility tensors and generated all numerical results and visualisations presented, participated in the analysis of results, prepared all figures, wrote the first draft and edited all subsequent versions.
@@ -852,7 +913,8 @@ The aim of the presented work was twofold: to address the immediate needs of the
         To understand when this might happen, we focused on an idealised problem involving the sedimentation of a circular fibre, aiming to eliminate end-corrections from the buckling consideration.
 
         %2. Literature overview
-        Earlier studies of sedimenting flexible rings using bead-model approach \cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions. Assessing which parts of this complexity are attributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goal of this investigation.
+        Earlier studies of sedimenting flexible rings using bead-model approach \cite{Gruziel_2018} showed complex dynamics with a wide variety of periodic orbits depending on setup parameters and initial conditions.
+        Assessing which parts of this complexity are attributable to hydrodynamic interaction, which to bead-model discretisation and which are intrisic to similar setups was a secondary goal of this investigation.
 
         %3. What techique was used
         To determine the cases where buckling may occur, we performed linear stability analysis within the Resistive Force Theory approximation under which hydrodynamic drag is a local quantity.
@@ -860,10 +922,12 @@ The aim of the presented work was twofold: to address the immediate needs of the
 
         %4. What was the outcome        
         We calculated the evolution of the conformation of a sedimenting loop using a custom numerical integrator based on a truncated Fourier series.
-        These results were compared with a linear stability analysis of the initial circular configuration, thus providing a near-analytical stability boundary. We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
+        These results were compared with a linear stability analysis of the initial circular configuration, thus providing a near-analytical stability boundary.
+        We obtained good agreement between numerical and analytical approaches and favourable comparison with earlier work.
 
         %5. PhD candidate
-        In this study, the PhD candidate: co-developed the theoretical description, conducted a stability analysis of the shape evolution equation of the fibre and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions. Additionally they are a corresponding author.
+        In this study, the PhD candidate: co-developed the theoretical description, conducted a stability analysis of the shape evolution equation of the fibre and computed the stability criterion using the proposed matrix method, generated all numerical results and visualisations presented, prepared all figures, wrote the first draft and edited all subsequent versions.
+        Additionally they are a corresponding author.
     }
 \end{publicationpage}
 \includepdf[pages={-}]{publications/waszkiewicz_2021_stability}
@@ -879,7 +943,7 @@ The aim of the presented work was twofold: to address the immediate needs of the
 
         %2. Literature overview
         Earlier works such as that of \textcite{Coleman_2000} established the correct energy density functional to model slender loops subject to torsional stress.
-        Unfortunately, the original code giving piecewise analytical solutions for the problem is lost and thus re-implementation of the solver was required. 
+        Unfortunately, the original code giving piecewise analytical solutions for the problem is lost and thus re-implementation of the solver was required.
         That work used DNA loops as inspiration but was never directly tested against experimental results.
         On the other hand, a variety of software packages are capable of predicting hydrodynamic radius given the shape of a rigid molecule (Zeno, US-Somo, GRPY), but as far as we know, they were not yet used for prediction of hydrodynamic properties of DNA loops.
 
@@ -905,19 +969,24 @@ The aim of the presented work was twofold: to address the immediate needs of the
 
 \subsection{Thermal Effects on the Shapes of DNA Minicircles}
 
-The model presented in this publication~\cite{Waszkiewicz_2023_dna} has a limited assessment of the influence of thermal fluctuations on the shape and hydrodynamics of DNA loops. This was caused by lack of readily available tools for Brownian Dynamics simulation under non-local force fields---such as the energy functional depending on writhe, which is a generically non-local quantity.
+The model presented in this publication~\cite{Waszkiewicz_2023_dna} has a limited assessment of the influence of thermal fluctuations on the shape and hydrodynamics of DNA loops.
+This was caused by lack of readily available tools for Brownian Dynamics simulation under non-local force fields---such as the energy functional depending on writhe, which is a generically non-local quantity.
 
 Using the later developed \code{pychastic} package or Ref.~\cite{Waszkiewicz_2023_pychastic}, we conducted simulations to explore the shapes of DNA minicircles at finite (room) temperatures and computed their apparent diffusion coefficient using the Minimum Dissipation method derived by \textcite{Cichocki_2019}.
 
-In these simulations, we assumed that torsional stresses in the DNA are relaxed. Consequently, the total elastic energy $E_{el}$ of such a minicircle is given by
+In these simulations, we assumed that torsional stresses in the DNA are relaxed.
+Consequently, the total elastic energy $E_{el}$ of such a minicircle is given by
 \begin{equation}
     E_{el} = \frac{1}{2} \int_0^L EI \left( \kappa^2 + \omega \left( \frac{2\pi (Lk - Wr)}{L} \right)^2 \right) dl,
 \end{equation}
-with the notation explained in Ref.~\cite{Waszkiewicz_2023_dna}. 
+with the notation explained in Ref.~\cite{Waszkiewicz_2023_dna}.
 Both $\kappa$ and $Wr$ can be computed from the shape of the centreline alone (or a suitable discretisation thereof), thus reducing the dimensionality of the problem, as compared to an approach where both the position and orientation of filament segments are simulated.
-It is worth noting that simulating rotational dynamics, even of a single body, is a complex task, as outlined in \textcite{Waszkiewicz_2023_pychastic}. Given that $Wr$ is a nonlocal quantity, the computation of forces from $E_{el}$ can be cumbersome. Fortunately, this task can be accomplished with the assistance of \code{jax.grad}, which is compatible with the SDE solver \code{pychastic}.
+It is worth noting that simulating rotational dynamics, even of a single body, is a complex task, as outlined in \textcite{Waszkiewicz_2023_pychastic}.
+Given that $Wr$ is a nonlocal quantity, the computation of forces from $E_{el}$ can be cumbersome.
+Fortunately, this task can be accomplished with the assistance of \code{jax.grad}, which is compatible with the SDE solver \code{pychastic}.
 
-We thus get a further insight into the intermediate region of linking numbers ($1 < Lk < 2.5$) where the DNA minicircles have multiple stable configurations at absolute zero temperature. We discussed the zero temperature limit in \textcite{Waszkiewicz_2023_dna}.
+We thus get a further insight into the intermediate region of linking numbers ($1 < Lk < 2.5$) where the DNA minicircles have multiple stable configurations at absolute zero temperature.
+We discussed the zero temperature limit in \textcite{Waszkiewicz_2023_dna}.
 
 \begin{figure}[htbp]
     \centering
@@ -926,7 +995,8 @@ We thus get a further insight into the intermediate region of linking numbers ($
     \label{fig:thermalized_loops}
 \end{figure}
 
-It turns out that the effect of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible, as shown in Fig.~\ref{fig:thermalized_loops}. Moreover, the range of values of $Lk$ for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small---less than 0.2 turns.
+It turns out that the effect of thermal fluctuations on the overall hydrodynamic radius outside of the intermediate region are negligible, as shown in Fig.~\ref{fig:thermalized_loops}.
+Moreover, the range of values of $Lk$ for which the equilibrium ensemble contains both open configurations and configurations with self-contact is very small---less than 0.2 turns.
 %When considering the difference in total elastic energy between the flat circular configuration and the configuration with a self-contact, one arrives at $\frac{\partial \Delta E}{\partial Lk} \approx Lk \frac{8\pi^2 \cdot}{3} \frac{P}{L} k_B T \approx 26 k_B T$, providing an estimate of the width of the transition region to be approximately $0.03$.
 %TODO: redo this calculation and check
 This contrasts starkly with CryoEM data of  \textcite{Irobalieva_2015}, where a multitude of conformations were observed for a wide range of $Lk$ values.
@@ -939,7 +1009,8 @@ The example above highlights our motivations for the development of the \code{py
     \commentary{
         %1. Topic relevance
 
-        This paper focuses on the novel implementation of numerical integration schemes for Brownian Dynamics simulations. The major theoretical limitation in our earlier studies revolved around an incomplete, approximate treatment of Brownian motion.
+        This paper focuses on the novel implementation of numerical integration schemes for Brownian Dynamics simulations.
+        The major theoretical limitation in our earlier studies revolved around an incomplete, approximate treatment of Brownian motion.
         In Ref.~\cite{Waszkiewicz_2021_hydrodynamic}, we simplified the dynamics to a 2D case due to Mathematica's inability to handle full $SO(3)$ dynamics, as outlined in the publication below.
         Similarly, in Ref.~\cite{Waszkiewicz_2023_dna}, the challenges arose from the nature of the Writhe quantity, leading to a non-local force field that made assessing the effects of thermal fluctuations on the shape of minicircles exceptionally challenging.
 
@@ -994,21 +1065,27 @@ The example above highlights our motivations for the development of the \code{py
 
 \subsection{Comparing Conformations to SAXS Data}
 
-As detailed in~\textcite{Waszkiewicz_2024_mda}, computation of the diffusion coefficient for a given IDP requires one to generate samples from the equilibrium ensemble. To this end, we proposed to use the Globule-Linker Model, in which statistical variability was represented with a self-avoiding random walk. To assess the quality of the conformer generation method independently of hydrodynamic modelling, we utilised available SAXS data, not included in the final manuscript. One example of such a comparison is illustrated in Figure~\ref{fig:saxs_compare}, where experimental data from \textcite{Sicorello_2021} is compared with our implementation of the Globule-Linker Model (computed with \code{sarw-spheres} code; blue solid line) combined with our implementation of the one-site-per-amino-acid scattering model (computed with \code{saxs-single-bead} code; orange line).
+As detailed in~\textcite{Waszkiewicz_2024_mda}, computation of the diffusion coefficient for a given IDP requires one to generate samples from the equilibrium ensemble.
+To this end, we proposed to use the Globule-Linker Model, in which statistical variability was represented with a self-avoiding random walk.
+To assess the quality of the conformer generation method independently of hydrodynamic modelling, we utilised available SAXS data, not included in the final manuscript.
+One example of such a comparison is illustrated in Figure~\ref{fig:saxs_compare}, where experimental data from \textcite{Sicorello_2021} is compared with our implementation of the Globule-Linker Model (computed with \code{sarw-spheres} code; blue solid line) combined with our implementation of the one-site-per-amino-acid scattering model (computed with \code{saxs-single-bead} code; orange line).
 This model is based on form factors computed by \textcite{Tong_2016}.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[height=0.5\linewidth]{figures/saxs_single_bead.pdf}
-    \caption{A Kratky plot of scaled scattering intensity, along with a comparison of our theoretical predictions generated using \code{saxs_single_bead}, is presented against experimental data for ataxin-3 (pdb id \code{1yzb}), as reported by \textcite{Sicorello_2021}. Predictions based on conformers generated using the globule-linker model (orange line) demonstrate good agreement for scattering vectors corresponding to intramolecular distances larger than the $C_\alpha$ distance, which represents the coarse-graining resolution.
-    An even simpler conformer generation scheme based on self-avoiding random walk, which completely disregards domain information (blue line), is capable of capturing only the initial slope of the scattering curve.}
+    \caption{A Kratky plot of scaled scattering intensity, along with a comparison of our theoretical predictions generated using \code{saxs_single_bead}, is presented against experimental data for ataxin-3 (pdb id \code{1yzb}), as reported by \textcite{Sicorello_2021}.
+        Predictions based on conformers generated using the globule-linker model (orange line) demonstrate good agreement for scattering vectors corresponding to intramolecular distances larger than the $C_\alpha$ distance, which represents the coarse-graining resolution.
+        An even simpler conformer generation scheme based on self-avoiding random walk, which completely disregards domain information (blue line), is capable of capturing only the initial slope of the scattering curve.
+    }
     \label{fig:saxs_compare}
 \end{figure}
 
 The conformations used to predict the SAXS curve in Figure~\ref{fig:saxs_compare} were generated using the Globule-Linker Model engine, with the globules replaced by crystallographic data retrieved from the Protein Data Bank (PDB)\cite{rcsb_org}.
 The excellent agreement of the orange curve in the range of scattering vectors corresponding to features larger than the $C_{\alpha}$ distance (small values of $q$) is a result of the combination of adequate modelling of both the rigid and flexible parts.
 
-The treatment of the distribution in the Globule-Linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions). The theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between the constituent parts of a molecule are treated as arbitrarily rigid springs. 
+The treatment of the distribution in the Globule-Linker engine relies on the heuristic assumption that bond vectors are uniformly distributed on a sphere (barring excluded volume interactions).
+The theoretical basis of this approach relies on the treatment of the stiff spring limit in which bonds between the constituent parts of a molecule are treated as arbitrarily rigid springs.
 We examine this limit in greater detail to better inform the treatment and simulation of freely jointed chains.
 
 The author would like to thank Dr.~Bartosz Różycki for his guidance regarding SAXS experimental data.
@@ -1032,10 +1109,12 @@ The author would like to thank Dr.~Bartosz Różycki for his guidance regarding 
         Moreover, no attention was given to the computational feasibility of the techniques outlined.
 
         %3. What techique was used
-        In order to fill this gap, in the following we have rephrased the stiff bonds limit in a mathematically rigorous way. By examining the action of the limiting distribution on a smooth compactly supported trial function, all the terms contributing to the limiting distribution arise naturally.
+        In order to fill this gap, in the following we have rephrased the stiff bonds limit in a mathematically rigorous way.
+        By examining the action of the limiting distribution on a smooth compactly supported trial function, all the terms contributing to the limiting distribution arise naturally.
 
         %4. What was the outcome
-        By examining a general parametrisation which separates soft from hard coordinates, we were able to provide an efficient way of computing the confinement shape factor. We have thus bridged the gap in previous works by providing an explicit treatment of cases with many degrees of freedom, and thus with many constrains.
+        By examining a general parametrisation which separates soft from hard coordinates, we were able to provide an efficient way of computing the confinement shape factor.
+        We have thus bridged the gap in previous works by providing an explicit treatment of cases with many degrees of freedom, and thus with many constrains.
         By considering a cyclic tetramer, we have shown that the shape-factor corrections can be arbitrarily large, even for molecular bonds modelled with identical harmonic springs.
 
         %5. PhD candidate
@@ -1051,18 +1130,18 @@ The results demonstrate the feasibility of such a unified approach and its abili
 Throughout the preparation of this PhD Thesis, we examined numerous macromolecular scenarios, encompassing a wide range of elasticity, from near-rigid DNA fragments and minicircles, through elastic loops subject to an external force and molecules of intermediate elasticity in heat bath, to highly elastic linkers in bead models of Intrinsically Disordered Proteins (IDPs), towards in a general treatment of molecules that combines both extremes in the study of the stiff springs limit.
 The study yielded several results, the most important of which are the following:
 \begin{enumerate}
-    \item  Scaling-based analysis of the approach of rod-like molecules to a nanopore, incorporating hydrodynamic interactions with the wall and Brownian reorientations~\cite{Waszkiewicz_2021_hydrodynamic}. 
-    
+    \item  Scaling-based analysis of the approach of rod-like molecules to a nanopore, incorporating hydrodynamic interactions with the wall and Brownian reorientations~\cite{Waszkiewicz_2021_hydrodynamic}.
+
     \item Linear stability analysis and numerical investigation of the buckling instability induced by hydrodynamic drag during the sedimentation of flexible loops, modelled with Euler-Bernoulli elasticity and resistive force theory~\cite{Waszkiewicz_2021_stability}.
-    
-    \item The development of a coarse-grained modeling approach to computing the conformations of supercoiled DNA minicircles by minimization of their elastic energy under for different values of linking number~\cite{Waszkiewicz_2023_dna}. 
-    
-    \item Computation of hydrodynamic radii, diffusion coefficients and sedimentation coefficients for the computed models of DNA minicricle topoisomers~\cite{Waszkiewicz_2023_dna}. 
-    
+
+    \item The development of a coarse-grained modeling approach to computing the conformations of supercoiled DNA minicircles by minimization of their elastic energy under for different values of linking number~\cite{Waszkiewicz_2023_dna}.
+
+    \item Computation of hydrodynamic radii, diffusion coefficients and sedimentation coefficients for the computed models of DNA minicricle topoisomers~\cite{Waszkiewicz_2023_dna}.
+
     \item Development and implementation of a Python package integrating stochastic differential equations of Brownian Dynamics~\cite{Waszkiewicz_2023_pychastic}.
-    
-    \item Development of the Globule Linker Model for expedited sampling of IDP conformations, combined with the Minimum Dissipation Approximation for computing their hydrodynamic size~\cite{Waszkiewicz_2024_mda}. 
-    
+
+    \item Development of the Globule Linker Model for expedited sampling of IDP conformations, combined with the Minimum Dissipation Approximation for computing their hydrodynamic size~\cite{Waszkiewicz_2024_mda}.
+
     \item Analytic determination of the limit of the equilibirum distributions for a general elastic macromolecule with stiff and soft degrees of freedom~\cite{Waszkiewicz_2024_trimer}.
 \end{enumerate}
 
@@ -1084,7 +1163,6 @@ Moreover, we anticipate that the soft matter physics community will leverage the
     \item \publicationblock{Turczynowicz_2024}
     \item \publicationblock{Waszkiewicz_2024_parenthood}
 \end{itemize}
-
 
 \printbibliography[heading=bibchapter]
 
