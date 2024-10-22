@@ -8,16 +8,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{doctoral}
+\ProvidesClass{doctoral}[2024/10/22 Class for doctoral dissertations]
 
 \RequirePackage[utf8]{inputenc}
 
 \def\@baseclass{report}
 
-\PassOptionsToClass{a4paper}{\@baseclass}
-\ProcessOptions
+\newif\ifphysics
+\newif\ifeconomy
 
+\DeclareOption{physics}{\physicstrue \economyfalse}
+\DeclareOption{economy}{\physicsfalse \economytrue}
+\ExecuteOptions{physics}
+
+\ProcessOptions\relax
+
+\PassOptionsToClass{a4paper}{\@baseclass}
 \LoadClass{\@baseclass}
+
+% Load bibtex based on scientific discipline
+\ifphysics
+    \typeout{Citation style selected: physics.}
+    \RequirePackage[maxbibnames=10,sorting=none]{biblatex}
+\fi
+
+\ifeconomy
+    \typeout{Citation style selected: economy.}
+    \RequirePackage[style=apa,sortcites]{biblatex}
+\fi
 
 \RequirePackage[yyyymmdd]{datetime}
 \renewcommand{\dateseparator}{--}
@@ -25,9 +43,8 @@
 \RequirePackage[margin=1in]{geometry}
 
 \renewcommand\maketitle{
-    \begin{titlepage}        
-        \begin{center}
-            {\LARGE \textbf{\@title}\par}
+    \begin{titlepage}
+        \begin{center}{\LARGE \textbf{\@title}\par}
             \vspace{1cm}
             {\Large {\@author}\par}
             \vspace{2cm}
@@ -41,7 +58,7 @@
             \vspace{2cm}
             {\large Warsaw, \today\par}
         \end{center}
-    \end{titlepage}    
+    \end{titlepage}
 }
 
 \RequirePackage{graphicx}
@@ -55,7 +72,7 @@
 % keep floats inside sections
 \RequirePackage[section]{placeins}
 
-\RequirePackage[maxbibnames=10,sorting=none]{biblatex}
+%\RequirePackage[maxbibnames=10,sorting=none]{biblatex}
 
 % intext cites should print all authors
 \preto\fullcite{\AtNextCite{\defcounter{maxnames}{99}}}
@@ -145,20 +162,20 @@
 }
 
 \DeclareCiteCommand{\abstractfullcite}
-  {\usebibmacro{prenote}}
-  {\usedriver
-     {\DeclareNameAlias{sortname}{default}}
-     {\thefield{entrytype}}}
-  {\multicitedelim}
-  {
-    \par    
+{\usebibmacro{prenote}}
+{\usedriver
+    {\DeclareNameAlias{sortname}{default}}
+    {\thefield{entrytype}}}
+{\multicitedelim}
+{
+    \par
     \usebibmacro{printabstract}
     \usebibmacro{postnote}
     \rule{\linewidth}{0.4pt}
-  }
+}
 
 \newbibmacro{printabstract}{%
-  \textsc{Abstract}: \printfield{abstract}%
+    \textsc{Abstract}: \printfield{abstract}%
 }
 
 \endinput
